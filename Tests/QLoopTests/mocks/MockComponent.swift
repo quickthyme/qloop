@@ -1,7 +1,7 @@
 
 import QLoop
 
-class MockComponent {
+class MockPhoneComponent {
 
     lazy var phoneDataLoop = QLoop<Void, String>(
         onChange: { self.userPhoneNumberField = $0 ?? "" }
@@ -11,5 +11,16 @@ class MockComponent {
 
     func userAction() {
         phoneDataLoop.perform()
+    }
+}
+
+class MockProgressComponent {
+    lazy var progressDataLoop = QLoop<String, String>(
+        mode: .continueVal,
+        onChange: { self.progressField = $0 ?? "" }
+    )
+    var progressField: String = ""
+    func userAction() {
+        progressDataLoop.perform()
     }
 }

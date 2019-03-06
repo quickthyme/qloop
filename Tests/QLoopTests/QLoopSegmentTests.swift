@@ -7,7 +7,7 @@ class QLoopSegmentTests: XCTestCase {
     func test_basicSegmentWithOutputAnchor_whenInputSet_itCallsCompletionWithoutResult() {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturedAnchor
 
-        let subject = QLoopSegment<Void, String>(MockOp.VoidToString(), finalAnchor)
+        let subject = QLoopSegment<Void, String>(MockOp.VoidToStr(), finalAnchor)
 
         subject.inputAnchor.input = nil
         XCTAssertTrue(captured.didHappen)

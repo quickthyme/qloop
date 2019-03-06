@@ -11,7 +11,7 @@ class MockOp {
         return { input, compl in compl((input ?? "") + value) }
     }
 
-    static func VoidToString(_ value: String? = nil) -> QLoopSegment<Void, String>.Operation {
+    static func VoidToStr(_ value: String? = nil) -> QLoopSegment<Void, String>.Operation {
         return { input, compl in compl(value) }
     }
 }
