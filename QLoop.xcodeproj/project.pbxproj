@@ -24,18 +24,25 @@
 		DC6FAF68222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
 		DC6FAF69222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
 		DC6FAF6A222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
-		DC6FAF6C222F7326008BB070 /* MockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockAction.swift */; };
-		DC6FAF6D222F7326008BB070 /* MockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockAction.swift */; };
-		DC6FAF6E222F7326008BB070 /* MockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockAction.swift */; };
+		DC6FAF6C222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
+		DC6FAF6D222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
+		DC6FAF6E222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
 		DC6FAF70222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
 		DC6FAF71222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
 		DC6FAF72222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
 		DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
 		DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
 		DC6FAF76222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
-		DCA1FD08222FCF21006015BD /* MockDisplayComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */; };
-		DCA1FD09222FCF21006015BD /* MockDisplayComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */; };
-		DCA1FD0A222FCF21006015BD /* MockDisplayComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */; };
+		DCA1FD08222FCF21006015BD /* MockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockComponent.swift */; };
+		DCA1FD09222FCF21006015BD /* MockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockComponent.swift */; };
+		DCA1FD0A222FCF21006015BD /* MockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockComponent.swift */; };
+		DCA1FD0C22303D22006015BD /* QLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD0B22303D22006015BD /* QLoop.swift */; };
+		DCA1FD0D22303D22006015BD /* QLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD0B22303D22006015BD /* QLoop.swift */; };
+		DCA1FD0E22303D22006015BD /* QLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD0B22303D22006015BD /* QLoop.swift */; };
+		DCA1FD0F22303D22006015BD /* QLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD0B22303D22006015BD /* QLoop.swift */; };
+		DCA1FD1122304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
+		DCA1FD1222304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
+		DCA1FD1322304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,10 +114,12 @@
 		DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopSegmentTests.swift; sourceTree = "<group>"; };
 		DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopAnchor.swift; sourceTree = "<group>"; };
 		DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopAnchorTests.swift; sourceTree = "<group>"; };
-		DC6FAF6B222F7326008BB070 /* MockAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAction.swift; sourceTree = "<group>"; };
+		DC6FAF6B222F7326008BB070 /* MockOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOperation.swift; sourceTree = "<group>"; };
 		DC6FAF6F222F747C008BB070 /* SpyTether.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyTether.swift; sourceTree = "<group>"; };
 		DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedCompletion.swift; sourceTree = "<group>"; };
-		DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDisplayComponent.swift; sourceTree = "<group>"; };
+		DCA1FD07222FCF21006015BD /* MockComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockComponent.swift; sourceTree = "<group>"; };
+		DCA1FD0B22303D22006015BD /* QLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoop.swift; sourceTree = "<group>"; };
+		DCA1FD1022304746006015BD /* QLoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +222,7 @@
 		DC6FAF31222F4377008BB070 /* QLoop */ = {
 			isa = PBXGroup;
 			children = (
+				DCA1FD0B22303D22006015BD /* QLoop.swift */,
 				DC6FAF32222F4377008BB070 /* QLoopSegment.swift */,
 				DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */,
 			);
@@ -231,6 +241,7 @@
 		DC6FAF3D222F451D008BB070 /* QLoopTests */ = {
 			isa = PBXGroup;
 			children = (
+				DCA1FD1022304746006015BD /* QLoopTests.swift */,
 				DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */,
 				DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */,
 				DC6FAF40222F451D008BB070 /* helpers */,
@@ -250,8 +261,8 @@
 		DC6FAF42222F451D008BB070 /* mocks */ = {
 			isa = PBXGroup;
 			children = (
-				DC6FAF6B222F7326008BB070 /* MockAction.swift */,
-				DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */,
+				DC6FAF6B222F7326008BB070 /* MockOperation.swift */,
+				DCA1FD07222FCF21006015BD /* MockComponent.swift */,
 				DC6FAF6F222F747C008BB070 /* SpyTether.swift */,
 			);
 			path = mocks;
@@ -479,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6FAF33222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DCA1FD0C22303D22006015BD /* QLoop.swift in Sources */,
 				DC6FAF5E222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6FAF34222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DCA1FD0D22303D22006015BD /* QLoop.swift in Sources */,
 				DC6FAF5F222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,6 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6FAF35222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DCA1FD0E22303D22006015BD /* QLoop.swift in Sources */,
 				DC6FAF60222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6FAF36222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DCA1FD0F22303D22006015BD /* QLoop.swift in Sources */,
 				DC6FAF61222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,9 +531,10 @@
 			files = (
 				DC6FAF68222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
 				DC6FAF70222F747C008BB070 /* SpyTether.swift in Sources */,
-				DC6FAF6C222F7326008BB070 /* MockAction.swift in Sources */,
+				DCA1FD1122304746006015BD /* QLoopTests.swift in Sources */,
+				DC6FAF6C222F7326008BB070 /* MockOperation.swift in Sources */,
 				DC6FAF49222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
-				DCA1FD08222FCF21006015BD /* MockDisplayComponent.swift in Sources */,
+				DCA1FD08222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,9 +545,10 @@
 			files = (
 				DC6FAF69222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
 				DC6FAF71222F747C008BB070 /* SpyTether.swift in Sources */,
-				DC6FAF6D222F7326008BB070 /* MockAction.swift in Sources */,
+				DCA1FD1222304746006015BD /* QLoopTests.swift in Sources */,
+				DC6FAF6D222F7326008BB070 /* MockOperation.swift in Sources */,
 				DC6FAF4A222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
-				DCA1FD09222FCF21006015BD /* MockDisplayComponent.swift in Sources */,
+				DCA1FD09222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,9 +559,10 @@
 			files = (
 				DC6FAF6A222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
 				DC6FAF72222F747C008BB070 /* SpyTether.swift in Sources */,
-				DC6FAF6E222F7326008BB070 /* MockAction.swift in Sources */,
+				DCA1FD1322304746006015BD /* QLoopTests.swift in Sources */,
+				DC6FAF6E222F7326008BB070 /* MockOperation.swift in Sources */,
 				DC6FAF4B222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
-				DCA1FD0A222FCF21006015BD /* MockDisplayComponent.swift in Sources */,
+				DCA1FD0A222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC6FAF76222F7946008BB070 /* CapturedCompletion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

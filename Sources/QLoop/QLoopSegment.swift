@@ -1,33 +1,28 @@
 
-public class QLoopSegment<Input, Output> {
-    public typealias Action = ( Input?, Completion)->()
+open class QLoopSegment<Input, Output> {
+    public typealias Operation = ( Input?, Completion)->()
     public typealias Completion = (Output?)->()
 
     public var inputAnchor: QLoopAnchor<Input> = QLoopAnchor<Input>()
     public var outputAnchor: QLoopAnchor<Output>
 
-    public required init(_ action: @escaping Action, _ outputAnchor: QLoopAnchor<Output>) {
+    public required init(_ operation: @escaping Operation,
+                         _ outputAnchor: QLoopAnchor<Output>) {
         self.outputAnchor = outputAnchor
         self.inputAnchor = QLoopAnchor<Input>(
-            onChange: QLoopSegment.invokeAction(action, outputAnchor)
+            onChange: QLoopSegment.invokeOperation(operation, outputAnchor)
         )
     }
 
-    public convenience init<Unknown>(_ action: @escaping Action, _ output: QLoopSegment<Output, Unknown>) {
-        self.init(action, output.inputAnchor)
+    public convenience init<Unknown>(_ operation: @escaping Operation,
+                                     _ output: QLoopSegment<Output, Unknown>) {
+        self.init(operation, output.inputAnchor)
     }
 
-    private static func invokeAction(_ action: @escaping Action,
-                                     _ outputAnchor: QLoopAnchor<Output>?) -> (Input?)->() {
+    private static func invokeOperation(_ operation: @escaping Operation,
+                                        _ outputAnchor: QLoopAnchor<Output>?) -> (Input?)->() {
         return { input in
-            let completion = QLoopSegment.actionCompletion(outputAnchor)
-            action(input, completion)
-        }
-    }
-
-    private static func actionCompletion(_ outputAnchor: QLoopAnchor<Output>?) -> (Output?)->() {
-        return { output in
-            outputAnchor?.input = output
+            operation(input, { output in outputAnchor?.input = output })
         }
     }
 }
