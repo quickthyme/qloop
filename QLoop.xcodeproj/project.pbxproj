@@ -1,0 +1,1024 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC6FAF06222F41DD008BB070 /* libQLoop-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */; };
+		DC6FAF15222F4232008BB070 /* libQLoop-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */; };
+		DC6FAF24222F4241008BB070 /* libQLoop-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */; };
+		DC6FAF33222F4377008BB070 /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopSegment.swift */; };
+		DC6FAF34222F4377008BB070 /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopSegment.swift */; };
+		DC6FAF35222F4377008BB070 /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopSegment.swift */; };
+		DC6FAF36222F4377008BB070 /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopSegment.swift */; };
+		DC6FAF49222F451D008BB070 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */; };
+		DC6FAF4A222F451D008BB070 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */; };
+		DC6FAF4B222F451D008BB070 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */; };
+		DC6FAF5E222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
+		DC6FAF5F222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
+		DC6FAF60222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
+		DC6FAF61222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
+		DC6FAF68222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
+		DC6FAF69222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
+		DC6FAF6A222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
+		DC6FAF6C222F7326008BB070 /* MockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockAction.swift */; };
+		DC6FAF6D222F7326008BB070 /* MockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockAction.swift */; };
+		DC6FAF6E222F7326008BB070 /* MockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockAction.swift */; };
+		DC6FAF70222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
+		DC6FAF71222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
+		DC6FAF72222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
+		DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
+		DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
+		DC6FAF76222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
+		DCA1FD08222FCF21006015BD /* MockDisplayComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */; };
+		DCA1FD09222FCF21006015BD /* MockDisplayComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */; };
+		DCA1FD0A222FCF21006015BD /* MockDisplayComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC6FAF07222F41DD008BB070 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC6FAEC8222F4039008BB070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC6FAECF222F4039008BB070;
+			remoteInfo = "QLoop-iOS";
+		};
+		DC6FAF16222F4232008BB070 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC6FAEC8222F4039008BB070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC6FAEDD222F4130008BB070;
+			remoteInfo = "QLoop-macOS";
+		};
+		DC6FAF25222F4241008BB070 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC6FAEC8222F4039008BB070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC6FAEEA222F4164008BB070;
+			remoteInfo = "QLoop-tvOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DC6FAECE222F4039008BB070 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEE9222F4164008BB070 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEF4222F41AA008BB070 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6FAEF6222F41AA008BB070 /* libQLoop-watchOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-watchOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6FAF01222F41DD008BB070 /* QLoop-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QLoop-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6FAF10222F4231008BB070 /* QLoop-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QLoop-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6FAF1F222F4241008BB070 /* QLoop-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QLoop-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6FAF2A222F42D7008BB070 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DC6FAF2F222F434D008BB070 /* introduction.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = introduction.md; sourceTree = "<group>"; };
+		DC6FAF32222F4377008BB070 /* QLoopSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopSegment.swift; sourceTree = "<group>"; };
+		DC6FAF3B222F451D008BB070 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopSegmentTests.swift; sourceTree = "<group>"; };
+		DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopAnchor.swift; sourceTree = "<group>"; };
+		DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopAnchorTests.swift; sourceTree = "<group>"; };
+		DC6FAF6B222F7326008BB070 /* MockAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAction.swift; sourceTree = "<group>"; };
+		DC6FAF6F222F747C008BB070 /* SpyTether.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyTether.swift; sourceTree = "<group>"; };
+		DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedCompletion.swift; sourceTree = "<group>"; };
+		DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDisplayComponent.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC6FAECD222F4039008BB070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEDC222F4130008BB070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEE8222F4164008BB070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEF3222F41AA008BB070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEFE222F41DD008BB070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF06222F41DD008BB070 /* libQLoop-iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAF0D222F4231008BB070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF15222F4232008BB070 /* libQLoop-macOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAF1C222F4241008BB070 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF24222F4241008BB070 /* libQLoop-tvOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC6FAEC7222F4039008BB070 = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF2A222F42D7008BB070 /* README.md */,
+				DC6FAF2E222F434D008BB070 /* docs */,
+				DC6FAF30222F4376008BB070 /* Sources */,
+				DC6FAF3A222F451D008BB070 /* Tests */,
+				DC6FAED1222F4039008BB070 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC6FAED1222F4039008BB070 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */,
+				DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */,
+				DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */,
+				DC6FAEF6222F41AA008BB070 /* libQLoop-watchOS.a */,
+				DC6FAF01222F41DD008BB070 /* QLoop-iOSTests.xctest */,
+				DC6FAF10222F4231008BB070 /* QLoop-macOSTests.xctest */,
+				DC6FAF1F222F4241008BB070 /* QLoop-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC6FAF2E222F434D008BB070 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF2F222F434D008BB070 /* introduction.md */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		DC6FAF30222F4376008BB070 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF31222F4377008BB070 /* QLoop */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		DC6FAF31222F4377008BB070 /* QLoop */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF32222F4377008BB070 /* QLoopSegment.swift */,
+				DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */,
+			);
+			path = QLoop;
+			sourceTree = "<group>";
+		};
+		DC6FAF3A222F451D008BB070 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF3B222F451D008BB070 /* Info.plist */,
+				DC6FAF3D222F451D008BB070 /* QLoopTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		DC6FAF3D222F451D008BB070 /* QLoopTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */,
+				DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */,
+				DC6FAF40222F451D008BB070 /* helpers */,
+				DC6FAF42222F451D008BB070 /* mocks */,
+			);
+			path = QLoopTests;
+			sourceTree = "<group>";
+		};
+		DC6FAF40222F451D008BB070 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		DC6FAF42222F451D008BB070 /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF6B222F7326008BB070 /* MockAction.swift */,
+				DCA1FD07222FCF21006015BD /* MockDisplayComponent.swift */,
+				DC6FAF6F222F747C008BB070 /* SpyTether.swift */,
+			);
+			path = mocks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DC6FAEDA222F4130008BB070 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DC6FAECF222F4039008BB070 /* QLoop-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC6FAED7222F4039008BB070 /* Build configuration list for PBXNativeTarget "QLoop-iOS" */;
+			buildPhases = (
+				DC6FAECC222F4039008BB070 /* Sources */,
+				DC6FAECD222F4039008BB070 /* Frameworks */,
+				DC6FAECE222F4039008BB070 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "QLoop-iOS";
+			productName = QLoop;
+			productReference = DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DC6FAEDD222F4130008BB070 /* QLoop-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC6FAEE4222F4130008BB070 /* Build configuration list for PBXNativeTarget "QLoop-macOS" */;
+			buildPhases = (
+				DC6FAEDA222F4130008BB070 /* Headers */,
+				DC6FAEDB222F4130008BB070 /* Sources */,
+				DC6FAEDC222F4130008BB070 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "QLoop-macOS";
+			productName = "QLoop-macOS";
+			productReference = DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DC6FAEEA222F4164008BB070 /* QLoop-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC6FAEEF222F4164008BB070 /* Build configuration list for PBXNativeTarget "QLoop-tvOS" */;
+			buildPhases = (
+				DC6FAEE7222F4164008BB070 /* Sources */,
+				DC6FAEE8222F4164008BB070 /* Frameworks */,
+				DC6FAEE9222F4164008BB070 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "QLoop-tvOS";
+			productName = "QLoop-tvOS";
+			productReference = DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DC6FAEF5222F41AA008BB070 /* QLoop-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC6FAEFA222F41AA008BB070 /* Build configuration list for PBXNativeTarget "QLoop-watchOS" */;
+			buildPhases = (
+				DC6FAEF2222F41AA008BB070 /* Sources */,
+				DC6FAEF3222F41AA008BB070 /* Frameworks */,
+				DC6FAEF4222F41AA008BB070 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "QLoop-watchOS";
+			productName = "QLoop-watchOS";
+			productReference = DC6FAEF6222F41AA008BB070 /* libQLoop-watchOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DC6FAF00222F41DD008BB070 /* QLoop-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC6FAF09222F41DD008BB070 /* Build configuration list for PBXNativeTarget "QLoop-iOSTests" */;
+			buildPhases = (
+				DC6FAEFD222F41DD008BB070 /* Sources */,
+				DC6FAEFE222F41DD008BB070 /* Frameworks */,
+				DC6FAEFF222F41DD008BB070 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC6FAF08222F41DD008BB070 /* PBXTargetDependency */,
+			);
+			name = "QLoop-iOSTests";
+			productName = "QLoop-iOSTests";
+			productReference = DC6FAF01222F41DD008BB070 /* QLoop-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DC6FAF0F222F4231008BB070 /* QLoop-macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC6FAF18222F4232008BB070 /* Build configuration list for PBXNativeTarget "QLoop-macOSTests" */;
+			buildPhases = (
+				DC6FAF0C222F4231008BB070 /* Sources */,
+				DC6FAF0D222F4231008BB070 /* Frameworks */,
+				DC6FAF0E222F4231008BB070 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC6FAF17222F4232008BB070 /* PBXTargetDependency */,
+			);
+			name = "QLoop-macOSTests";
+			productName = "QLoop-macOSTests";
+			productReference = DC6FAF10222F4231008BB070 /* QLoop-macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DC6FAF1E222F4241008BB070 /* QLoop-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC6FAF27222F4241008BB070 /* Build configuration list for PBXNativeTarget "QLoop-tvOSTests" */;
+			buildPhases = (
+				DC6FAF1B222F4241008BB070 /* Sources */,
+				DC6FAF1C222F4241008BB070 /* Frameworks */,
+				DC6FAF1D222F4241008BB070 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC6FAF26222F4241008BB070 /* PBXTargetDependency */,
+			);
+			name = "QLoop-tvOSTests";
+			productName = "QLoop-tvOSTests";
+			productReference = DC6FAF1F222F4241008BB070 /* QLoop-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC6FAEC8222F4039008BB070 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = Quickthyme;
+				TargetAttributes = {
+					DC6FAECF222F4039008BB070 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+					};
+					DC6FAEDD222F4130008BB070 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					DC6FAEEA222F4164008BB070 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					DC6FAEF5222F41AA008BB070 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					DC6FAF00222F41DD008BB070 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					DC6FAF0F222F4231008BB070 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					DC6FAF1E222F4241008BB070 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = DC6FAECB222F4039008BB070 /* Build configuration list for PBXProject "QLoop" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DC6FAEC7222F4039008BB070;
+			productRefGroup = DC6FAED1222F4039008BB070 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC6FAECF222F4039008BB070 /* QLoop-iOS */,
+				DC6FAEDD222F4130008BB070 /* QLoop-macOS */,
+				DC6FAEEA222F4164008BB070 /* QLoop-tvOS */,
+				DC6FAEF5222F41AA008BB070 /* QLoop-watchOS */,
+				DC6FAF00222F41DD008BB070 /* QLoop-iOSTests */,
+				DC6FAF0F222F4231008BB070 /* QLoop-macOSTests */,
+				DC6FAF1E222F4241008BB070 /* QLoop-tvOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC6FAEFF222F41DD008BB070 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAF0E222F4231008BB070 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAF1D222F4241008BB070 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC6FAECC222F4039008BB070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF33222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DC6FAF5E222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEDB222F4130008BB070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF34222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DC6FAF5F222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEE7222F4164008BB070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF35222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DC6FAF60222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEF2222F41AA008BB070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF36222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DC6FAF61222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAEFD222F41DD008BB070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF68222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
+				DC6FAF70222F747C008BB070 /* SpyTether.swift in Sources */,
+				DC6FAF6C222F7326008BB070 /* MockAction.swift in Sources */,
+				DC6FAF49222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
+				DCA1FD08222FCF21006015BD /* MockDisplayComponent.swift in Sources */,
+				DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAF0C222F4231008BB070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF69222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
+				DC6FAF71222F747C008BB070 /* SpyTether.swift in Sources */,
+				DC6FAF6D222F7326008BB070 /* MockAction.swift in Sources */,
+				DC6FAF4A222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
+				DCA1FD09222FCF21006015BD /* MockDisplayComponent.swift in Sources */,
+				DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6FAF1B222F4241008BB070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6FAF6A222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
+				DC6FAF72222F747C008BB070 /* SpyTether.swift in Sources */,
+				DC6FAF6E222F7326008BB070 /* MockAction.swift in Sources */,
+				DC6FAF4B222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
+				DCA1FD0A222FCF21006015BD /* MockDisplayComponent.swift in Sources */,
+				DC6FAF76222F7946008BB070 /* CapturedCompletion.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC6FAF08222F41DD008BB070 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC6FAECF222F4039008BB070 /* QLoop-iOS */;
+			targetProxy = DC6FAF07222F41DD008BB070 /* PBXContainerItemProxy */;
+		};
+		DC6FAF17222F4232008BB070 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC6FAEDD222F4130008BB070 /* QLoop-macOS */;
+			targetProxy = DC6FAF16222F4232008BB070 /* PBXContainerItemProxy */;
+		};
+		DC6FAF26222F4241008BB070 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC6FAEEA222F4164008BB070 /* QLoop-tvOS */;
+			targetProxy = DC6FAF25222F4241008BB070 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DC6FAED5222F4039008BB070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		DC6FAED6222F4039008BB070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC6FAED8222F4039008BB070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = QLoop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DC6FAED9222F4039008BB070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = QLoop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DC6FAEE5222F4130008BB070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_MODULE_NAME = QLoop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DC6FAEE6222F4130008BB070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				EXECUTABLE_PREFIX = lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_MODULE_NAME = QLoop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DC6FAEF0222F4164008BB070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = QLoop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+			};
+			name = Debug;
+		};
+		DC6FAEF1222F4164008BB070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = QLoop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+			};
+			name = Release;
+		};
+		DC6FAEFB222F41AA008BB070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = QLoop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		DC6FAEFC222F41AA008BB070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = QLoop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		DC6FAF0A222F41DD008BB070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.quickthyme.QLoop-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DC6FAF0B222F41DD008BB070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.quickthyme.QLoop-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DC6FAF19222F4232008BB070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.quickthyme.QLoop-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		DC6FAF1A222F4232008BB070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.quickthyme.QLoop-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		DC6FAF28222F4241008BB070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.quickthyme.QLoop-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+			};
+			name = Debug;
+		};
+		DC6FAF29222F4241008BB070 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.quickthyme.QLoop-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC6FAECB222F4039008BB070 /* Build configuration list for PBXProject "QLoop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6FAED5222F4039008BB070 /* Debug */,
+				DC6FAED6222F4039008BB070 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC6FAED7222F4039008BB070 /* Build configuration list for PBXNativeTarget "QLoop-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6FAED8222F4039008BB070 /* Debug */,
+				DC6FAED9222F4039008BB070 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC6FAEE4222F4130008BB070 /* Build configuration list for PBXNativeTarget "QLoop-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6FAEE5222F4130008BB070 /* Debug */,
+				DC6FAEE6222F4130008BB070 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC6FAEEF222F4164008BB070 /* Build configuration list for PBXNativeTarget "QLoop-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6FAEF0222F4164008BB070 /* Debug */,
+				DC6FAEF1222F4164008BB070 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC6FAEFA222F41AA008BB070 /* Build configuration list for PBXNativeTarget "QLoop-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6FAEFB222F41AA008BB070 /* Debug */,
+				DC6FAEFC222F41AA008BB070 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC6FAF09222F41DD008BB070 /* Build configuration list for PBXNativeTarget "QLoop-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6FAF0A222F41DD008BB070 /* Debug */,
+				DC6FAF0B222F41DD008BB070 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC6FAF18222F4232008BB070 /* Build configuration list for PBXNativeTarget "QLoop-macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6FAF19222F4232008BB070 /* Debug */,
+				DC6FAF1A222F4232008BB070 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC6FAF27222F4241008BB070 /* Build configuration list for PBXNativeTarget "QLoop-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC6FAF28222F4241008BB070 /* Debug */,
+				DC6FAF29222F4241008BB070 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC6FAEC8222F4039008BB070 /* Project object */;
+}
