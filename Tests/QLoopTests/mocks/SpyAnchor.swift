@@ -1,5 +1,6 @@
 
 import QLoop
+import XCTest
 
 class SpyAnchor<Input> {
 

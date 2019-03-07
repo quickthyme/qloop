@@ -14,9 +14,9 @@ class QLoopTests: XCTestCase {
         let mockComponent = MockPhoneComponent()
 
         mockComponent.phoneDataLoop.inputAnchor =
-            QLoopSegment(MockOp.VoidToStr("(210) "),
-                         QLoopSegment(MockOp.AddToStr("555-"),
-                                      QLoopSegment(MockOp.AddToStr("1212"),
+            QLoopLinearSegment(MockOp.VoidToStr("(210) "),
+                         QLoopLinearSegment(MockOp.AddToStr("555-"),
+                                      QLoopLinearSegment(MockOp.AddToStr("1212"),
                                                    mockComponent.phoneDataLoop.outputAnchor))).inputAnchor
         mockComponent.userAction()
         XCTAssertEqual(mockComponent.userPhoneNumberField, "(210) 555-1212")
@@ -26,7 +26,7 @@ class QLoopTests: XCTestCase {
         let mockComponent = MockProgressComponent()
 
         mockComponent.progressDataLoop.inputAnchor =
-            QLoopSegment(MockOp.AddToStr("#"),
+            QLoopLinearSegment(MockOp.AddToStr("#"),
                          mockComponent.progressDataLoop.outputAnchor)
                 .inputAnchor
 
@@ -40,7 +40,7 @@ class QLoopTests: XCTestCase {
         let mockComponent = MockProgressComponent()
 
         mockComponent.progressDataLoop.inputAnchor =
-            QLoopSegment(MockOp.AddToStr("#"),
+            QLoopLinearSegment(MockOp.AddToStr("#"),
                          mockComponent.progressDataLoop.outputAnchor)
                 .inputAnchor
 
@@ -50,4 +50,3 @@ class QLoopTests: XCTestCase {
         XCTAssertEqual(mockComponent.progressField, "###")
     }
 }
-
