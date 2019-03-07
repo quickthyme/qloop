@@ -10,13 +10,10 @@
 		DC6FAF06222F41DD008BB070 /* libQLoop-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */; };
 		DC6FAF15222F4232008BB070 /* libQLoop-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */; };
 		DC6FAF24222F4241008BB070 /* libQLoop-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */; };
-		DC6FAF33222F4377008BB070 /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopSegment.swift */; };
-		DC6FAF34222F4377008BB070 /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopSegment.swift */; };
-		DC6FAF35222F4377008BB070 /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopSegment.swift */; };
-		DC6FAF36222F4377008BB070 /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopSegment.swift */; };
-		DC6FAF49222F451D008BB070 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */; };
-		DC6FAF4A222F451D008BB070 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */; };
-		DC6FAF4B222F451D008BB070 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */; };
+		DC6FAF33222F4377008BB070 /* QLoopLinearSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */; };
+		DC6FAF34222F4377008BB070 /* QLoopLinearSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */; };
+		DC6FAF35222F4377008BB070 /* QLoopLinearSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */; };
+		DC6FAF36222F4377008BB070 /* QLoopLinearSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */; };
 		DC6FAF5E222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
 		DC6FAF5F222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
 		DC6FAF60222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
@@ -27,9 +24,9 @@
 		DC6FAF6C222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
 		DC6FAF6D222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
 		DC6FAF6E222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
-		DC6FAF70222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
-		DC6FAF71222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
-		DC6FAF72222F747C008BB070 /* SpyTether.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyTether.swift */; };
+		DC6FAF70222F747C008BB070 /* SpyAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyAnchor.swift */; };
+		DC6FAF71222F747C008BB070 /* SpyAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyAnchor.swift */; };
+		DC6FAF72222F747C008BB070 /* SpyAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6F222F747C008BB070 /* SpyAnchor.swift */; };
 		DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
 		DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
 		DC6FAF76222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
@@ -43,6 +40,20 @@
 		DCA1FD1122304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
 		DCA1FD1222304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
 		DCA1FD1322304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
+		DCA1FD1A2230B827006015BD /* QLoopCompoundSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */; };
+		DCA1FD1B2230B827006015BD /* QLoopCompoundSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */; };
+		DCA1FD1C2230B827006015BD /* QLoopCompoundSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */; };
+		DCA1FD1D2230B827006015BD /* QLoopCompoundSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */; };
+		DCA1FD1F2230C8DB006015BD /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */; };
+		DCA1FD202230C8DB006015BD /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */; };
+		DCA1FD212230C8DB006015BD /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */; };
+		DCA1FD222230C8DB006015BD /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */; };
+		DCA1FD252230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */; };
+		DCA1FD262230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */; };
+		DCA1FD272230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */; };
+		DCA1FD2A2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
+		DCA1FD2B2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
+		DCA1FD2C2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,17 +120,20 @@
 		DC6FAF1F222F4241008BB070 /* QLoop-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QLoop-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6FAF2A222F42D7008BB070 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC6FAF2F222F434D008BB070 /* introduction.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = introduction.md; sourceTree = "<group>"; };
-		DC6FAF32222F4377008BB070 /* QLoopSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopSegment.swift; sourceTree = "<group>"; };
+		DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopLinearSegment.swift; sourceTree = "<group>"; };
 		DC6FAF3B222F451D008BB070 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopSegmentTests.swift; sourceTree = "<group>"; };
 		DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopAnchor.swift; sourceTree = "<group>"; };
 		DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopAnchorTests.swift; sourceTree = "<group>"; };
 		DC6FAF6B222F7326008BB070 /* MockOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOperation.swift; sourceTree = "<group>"; };
-		DC6FAF6F222F747C008BB070 /* SpyTether.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyTether.swift; sourceTree = "<group>"; };
+		DC6FAF6F222F747C008BB070 /* SpyAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyAnchor.swift; sourceTree = "<group>"; };
 		DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedCompletion.swift; sourceTree = "<group>"; };
 		DCA1FD07222FCF21006015BD /* MockComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockComponent.swift; sourceTree = "<group>"; };
 		DCA1FD0B22303D22006015BD /* QLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoop.swift; sourceTree = "<group>"; };
 		DCA1FD1022304746006015BD /* QLoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopTests.swift; sourceTree = "<group>"; };
+		DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopCompoundSegment.swift; sourceTree = "<group>"; };
+		DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopSegment.swift; sourceTree = "<group>"; };
+		DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopLinearSegmentTests.swift; sourceTree = "<group>"; };
+		DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopCompoundSegmentTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				DCA1FD0B22303D22006015BD /* QLoop.swift */,
-				DC6FAF32222F4377008BB070 /* QLoopSegment.swift */,
 				DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */,
+				DCA1FD232230C8E5006015BD /* Segment */,
 			);
 			path = QLoop;
 			sourceTree = "<group>";
@@ -242,8 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				DCA1FD1022304746006015BD /* QLoopTests.swift */,
-				DC6FAF3E222F451D008BB070 /* QLoopSegmentTests.swift */,
 				DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */,
+				DCA1FD282230CA49006015BD /* Segment */,
 				DC6FAF40222F451D008BB070 /* helpers */,
 				DC6FAF42222F451D008BB070 /* mocks */,
 			);
@@ -263,9 +277,28 @@
 			children = (
 				DC6FAF6B222F7326008BB070 /* MockOperation.swift */,
 				DCA1FD07222FCF21006015BD /* MockComponent.swift */,
-				DC6FAF6F222F747C008BB070 /* SpyTether.swift */,
+				DC6FAF6F222F747C008BB070 /* SpyAnchor.swift */,
 			);
 			path = mocks;
+			sourceTree = "<group>";
+		};
+		DCA1FD232230C8E5006015BD /* Segment */ = {
+			isa = PBXGroup;
+			children = (
+				DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */,
+				DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */,
+				DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */,
+			);
+			path = Segment;
+			sourceTree = "<group>";
+		};
+		DCA1FD282230CA49006015BD /* Segment */ = {
+			isa = PBXGroup;
+			children = (
+				DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */,
+				DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */,
+			);
+			path = Segment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -489,7 +522,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6FAF33222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DCA1FD1A2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
+				DC6FAF33222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
+				DCA1FD1F2230C8DB006015BD /* QLoopSegment.swift in Sources */,
 				DCA1FD0C22303D22006015BD /* QLoop.swift in Sources */,
 				DC6FAF5E222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
 			);
@@ -499,7 +534,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6FAF34222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DCA1FD1B2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
+				DC6FAF34222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
+				DCA1FD202230C8DB006015BD /* QLoopSegment.swift in Sources */,
 				DCA1FD0D22303D22006015BD /* QLoop.swift in Sources */,
 				DC6FAF5F222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
 			);
@@ -509,7 +546,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6FAF35222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DCA1FD1C2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
+				DC6FAF35222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
+				DCA1FD212230C8DB006015BD /* QLoopSegment.swift in Sources */,
 				DCA1FD0E22303D22006015BD /* QLoop.swift in Sources */,
 				DC6FAF60222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
 			);
@@ -519,7 +558,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC6FAF36222F4377008BB070 /* QLoopSegment.swift in Sources */,
+				DCA1FD1D2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
+				DC6FAF36222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
+				DCA1FD222230C8DB006015BD /* QLoopSegment.swift in Sources */,
 				DCA1FD0F22303D22006015BD /* QLoop.swift in Sources */,
 				DC6FAF61222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
 			);
@@ -530,10 +571,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6FAF68222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
-				DC6FAF70222F747C008BB070 /* SpyTether.swift in Sources */,
+				DC6FAF70222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DCA1FD1122304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6C222F7326008BB070 /* MockOperation.swift in Sources */,
-				DC6FAF49222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
+				DCA1FD2C2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
+				DCA1FD252230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
 				DCA1FD08222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */,
 			);
@@ -544,10 +586,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6FAF69222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
-				DC6FAF71222F747C008BB070 /* SpyTether.swift in Sources */,
+				DC6FAF71222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DCA1FD1222304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6D222F7326008BB070 /* MockOperation.swift in Sources */,
-				DC6FAF4A222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
+				DCA1FD2B2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
+				DCA1FD262230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
 				DCA1FD09222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */,
 			);
@@ -558,10 +601,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6FAF6A222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
-				DC6FAF72222F747C008BB070 /* SpyTether.swift in Sources */,
+				DC6FAF72222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DCA1FD1322304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6E222F7326008BB070 /* MockOperation.swift in Sources */,
-				DC6FAF4B222F451D008BB070 /* QLoopSegmentTests.swift in Sources */,
+				DCA1FD2A2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
+				DCA1FD272230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
 				DCA1FD0A222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC6FAF76222F7946008BB070 /* CapturedCompletion.swift in Sources */,
 			);
