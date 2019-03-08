@@ -39,16 +39,16 @@ public final class QLoop<Input, Output>: QLoopIterable {
 
 
     public convenience init() {
-        self.init(iterator: QLoopIteratorSingle(), onChange: {_ in})
+        self.init(iterator: QLoopIteratorSingle(), onChange: {_ in}, onError: {_ in})
     }
 
     public convenience init(onChange: @escaping (Output?)->()) {
-        self.init(iterator: QLoopIteratorSingle(), onChange: onChange)
+        self.init(iterator: QLoopIteratorSingle(), onChange: onChange, onError: {_ in})
     }
 
     public convenience init(iterator: QLoopIterating,
                             onChange: @escaping OnChange) {
-        self.init(iterator: QLoopIteratorSingle(), onChange: onChange, onError: {_ in})
+        self.init(iterator: iterator, onChange: onChange, onError: {_ in})
     }
 
     public required init(iterator: QLoopIterating,
