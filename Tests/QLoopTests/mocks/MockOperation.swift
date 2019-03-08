@@ -20,4 +20,12 @@ class MockOp {
     static func VoidToStr(_ value: String? = nil) -> QLoopSegment<Void, String>.Operation {
         return { input, compl in compl(value) }
     }
+
+    static func IntThrowsError(_ err: QLoopError) -> QLoopSegment<Int, Int>.Operation {
+        return { input, compl in throw err }
+    }
+
+    static func StrThrowsError(_ err: QLoopError) -> QLoopSegment<String, String>.Operation {
+        return { input, compl in throw err }
+    }
 }

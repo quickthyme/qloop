@@ -1,72 +1,61 @@
 
-public enum QLoopIterationMode: Equatable {
-    case single
-    case countNil(Int)
-    case countVal(Int)
-    case continueNil
-    case continueVal
-}
-
-public final class QLoop<Input, Output> {
+public final class QLoop<Input, Output>: QLoopIterable {
     public typealias Operation = QLoopSegment<Input, Output>.Operation
     public typealias Completion = QLoopSegment<Input, Output>.Completion
+    public typealias OnChange = QLoopAnchor<Output>.OnChange
+    public typealias OnError = QLoopAnchor<Output>.OnError
 
     public lazy var inputAnchor: QLoopAnchor<Input> = QLoopAnchor<Input>()
     public lazy var outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>(
-        onChange: {
+        onChange: ({
             self.onChange($0)
-            self.iterate()
-    })
+            self.iterator.iterate(self)
+        }),
+        onError: ({
+            self.onError($0)
+            self.discontinue = !self.shouldResume
+            self.iterator.iterate(self)
+        }))
 
-    public func perform(_ input: Input? = nil) {
+    public func perform() {
+        inputAnchor.input = nil
+    }
+
+    public func perform(_ input: Input?) {
         inputAnchor.input = input
     }
 
-    public var mode: QLoopIterationMode = .single
+    public func performFromLastOutput() {
+        self.perform(self.outputAnchor.input as? Input)
+    }
 
     public var discontinue: Bool = false
+    public var shouldResume: Bool = false
 
-    public var onChange: (Output?)->()
+    public var onChange: OnChange
+    public var onError: OnError
+
+    public var iterator: QLoopIterating
+
 
     public convenience init() {
-        self.init(mode: .single, onChange: {_ in})
+        self.init(iterator: QLoopIteratorSingle(), onChange: {_ in})
     }
 
     public convenience init(onChange: @escaping (Output?)->()) {
-        self.init(mode: .single, onChange: onChange)
+        self.init(iterator: QLoopIteratorSingle(), onChange: onChange)
     }
 
-    public required init(mode: QLoopIterationMode,
-                         onChange: @escaping (Output?)->()) {
-        self.mode = mode
+    public convenience init(iterator: QLoopIterating,
+                            onChange: @escaping OnChange) {
+        self.init(iterator: QLoopIteratorSingle(), onChange: onChange, onError: {_ in})
+    }
+
+    public required init(iterator: QLoopIterating,
+                         onChange: @escaping OnChange,
+                         onError: @escaping OnError) {
+        self.iterator = iterator
         self.onChange = onChange
+        self.onError = onError
     }
-
-    private func iterate() {
-        guard (discontinue == false)
-            else { discontinue = false; return }
-
-        switch(mode) {
-
-        case .single:
-            return
-
-        case .countNil(let num):
-            _iterations += 1
-            if (_iterations < num) { self.perform() }
-
-        case .countVal(let num):
-            _iterations += 1
-            if (_iterations < num) {
-                self.perform(self.outputAnchor.input as? Input)
-            }
-
-        case .continueNil:
-            self.perform()
-
-        case .continueVal:
-            self.perform(self.outputAnchor.input as? Input)
-        }
-    }
-    private var _iterations: Int = 0
 }

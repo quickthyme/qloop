@@ -1,16 +1,32 @@
 
-public class QLoopAnchor<Input> {
+public final class QLoopAnchor<Input> {
+    public typealias OnChange = (Input?)->()
+    public typealias OnError = (Error)->()
+    private struct NotAnError: Error { }
 
     public var input: Input? {
         didSet { onChange(input) }
     }
 
-    public var onChange: (Input?)->()
-
-    public init() {
-        self.onChange = {_ in }
+    public var error: Error = NotAnError() {
+        didSet {
+            if !(error is NotAnError) { onError(error) } }
     }
-    public init(onChange: @escaping (Input?)->()) {
+
+    public var onChange: OnChange
+    public var onError: OnError
+
+    public convenience init() {
+        self.init(onChange: {_ in }, onError: {_ in })
+    }
+
+    public convenience init(onChange: @escaping OnChange) {
+        self.init(onChange: onChange, onError: {_ in })
+    }
+
+    public required init(onChange: @escaping OnChange,
+                         onError: @escaping OnError) {
         self.onChange = onChange
+        self.onError = onError
     }
 }

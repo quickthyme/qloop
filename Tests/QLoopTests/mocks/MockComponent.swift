@@ -16,7 +16,7 @@ class MockPhoneComponent {
 
 class MockProgressComponent {
     lazy var progressDataLoop = QLoop<String, String>(
-        mode: .continueVal,
+        iterator: QLoopIteratorContinueOutput(),
         onChange: { self.progressField = $0 ?? "" }
     )
     var progressField: String = ""
