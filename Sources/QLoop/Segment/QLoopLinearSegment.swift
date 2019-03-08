@@ -3,6 +3,14 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
     public typealias Operation = QLoopSegment<Input, Output>.Operation
     public typealias Completion = QLoopSegment<Input, Output>.Completion
 
+    override public var inputAnchor: QLoopAnchor<Input> {
+        didSet { applyInputObservers() }
+    }
+
+    override public var outputAnchor: QLoopAnchor<Output> {
+        didSet { applyInputObservers() }
+    }
+
     public convenience init<Unknown>(_ operation: @escaping Operation,
                                      _ output: QLoopSegment<Output, Unknown>) {
         self.init(operation, output.inputAnchor)
@@ -11,19 +19,29 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
     public required init(_ operation: @escaping Operation,
                          _ outputAnchor: QLoopAnchor<Output>) {
         super.init()
+        self.operation = operation
         self.outputAnchor = outputAnchor
-        self.inputAnchor = QLoopAnchor<Input>(
+        self.inputAnchor = QLoopAnchor<Input>()
+    }
 
-            onChange: ({ input in
-                do {
-                    try operation(input, { output in outputAnchor.input = output })
-                } catch {
-                    outputAnchor.error = error
-                }
-            }),
+    private func applyInputObservers() {
+        self.inputAnchor.onChange = QLoopLinearSegment<Input, Output>.onInputChange(self)
+        self.inputAnchor.onError = QLoopLinearSegment<Input, Output>.onInputError(self)
+    }
 
-            onError: ({
-                outputAnchor.error = $0
-            }))
+    private static func onInputChange(_ segment: QLoopLinearSegment<Input, Output>) -> QLoopAnchor<Input>.OnChange {
+        return ({ input in
+            do {
+                try segment.operation(input, { output in segment.outputAnchor.input = output })
+            } catch {
+                segment.outputAnchor.error = error
+            }
+        })
+    }
+
+    private static func onInputError(_ segment: QLoopLinearSegment<Input, Output>) -> QLoopAnchor<Input>.OnError {
+        return ({ error in
+            segment.outputAnchor.error = error
+        })
     }
 }

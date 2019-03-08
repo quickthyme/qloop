@@ -15,6 +15,14 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         }
     }
 
+    override public var inputAnchor: QLoopAnchor<Input> {
+        didSet { applyInputObservers() }
+    }
+
+    override public var outputAnchor: QLoopAnchor<Output> {
+        didSet { applyInputObservers() }
+    }
+
     private var reducer: Reducer? = nil
 
     private var operations: [AnyHashable:OperationBox<Output>] = [:]
@@ -50,23 +58,33 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         self.reducer = reducer
         self.operations = operations.mapValues { OperationBox($0) }
         self.outputAnchor = outputAnchor
-        self.inputAnchor = QLoopAnchor<Input>(
-            onChange: ({ input in
-                for (_, opBox) in self.operations {
-                    do {
-                        try opBox.operation(input, { output in
-                            opBox.value = output
-                            opBox.completed = true
-                            self.totalCompleted += 1
-                        })
-                    } catch {
-                        outputAnchor.error = error
-                    }
-                }
-            }),
+        self.inputAnchor = QLoopAnchor<Input>()
+    }
 
-            onError: ({
-                outputAnchor.error = $0
-            }))
+    private func applyInputObservers() {
+        self.inputAnchor.onChange = QLoopCompoundSegment<Input, Output>.onInputChange(self)
+        self.inputAnchor.onError = QLoopCompoundSegment<Input, Output>.onInputError(self)
+    }
+
+    private static func onInputChange(_ segment: QLoopCompoundSegment<Input, Output>) -> QLoopAnchor<Input>.OnChange {
+        return ({ input in
+            for (_, opBox) in segment.operations {
+                do {
+                    try opBox.operation(input, { output in
+                        opBox.value = output
+                        opBox.completed = true
+                        segment.totalCompleted += 1
+                    })
+                } catch {
+                    segment.outputAnchor.error = error
+                }
+            }
+        })
+    }
+
+    private static func onInputError(_ segment: QLoopCompoundSegment<Input, Output>) -> QLoopAnchor<Input>.OnError {
+        return ({ error in
+            segment.outputAnchor.error = error
+        })
     }
 }
