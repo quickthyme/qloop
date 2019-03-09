@@ -3,11 +3,11 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
     public typealias Operation = QLoopSegment<Input, Output>.Operation
     public typealias Completion = QLoopSegment<Input, Output>.Completion
 
-    override public var inputAnchor: QLoopAnchor<Input> {
+    public override var inputAnchor: QLoopAnchor<Input> {
         didSet { applyInputObservers() }
     }
 
-    override public var outputAnchor: QLoopAnchor<Output> {
+    public override var outputAnchor: QLoopAnchor<Output> {
         didSet { applyInputObservers() }
     }
 
@@ -28,24 +28,17 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
         self.inputAnchor = QLoopAnchor<Input>()
     }
 
-    private func applyInputObservers() {
-        self.inputAnchor.onChange = QLoopLinearSegment<Input, Output>.onInputChange(self)
-        self.inputAnchor.onError = QLoopLinearSegment<Input, Output>.onInputError(self)
-    }
-
-    private static func onInputChange(_ segment: QLoopLinearSegment<Input, Output>) -> QLoopAnchor<Input>.OnChange {
-        return ({ input in
+    private final func applyInputObservers() {
+        self.inputAnchor.onChange = ({ input in
             do {
-                try segment.operation(input, { output in segment.outputAnchor.input = output })
+                try self.operation(input, { self.outputAnchor.input = $0 })
             } catch {
-                segment.outputAnchor.error = error
+                self.outputAnchor.error = error
             }
         })
-    }
 
-    private static func onInputError(_ segment: QLoopLinearSegment<Input, Output>) -> QLoopAnchor<Input>.OnError {
-        return ({ error in
-            segment.outputAnchor.error = error
+        self.inputAnchor.onError = ({ error in
+            self.outputAnchor.error = error
         })
     }
 }

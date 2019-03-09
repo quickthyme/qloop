@@ -56,6 +56,9 @@
 		DC374A63223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */; };
 		DC374A64223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */; };
 		DC374A65223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */; };
+		DC68AB052234609600BC3528 /* QLoopPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLoopPathTests.swift */; };
+		DC68AB062234609600BC3528 /* QLoopPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLoopPathTests.swift */; };
+		DC68AB072234609600BC3528 /* QLoopPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLoopPathTests.swift */; };
 		DC6FAF06222F41DD008BB070 /* libQLoop-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */; };
 		DC6FAF15222F4232008BB070 /* libQLoop-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */; };
 		DC6FAF24222F4241008BB070 /* libQLoop-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */; };
@@ -181,6 +184,7 @@
 		DC374A582231FE99006F1272 /* QLoopIteratorContinueNilTests copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QLoopIteratorContinueNilTests copy.swift"; sourceTree = "<group>"; };
 		DC374A5C2231FFF6006F1272 /* QLoopIteratorContinueNilMaxTests copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QLoopIteratorContinueNilMaxTests copy.swift"; sourceTree = "<group>"; };
 		DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopIteratorContinueOutputMaxTests.swift; sourceTree = "<group>"; };
+		DC68AB042234609600BC3528 /* QLoopPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopPathTests.swift; sourceTree = "<group>"; };
 		DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,6 +361,7 @@
 			children = (
 				DCA1FD1022304746006015BD /* QLoopTests.swift */,
 				DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */,
+				DC68AB042234609600BC3528 /* QLoopPathTests.swift */,
 				DC374A472231F864006F1272 /* Iterating */,
 				DCA1FD282230CA49006015BD /* Segment */,
 				DC6FAF40222F451D008BB070 /* helpers */,
@@ -706,6 +711,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC68AB052234609600BC3528 /* QLoopPathTests.swift in Sources */,
 				DC6FAF68222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
 				DC6FAF70222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DC374A63223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */,
@@ -729,6 +735,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC68AB062234609600BC3528 /* QLoopPathTests.swift in Sources */,
 				DC6FAF69222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
 				DC6FAF71222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DC374A64223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */,
@@ -752,6 +759,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC68AB072234609600BC3528 /* QLoopPathTests.swift in Sources */,
 				DC6FAF6A222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
 				DC6FAF72222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DC374A65223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */,

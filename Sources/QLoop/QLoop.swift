@@ -5,17 +5,8 @@ public final class QLoop<Input, Output>: QLoopIterable {
     public typealias OnChange = QLoopAnchor<Output>.OnChange
     public typealias OnError = QLoopAnchor<Output>.OnError
 
-    public lazy var inputAnchor: QLoopAnchor<Input> = QLoopAnchor<Input>()
-    public lazy var outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>(
-        onChange: ({
-            self.onChange($0)
-            self.iterator.iterate(self)
-        }),
-        onError: ({
-            self.onError($0)
-            self.discontinue = !self.shouldResume
-            self.iterator.iterate(self)
-        }))
+    public var inputAnchor: QLoopAnchor<Input> = QLoopAnchor<Input>()
+    public let outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>()
 
     public func perform() {
         inputAnchor.input = nil
@@ -57,5 +48,19 @@ public final class QLoop<Input, Output>: QLoopIterable {
         self.iterator = iterator
         self.onChange = onChange
         self.onError = onError
+        self.applyOutputObservers()
+    }
+
+    private final func applyOutputObservers() {
+        self.outputAnchor.onChange = ({
+            self.onChange($0)
+            self.iterator.iterate(self)
+        })
+
+        self.outputAnchor.onError = ({
+            self.onError($0)
+            self.discontinue = !self.shouldResume
+            self.iterator.iterate(self)
+        })
     }
 }
