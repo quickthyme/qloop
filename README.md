@@ -7,7 +7,7 @@
 
 **QLoop** /'kyoo•loop/ - *n* - Declarative asynchronous operation loops
 
-  - compose asynchronous operation chains as reusable "loop" constructs
+  - compose asynchronous operation paths as reusable "loop" constructs
   - *test-friendly* observer-pattern module favoring declarative composition
   - built-in error propagation
   - swiftPM compatible package

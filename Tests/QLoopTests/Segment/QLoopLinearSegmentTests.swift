@@ -5,7 +5,7 @@ import QLoop
 class QLoopLinearSegmentTests: XCTestCase {
 
     func test_basicSegmentWithOutputAnchor_whenInputSet_itCallsCompletionWithoutResult() {
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
 
         let subject = QLoopLinearSegment<Void, String>(MockOp.VoidToStr(), finalAnchor)
         subject.inputAnchor.input = nil
@@ -15,7 +15,7 @@ class QLoopLinearSegmentTests: XCTestCase {
     }
 
     func test_givenIntToStringAndOutputAnchor_whenInputSet_itCallsCompletionWithResult() {
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
 
         let subject = QLoopLinearSegment<Int, String>(MockOp.IntToStr(), finalAnchor)
         subject.inputAnchor.input = 3
@@ -25,7 +25,7 @@ class QLoopLinearSegmentTests: XCTestCase {
     }
 
     func test_givenTwoSegments_whenInputSet_itCallsEndCompletionWithCorrectResult() {
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
 
         let subject = QLoopLinearSegment(MockOp.IntToStr(),
                                          QLoopLinearSegment(MockOp.AddToStr(" eleven"),
@@ -37,7 +37,7 @@ class QLoopLinearSegmentTests: XCTestCase {
     }
 
     func test_whenErrorThrown_itPropagatesErrorToOutputAnchor() {
-        let (captured, finalAnchor) = SpyAnchor<Int>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
 
         let subject = QLoopLinearSegment<Int, Int>(MockOp.IntThrowsError(QLoopError.Unknown), finalAnchor)
         subject.inputAnchor.input = 404
@@ -49,7 +49,7 @@ class QLoopLinearSegmentTests: XCTestCase {
     }
 
     func test_whenInputErrorIsReceived_itPropagatesErrorToOutputAnchor() {
-        let (captured, finalAnchor) = SpyAnchor<Int>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
 
         let subject = QLoopLinearSegment<Int, Int>(MockOp.AddToInt(5), finalAnchor)
         subject.inputAnchor.error = QLoopError.Unknown

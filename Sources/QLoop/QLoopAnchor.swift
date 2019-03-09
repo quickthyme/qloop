@@ -1,5 +1,8 @@
 
-public final class QLoopAnchor<Input> {
+public protocol AnyLoopAnchor {
+}
+
+public final class QLoopAnchor<Input>: AnyLoopAnchor {
     public typealias OnChange = (Input?)->()
     public typealias OnError = (Error)->()
     private struct NotAnError: Error { }

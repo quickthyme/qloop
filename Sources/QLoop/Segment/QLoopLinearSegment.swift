@@ -11,6 +11,10 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
         didSet { applyInputObservers() }
     }
 
+    public convenience init(_ operation: @escaping Operation) {
+        self.init(operation, QLoopAnchor<Output>())
+    }
+
     public convenience init<Unknown>(_ operation: @escaping Operation,
                                      _ output: QLoopSegment<Output, Unknown>) {
         self.init(operation, output.inputAnchor)

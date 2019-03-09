@@ -10,7 +10,7 @@ class QLoopTests: XCTestCase {
         XCTAssertFalse(loop.discontinue)
     }
 
-    func test_givenLoopWithSegments_withModeSingle_whenInputSet_objectReceivesFinalValue() {
+    func test_givenLoopWithSegments_objectReceivesFinalValue() {
         let mockComponent = MockPhoneComponent()
         let finalAnchor = mockComponent.phoneDataLoop.outputAnchor
 
@@ -26,6 +26,21 @@ class QLoopTests: XCTestCase {
         mockComponent.userAction()
 
         XCTAssertEqual(mockComponent.userPhoneNumberField, "(210) 555-1212")
+    }
+
+    func test_givenTypeErasedLoopPathWithCompatibleSegments_objectReceivesFinalValue() {
+        let mockComponent = MockPhoneComponent()
+        let finalAnchor = mockComponent.phoneDataLoop.outputAnchor
+
+        mockComponent.phoneDataLoop.inputAnchor = QLoopPath(
+            QLoopLinearSegment(MockOp.VoidToStr("X")),
+            QLoopLinearSegment(MockOp.AddToStr("Y")),
+            QLoopLinearSegment(MockOp.AddToStr("Z"), finalAnchor)
+        ).inputAnchor
+
+        mockComponent.userAction()
+
+        XCTAssertEqual(mockComponent.userPhoneNumberField, "XYZ")
     }
 
     func test_givenLoopWithSegments_withIteratorCountNil_losesValueBetweenIterations() {

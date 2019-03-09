@@ -5,7 +5,7 @@ import QLoop
 class QLoopCompoundSegmentTests: XCTestCase {
 
     func test_basicSegmentWithOutputAnchor_whenInputSet_itCallsCompletionWithoutResult() {
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
 
         let subject = QLoopCompoundSegment<Void, String>(
             operations: ["genStr":MockOp.VoidToStr()],
@@ -18,7 +18,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     }
 
     func test_givenIntToStringAndOutputAnchor_whenInputSet_itCallsCompletionWithResult() {
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
 
         let subject = QLoopCompoundSegment<Int, String>(
             operations: ["numStr":MockOp.IntToStr()],
@@ -31,7 +31,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     }
 
     func test_givenTwoSegments_whenInputSet_itCallsEndCompletionWithCorrectResult() {
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
 
         let subject = QLoopCompoundSegment<Int, String>(
             operations: ["numStr":MockOp.IntToStr()],
@@ -47,7 +47,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     }
 
     func test_givenTwoSegments_oneWithCompoundOperationsAndReducer_whenInputSet_itReduces_andCallsEndCompletionWithCorrectResult() {
-        let (captured, finalAnchor) = SpyAnchor<Int>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
 
         let subject = QLoopCompoundSegment<Int, Int>(
             operations: ["add5":MockOp.AddToInt(5),
@@ -61,7 +61,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     }
 
     func test_whenErrorThrown_itPropagatesErrorToOutputAnchor() {
-        let (captured, finalAnchor) = SpyAnchor<Int>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
 
         let subject = QLoopCompoundSegment<Int, Int>(
             operations: ["numNum":MockOp.IntThrowsError(QLoopError.Unknown)],
@@ -76,7 +76,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     }
 
     func test_whenInputErrorIsReceived_itPropagatesErrorToOutputAnchor() {
-        let (captured, finalAnchor) = SpyAnchor<Int>().CapturedAnchor
+        let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
 
         let subject = QLoopCompoundSegment<Int, Int>(
             operations: ["numNum":MockOp.AddToInt(5)],

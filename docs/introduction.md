@@ -10,7 +10,7 @@ knowledge of Xcode or any other IDE will be irrelevant to the topics covered her
 
 At a high level, the features provided are:
 
-  - compose asynchronous operation chains as reusable "loop" constructs
+  - compose asynchronous operation paths as reusable "loop" constructs
   - *test-friendly* observer-pattern module favoring declarative composition
   - built-in error propagation
   - swiftPM compatible package
