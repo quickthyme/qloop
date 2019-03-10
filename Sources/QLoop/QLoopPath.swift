@@ -6,6 +6,10 @@ public class QLoopPath<Input, Output> {
     public var inputAnchor: QLoopAnchor<Input> = QLoopAnchor<Input>()
     public var outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>()
 
+    public func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment] {
+        return outputAnchor.backwardOwner?.findSegments(with: operationId) ?? []
+    }
+
     public init?(_ segments: AnyLoopSegment...) {
 
         guard

@@ -26,4 +26,31 @@ class QLoopSegmentTests: XCTestCase {
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value, "-1")
     }
+
+    func test_find_segments_for_operation_succeeds_when_only() {
+        let (_, finalAnchor) = SpyAnchor<String>().CapturingAnchor
+
+        let _ = QLoopLinearSegment(1, MockOp.VoidToStr("One"), finalAnchor)
+
+        let last = finalAnchor.backwardOwner
+        XCTAssertEqual(last?.findSegments(with: 1).count, 1)
+    }
+
+    func test_find_segments_for_operation_succeeds_when_mix() {
+        let (_, finalAnchor) = SpyAnchor<String>().CapturingAnchor
+
+        let _ = QLoopLinearSegment(
+            0x0A, MockOp.VoidToStr("One"),
+            QLoopLinearSegment(
+                0x0B, MockOp.AddToStr("Two"),
+                QLoopLinearSegment(
+                    0x0C, MockOp.AddToStr("Three"),
+                    QLoopLinearSegment(
+                        0x0B, MockOp.AddToStr("Four"), finalAnchor))))
+
+        let last = finalAnchor.backwardOwner
+        XCTAssertEqual(last?.findSegments(with: 0x0A).count, 1)
+        XCTAssertEqual(last?.findSegments(with: 0x0B).count, 2)
+        XCTAssertEqual(last?.findSegments(with: 0x0C).count, 1)
+    }
 }

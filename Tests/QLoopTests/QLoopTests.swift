@@ -27,6 +27,19 @@ class QLoopTests: XCTestCase {
         XCTAssertEqual(mockComponent.userPhoneNumberField, "(210) 555-1212")
     }
 
+    func test_loop_whenFindingSegmentsByOperationId_succeeds() {
+        let seg1 = QLoopLinearSegment(1, MockOp.AddToStr("A"))
+        let seg2 = QLoopLinearSegment(2, MockOp.AddToStr("B"))
+        let seg3 = QLoopCompoundSegment(operations: [3:MockOp.AddToStr("C")])
+        let path = QLoopPath<String, String>(seg1, seg2, seg3)!
+        let loop = QLoop<String, String>()
+        loop.bind(path: path)
+
+        XCTAssertEqual(loop.findSegments(with: 1).count, 1)
+        XCTAssertEqual(loop.findSegments(with: 2).count, 1)
+        XCTAssertEqual(loop.findSegments(with: 3).count, 1)
+    }
+
     func test_givenLoopWithSegments_withIteratorCountNil_losesValueBetweenIterations() {
         let mockComponent = MockProgressComponent()
         let finalAnchor = mockComponent.progressDataLoop.outputAnchor

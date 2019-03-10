@@ -5,6 +5,7 @@ public protocol AnyLoopSegment: class {
     var operationIds: [AnyHashable] { get }
     func linked(to otherSegment: AnyLoopSegment) -> Self?
     func applyOutputAnchor(_ otherAnchor: AnyLoopAnchor)
+    func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment]
 }
 
 open class QLoopSegment<Input, Output>: AnyLoopSegment {
@@ -37,5 +38,21 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
 
     public func applyOutputAnchor(_ otherAnchor: AnyLoopAnchor) {
         self.outputAnchor = otherAnchor as? QLoopAnchor<Output> 
+    }
+
+    public func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment] {
+        return QLoopSegment.findSegments(with: operationId, fromSegment: self)
+    }
+
+    public static func findSegments(with operationId: AnyHashable,
+                                    fromSegment: AnyLoopSegment,
+                                    currentResults: [AnyLoopSegment] = []) -> [AnyLoopSegment] {
+
+        let newResults = (fromSegment.operationIds.contains(operationId))
+            ? [fromSegment] + currentResults
+            : currentResults
+
+        guard let next = fromSegment.anyInputAnchor.backwardOwner else { return newResults }
+        return findSegments(with: operationId, fromSegment: next, currentResults: newResults)
     }
 }

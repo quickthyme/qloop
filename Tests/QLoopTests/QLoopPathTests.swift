@@ -57,4 +57,17 @@ class QLoopPathTests: XCTestCase {
             QLoopLinearSegment(2, MockOp.AddToInt(9998)),
             QLoopLinearSegment(3, MockOp.AddToStr("**"))))
     }
+
+    func test_path_whenFindingSegmentsByOperationId_succeeds() {
+        let seg1 = QLoopLinearSegment(1, MockOp.AddToStr("A"))
+        let seg2 = QLoopLinearSegment(2, MockOp.AddToStr("B"))
+        let seg3 = QLoopCompoundSegment(operations: [3:MockOp.AddToStr("C")])
+        let seg4 = QLoopLinearSegment(4, MockOp.AddToStr("D"))
+        let path = QLoopPath<String, String>(seg1, seg2, seg3, seg4)!
+
+        XCTAssertEqual(path.findSegments(with: 1).count, 1)
+        XCTAssertEqual(path.findSegments(with: 2).count, 1)
+        XCTAssertEqual(path.findSegments(with: 3).count, 1)
+        XCTAssertEqual(path.findSegments(with: 4).count, 1)
+    }
 }
