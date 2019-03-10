@@ -8,10 +8,10 @@ class QLoopPathTests: XCTestCase {
         let mockComponent = MockPhoneComponent()
 
         let loopPath = QLoopPath<Void, String>(
-            QLoopLinearSegment(MockOp.VoidToInt(5)),
-            QLoopLinearSegment(MockOp.AddToInt(5)),
-            QLoopLinearSegment(MockOp.IntToStr()),
-            QLoopLinearSegment(MockOp.AddToStr("Z")))!
+            QLoopLinearSegment(1, MockOp.VoidToInt(5)),
+            QLoopLinearSegment(2, MockOp.AddToInt(5)),
+            QLoopLinearSegment(3, MockOp.IntToStr()),
+            QLoopLinearSegment(4, MockOp.AddToStr("Z")))!
 
         mockComponent.phoneDataLoop.bind(path: loopPath)
 
@@ -21,25 +21,25 @@ class QLoopPathTests: XCTestCase {
     }
 
     func test_givenTwoCompatibleSegments_whenTypelesslyLinked_returnsFirst_linkedToSecond() {
-        let seg1 = QLoopLinearSegment(MockOp.IntToStr())
-        let seg2 = QLoopLinearSegment(MockOp.AddToStr("++"))
+        let seg1 = QLoopLinearSegment(1, MockOp.IntToStr())
+        let seg2 = QLoopLinearSegment(2, MockOp.AddToStr("++"))
 
         XCTAssertNotNil(seg1.linked(to: seg2))
         XCTAssert(seg1.outputAnchor === seg2.inputAnchor)
     }
 
     func test_givenTwoIncompatibleSegments_whenTypelesslyLinked_returnsNil() {
-        let seg1 = QLoopLinearSegment(MockOp.IntToStr())
-        let seg2 = QLoopLinearSegment(MockOp.IntToStr())
+        let seg1 = QLoopLinearSegment(1, MockOp.IntToStr())
+        let seg2 = QLoopLinearSegment(2, MockOp.IntToStr())
 
         XCTAssertNil(seg1.linked(to: seg2))
     }
 
     func test_givenSeveralCompatibleSegments_whenConstructingPath_returnsThemAllLinkedUp() {
-        let seg1 = QLoopLinearSegment(MockOp.AddToStr("++"))
-        let seg2 = QLoopLinearSegment(MockOp.AddToStr("--"))
-        let seg3 = QLoopLinearSegment(MockOp.AddToStr("**"))
-        let seg4 = QLoopLinearSegment(MockOp.AddToStr("//"))
+        let seg1 = QLoopLinearSegment(1, MockOp.AddToStr("++"))
+        let seg2 = QLoopLinearSegment(2, MockOp.AddToStr("--"))
+        let seg3 = QLoopLinearSegment(3, MockOp.AddToStr("**"))
+        let seg4 = QLoopLinearSegment(4, MockOp.AddToStr("//"))
 
         let path = QLoopPath<String, String>(seg1, seg2, seg3, seg4)
 
@@ -53,8 +53,8 @@ class QLoopPathTests: XCTestCase {
 
     func test_givenIncompatibleCompatibleSegment_whenConstructingPath_returnsNil() {
         XCTAssertNil(QLoopPath<String, String>(
-            QLoopLinearSegment(MockOp.AddToStr("++")),
-            QLoopLinearSegment(MockOp.AddToInt(9998)),
-            QLoopLinearSegment(MockOp.AddToStr("**"))))
+            QLoopLinearSegment(1, MockOp.AddToStr("++")),
+            QLoopLinearSegment(2, MockOp.AddToInt(9998)),
+            QLoopLinearSegment(3, MockOp.AddToStr("**"))))
     }
 }

@@ -15,11 +15,11 @@ class QLoopTests: XCTestCase {
 
         mockComponent.phoneDataLoop.inputAnchor =
             QLoopLinearSegment(
-                MockOp.VoidToStr("(210) "),
+                1, MockOp.VoidToStr("(210) "),
                 QLoopLinearSegment(
-                    MockOp.AddToStr("555-"),
+                    2, MockOp.AddToStr("555-"),
                     QLoopLinearSegment(
-                        MockOp.AddToStr("1212"),
+                        3, MockOp.AddToStr("1212"),
                         mockComponent.phoneDataLoop.outputAnchor))).inputAnchor
 
         mockComponent.userAction()
@@ -33,7 +33,7 @@ class QLoopTests: XCTestCase {
 
         mockComponent.progressDataLoop.inputAnchor =
             QLoopLinearSegment(
-                MockOp.AddToStr("#"),
+                1, MockOp.AddToStr("#"),
                 finalAnchor).inputAnchor
         mockComponent.progressDataLoop.iterator = QLoopIteratorContinueNilMax(2)
 
@@ -48,7 +48,7 @@ class QLoopTests: XCTestCase {
 
         mockComponent.progressDataLoop.inputAnchor =
             QLoopLinearSegment(
-                MockOp.AddToStr("#"),
+                1, MockOp.AddToStr("#"),
                 finalAnchor).inputAnchor
         mockComponent.progressDataLoop.iterator = QLoopIteratorContinueOutputMax(3)
 
@@ -64,7 +64,7 @@ class QLoopTests: XCTestCase {
 
         mockComponent.progressDataLoop.inputAnchor =
             QLoopLinearSegment(
-                MockOp.StrThrowsError(QLoopError.Unknown),
+                1, MockOp.StrThrowsError(QLoopError.Unknown),
                 finalAnchor).inputAnchor
 
         mockComponent.userAction()
@@ -82,7 +82,7 @@ class QLoopTests: XCTestCase {
 
         mockComponent.progressDataLoop.inputAnchor =
             QLoopLinearSegment(
-                MockOp.StrThrowsError(QLoopError.Unknown),
+                1, MockOp.StrThrowsError(QLoopError.Unknown),
                 finalAnchor).inputAnchor
 
         mockComponent.userAction()

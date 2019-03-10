@@ -14,17 +14,23 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
         }
     }
 
-    public convenience init(_ operation: @escaping Operation) {
-        self.init(operation, QLoopAnchor<Output>())
+    public let operationId: AnyHashable
+
+    public convenience init(_ operationId: AnyHashable,
+                            _ operation: @escaping Operation) {
+        self.init(operationId, operation, QLoopAnchor<Output>())
     }
 
-    public convenience init<Unknown>(_ operation: @escaping Operation,
+    public convenience init<Unknown>(_ operationId: AnyHashable,
+                                     _ operation: @escaping Operation,
                                      _ output: QLoopSegment<Output, Unknown>) {
-        self.init(operation, output.inputAnchor)
+        self.init(operationId, operation, output.inputAnchor)
     }
 
-    public required init(_ operation: @escaping Operation,
+    public required init(_ operationId: AnyHashable,
+                         _ operation: @escaping Operation,
                          _ outputAnchor: QLoopAnchor<Output>) {
+        self.operationId = operationId
         super.init()
         self.operation = operation
         self.outputAnchor = outputAnchor
