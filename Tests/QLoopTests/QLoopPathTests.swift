@@ -4,19 +4,20 @@ import QLoop
 
 class QLoopPathTests: XCTestCase {
 
-    func test_givenTypeErasedLoopPathWithCompatibleSegments_objectReceivesFinalValue() {
+    func test_givenTypeErasedPathBoundToLoop_objectReceivesFinalValue() {
         let mockComponent = MockPhoneComponent()
 
-        mockComponent.phoneDataLoop.inputAnchor =
-            QLoopPath.inputAnchor(
-                QLoopLinearSegment(MockOp.VoidToStr("X")),
-                QLoopLinearSegment(MockOp.AddToStr("Y")),
-                QLoopLinearSegment(MockOp.AddToStr("Z"),
-                                   mockComponent.phoneDataLoop.outputAnchor))
+        let loopPath = QLoopPath<Void, String>(
+            QLoopLinearSegment(MockOp.VoidToInt(5)),
+            QLoopLinearSegment(MockOp.AddToInt(5)),
+            QLoopLinearSegment(MockOp.IntToStr()),
+            QLoopLinearSegment(MockOp.AddToStr("Z")))!
+
+        mockComponent.phoneDataLoop.bind(path: loopPath)
 
         mockComponent.userAction()
 
-        XCTAssertEqual(mockComponent.userPhoneNumberField, "XYZ")
+        XCTAssertEqual(mockComponent.userPhoneNumberField, "10Z")
     }
 
     func test_givenTwoCompatibleSegments_whenTypelesslyLinked_returnsFirst_linkedToSecond() {
@@ -34,13 +35,13 @@ class QLoopPathTests: XCTestCase {
         XCTAssertNil(seg1.linked(to: seg2))
     }
 
-    func test_givenSeveralCompatibleSegments_whenTypelesslyLinked_returnsThemAllChained() {
+    func test_givenSeveralCompatibleSegments_whenConstructingPath_returnsThemAllLinkedUp() {
         let seg1 = QLoopLinearSegment(MockOp.AddToStr("++"))
         let seg2 = QLoopLinearSegment(MockOp.AddToStr("--"))
         let seg3 = QLoopLinearSegment(MockOp.AddToStr("**"))
         let seg4 = QLoopLinearSegment(MockOp.AddToStr("//"))
 
-        let path = QLoopPath.inputAnchor(seg1, seg2, seg3, seg4)
+        let path = QLoopPath<String, String>(seg1, seg2, seg3, seg4)
 
         XCTAssertNotNil(path)
         XCTAssert(seg1.outputAnchor === seg2.inputAnchor)
@@ -50,10 +51,10 @@ class QLoopPathTests: XCTestCase {
         XCTAssertEqual(seg4.inputAnchor.input, "++--**")
     }
 
-    func x_test_givenIncompatibleCompatibleSegment_whenTypelesslyLinked_throwsFatalError() {
-        QLoopPath.inputAnchor(
+    func test_givenIncompatibleCompatibleSegment_whenConstructingPath_returnsNil() {
+        XCTAssertNil(QLoopPath<String, String>(
             QLoopLinearSegment(MockOp.AddToStr("++")),
             QLoopLinearSegment(MockOp.AddToInt(9998)),
-            QLoopLinearSegment(MockOp.AddToStr("**")))
+            QLoopLinearSegment(MockOp.AddToStr("**"))))
     }
 }

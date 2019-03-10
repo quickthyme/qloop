@@ -21,8 +21,11 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         didSet { applyInputObservers() }
     }
 
-    public override var outputAnchor: QLoopAnchor<Output> {
-        didSet { applyInputObservers() }
+    public override weak var outputAnchor: QLoopAnchor<Output>? {
+        didSet {
+            self.outputAnchor?.backwardOwner = self
+            applyInputObservers()
+        }
     }
 
     private var reducer: Reducer? = nil
@@ -34,11 +37,11 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
             guard (totalCompleted >= self.operations.count) else { return }
 
             guard let r = self.reducer else {
-                self.outputAnchor.input = self.operations.first?.value
+                self.outputAnchor?.input = self.operations.first?.value
                 return
             }
 
-            self.outputAnchor.input =
+            self.outputAnchor?.input =
                 self.operations
                     .map { ($0.id, $0.value) }
                     .reduce(r.0, r.1)
@@ -64,6 +67,8 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
     }
 
     private final func applyInputObservers() {
+        guard let outAnchor = self.outputAnchor else { return }
+
         self.inputAnchor.onChange = ({ input in
             for opBox in self.operations {
                 do {
@@ -73,13 +78,13 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
                         self.totalCompleted += 1
                     })
                 } catch {
-                    self.outputAnchor.error = error
+                    outAnchor.error = error
                 }
             }
         })
 
         self.inputAnchor.onError = ({ error in
-            self.outputAnchor.error = error
+            outAnchor.error = error
         })
     }
 }

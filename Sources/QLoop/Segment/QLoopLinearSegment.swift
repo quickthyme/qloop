@@ -7,8 +7,11 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
         didSet { applyInputObservers() }
     }
 
-    public override var outputAnchor: QLoopAnchor<Output> {
-        didSet { applyInputObservers() }
+    public override weak var outputAnchor: QLoopAnchor<Output>? {
+        didSet {
+            self.outputAnchor?.backwardOwner = self
+            applyInputObservers()
+        }
     }
 
     public convenience init(_ operation: @escaping Operation) {
@@ -29,16 +32,18 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
     }
 
     private final func applyInputObservers() {
+        guard let outAnchor = self.outputAnchor else { return }
+
         self.inputAnchor.onChange = ({ input in
             do {
-                try self.operation(input, { self.outputAnchor.input = $0 })
+                try self.operation(input, { outAnchor.input = $0 })
             } catch {
-                self.outputAnchor.error = error
+                outAnchor.error = error
             }
         })
 
         self.inputAnchor.onError = ({ error in
-            self.outputAnchor.error = error
+            outAnchor.error = error
         })
     }
 }

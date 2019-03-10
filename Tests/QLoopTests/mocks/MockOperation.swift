@@ -21,6 +21,10 @@ class MockOp {
         return { input, compl in compl(value) }
     }
 
+    static func VoidToInt(_ value: Int? = nil) -> QLoopSegment<Void, Int>.Operation {
+        return { input, compl in compl(value) }
+    }
+
     static func IntThrowsError(_ err: QLoopError) -> QLoopSegment<Int, Int>.Operation {
         return { input, compl in throw err }
     }

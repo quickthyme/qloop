@@ -6,7 +6,9 @@ public final class QLoop<Input, Output>: QLoopIterable {
     public typealias OnError = QLoopAnchor<Output>.OnError
 
     public var inputAnchor: QLoopAnchor<Input> = QLoopAnchor<Input>()
-    public let outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>()
+    public var outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>() {
+        didSet { applyOutputObservers() }
+    }
 
     public func perform() {
         inputAnchor.input = nil
@@ -28,6 +30,10 @@ public final class QLoop<Input, Output>: QLoopIterable {
 
     public var iterator: QLoopIterating
 
+    public func bind(path: QLoopPath<Input, Output>) {
+        self.inputAnchor = path.inputAnchor
+        self.outputAnchor = path.outputAnchor
+    }
 
     public convenience init() {
         self.init(iterator: QLoopIteratorSingle(), onChange: {_ in}, onError: {_ in})

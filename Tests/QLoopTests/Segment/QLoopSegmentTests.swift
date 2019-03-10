@@ -14,7 +14,7 @@ class QLoopSegmentTests: XCTestCase {
     func test_any_anchors_are_correctly_assigned() {
         let seg = QLoopLinearSegment(MockOp.IntToStr())
         XCTAssert(seg.anyInputAnchor as! QLoopAnchor<Int> === seg.inputAnchor)
-        XCTAssert(seg.anyOutputAnchor as! QLoopAnchor<String> === seg.outputAnchor)
+        XCTAssert(seg.anyOutputAnchor as? QLoopAnchor<String> === seg.outputAnchor)
     }
 
     func test_segment_performs_operation_on_nil_input() {
