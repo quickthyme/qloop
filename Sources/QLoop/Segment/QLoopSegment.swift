@@ -9,7 +9,7 @@ public protocol AnyLoopSegment: class {
 }
 
 open class QLoopSegment<Input, Output>: AnyLoopSegment {
-    public typealias Operation = (Input?, Completion) throws -> ()
+    public typealias Operation = (Input?, @escaping Completion) throws -> ()
     public typealias Completion = (Output?) -> ()
 
     internal init() {}
