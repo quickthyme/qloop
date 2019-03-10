@@ -2,6 +2,7 @@
 public protocol AnyLoopSegment: class {
     var anyInputAnchor: AnyLoopAnchor { get }
     var anyOutputAnchor: AnyLoopAnchor? { get }
+    var operationIds: [AnyHashable] { get }
     func linked(to otherSegment: AnyLoopSegment) -> Self?
     func applyOutputAnchor(_ otherAnchor: AnyLoopAnchor)
 }
@@ -16,6 +17,7 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
     open weak var outputAnchor: QLoopAnchor<Output>?
 
     open var operation: Operation = {_,_  in }
+    open var operationIds: [AnyHashable] { return [] }
 
     public var anyInputAnchor: AnyLoopAnchor {
         return self.inputAnchor

@@ -16,6 +16,8 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
 
     public let operationId: AnyHashable
 
+    public override var operationIds: [AnyHashable] { return [operationId] }
+
     public convenience init(_ operationId: AnyHashable,
                             _ operation: @escaping Operation) {
         self.init(operationId, operation, QLoopAnchor<Output>())

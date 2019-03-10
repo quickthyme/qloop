@@ -4,6 +4,12 @@ import QLoop
 
 class QLoopLinearSegmentTests: XCTestCase {
 
+    func test_reveals_its_operation_ids() {
+        let subject = QLoopLinearSegment<Void, String>(7, MockOp.VoidToStr())
+
+        XCTAssertEqual(subject.operationIds, [7])
+    }
+
     func test_basicSegmentWithOutputAnchor_whenInputSet_itCallsCompletionWithoutResult() {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLoopLinearSegment<Void, String>(0, MockOp.VoidToStr(), finalAnchor)

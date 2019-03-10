@@ -28,6 +28,8 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         }
     }
 
+    public override var operationIds: [AnyHashable] { return operations.map { $0.id } }
+
     private var reducer: Reducer? = nil
 
     private var operations: [OperationBox<Output>] = []
@@ -46,6 +48,19 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
                     .map { ($0.id, $0.value) }
                     .reduce(r.0, r.1)
         }
+    }
+
+    public convenience init(operations: [AnyHashable:Operation]) {
+        self.init(operations: operations,
+                  reducer: nil,
+                  outputAnchor: QLoopAnchor<Output>())
+    }
+
+    public convenience init(operations: [AnyHashable:Operation],
+                            reducer: Reducer?) {
+        self.init(operations: operations,
+                  reducer: reducer,
+                  outputAnchor: QLoopAnchor<Output>())
     }
 
     public convenience init<Unknown>(operations: [AnyHashable:Operation],

@@ -4,6 +4,16 @@ import QLoop
 
 class QLoopCompoundSegmentTests: XCTestCase {
 
+    func test_reveals_its_operation_ids() {
+        let subject = QLoopCompoundSegment<Void, Int>.init(
+            operations: [0xAB:MockOp.VoidToInt(),
+                         0xCD:MockOp.VoidToInt()],
+            reducer: nil)
+
+        XCTAssert(subject.operationIds.contains(0xAB))
+        XCTAssert(subject.operationIds.contains(0xCD))
+    }
+
     func test_basicSegmentWithOutputAnchor_whenInputSet_itCallsCompletionWithoutResult() {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLoopCompoundSegment<Void, String>(
