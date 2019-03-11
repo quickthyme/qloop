@@ -3,6 +3,7 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
     public typealias Operation = QLoopSegment<Input, Output>.Operation
     public typealias ErrorHandler = QLoopSegment<Input, Output>.ErrorHandler
     public typealias Completion = QLoopSegment<Input, Output>.Completion
+    public typealias ErrorCompletion = QLoopSegment<Input, Output>.ErrorCompletion
     public typealias Reducer = (Output, nextPartialResult: (Output, (AnyHashable, Output?)) -> Output)
 
     class OperationBox<Output> {

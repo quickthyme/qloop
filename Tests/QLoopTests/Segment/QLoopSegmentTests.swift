@@ -56,42 +56,4 @@ class QLoopSegmentTests: XCTestCase {
         XCTAssertEqual(last?.findSegments(with: 0x0B).count, 2)
         XCTAssertEqual(last?.findSegments(with: 0x0C).count, 1)
     }
-
-    func test_givenLinearSegment_withErrorHandlerSet_whenErrorThrown_itHandles() {
-        let (captured, outputAnchor) = SpyAnchor<Int>().CapturingAnchor
-        var err: Error? = nil
-        let handler: QLoopLinearSegment<Int, Int>.ErrorHandler = {
-            error, completion in
-            err = error
-            completion(0)
-        }
-
-        let seg1 = QLoopLinearSegment(1, MockOp.IntThrowsError(QLoopError.Unknown),
-                                      errorHandler: handler,
-                                      outputAnchor: outputAnchor)
-
-        seg1.inputAnchor.input = 4
-        XCTAssertNotNil(err)
-        XCTAssertTrue(captured.didHappen)
-    }
-
-    func test_givenCompoundSegment_withErrorHandlerSet_whenErrorThrown_itHandles() {
-        let (captured, outputAnchor) = SpyAnchor<Int>().CapturingAnchor
-        var err: Error? = nil
-        let handler: QLoopCompoundSegment<Int, Int>.ErrorHandler = {
-            error, completion in
-            err = error
-            completion(0)
-        }
-
-        let seg1 = QLoopCompoundSegment.init(
-            operations: [1:MockOp.IntThrowsError(QLoopError.Unknown)],
-            reducer: nil,
-            errorHandler: handler,
-            outputAnchor: outputAnchor)
-
-        seg1.inputAnchor.input = 4
-        XCTAssertNotNil(err)
-        XCTAssertTrue(captured.didHappen)
-    }
 }

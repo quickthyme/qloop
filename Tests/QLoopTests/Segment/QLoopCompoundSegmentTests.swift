@@ -100,4 +100,45 @@ class QLoopCompoundSegmentTests: XCTestCase {
         XCTAssertFalse(captured.didHappen)
         XCTAssertNotEqual(captured.value, 404)
     }
+
+    func test_givenCompoundSegment_withErrorHandlerSet_whenErrorThrown_itHandles() {
+        let (captured, outputAnchor) = SpyAnchor<Int>().CapturingAnchor
+        var err: Error? = nil
+        let handler: QLoopCompoundSegment<Int, Int>.ErrorHandler = {
+            error, completion, errCompletion in
+            err = error
+            completion(0)
+        }
+
+        let seg1 = QLoopCompoundSegment.init(
+            operations: [1:MockOp.IntThrowsError(QLoopError.Unknown)],
+            reducer: nil,
+            errorHandler: handler,
+            outputAnchor: outputAnchor)
+
+        seg1.inputAnchor.input = 4
+        XCTAssertNotNil(err)
+        XCTAssertTrue(captured.didHappen)
+    }
+
+    func test_givenCompoundSegment_withErrorHandler_whenChoosesErrorPath_outputAnchorGetsError() {
+        let (captured, outputAnchor) = SpyAnchor<Int>().CapturingAnchor
+        var err: Error? = nil
+        let handler: QLoopCompoundSegment<Int, Int>.ErrorHandler = {
+            error, _, errCompletion in
+            err = error
+            errCompletion(error)
+        }
+
+        let seg1 = QLoopCompoundSegment.init(
+            operations: [1:MockOp.IntThrowsError(QLoopError.Unknown)],
+            reducer: nil,
+            errorHandler: handler,
+            outputAnchor: outputAnchor)
+
+        seg1.inputAnchor.input = 4
+        XCTAssertNotNil(err)
+        XCTAssertFalse(captured.didHappen)
+        XCTAssertEqual(outputAnchor.error as! QLoopError, QLoopError.Unknown)
+    }
 }

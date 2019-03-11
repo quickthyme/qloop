@@ -3,6 +3,7 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
     public typealias Operation = QLoopSegment<Input, Output>.Operation
     public typealias ErrorHandler = QLoopSegment<Input, Output>.ErrorHandler
     public typealias Completion = QLoopSegment<Input, Output>.Completion
+    public typealias ErrorCompletion = QLoopSegment<Input, Output>.ErrorCompletion
 
     public override var inputAnchor: QLoopAnchor<Input> {
         didSet { applyInputObservers() }
