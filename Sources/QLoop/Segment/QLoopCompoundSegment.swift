@@ -1,6 +1,7 @@
 
 public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Output> {
     public typealias Operation = QLoopSegment<Input, Output>.Operation
+    public typealias ErrorHandler = QLoopSegment<Input, Output>.ErrorHandler
     public typealias Completion = QLoopSegment<Input, Output>.Completion
     public typealias Reducer = (Output, nextPartialResult: (Output, (AnyHashable, Output?)) -> Output)
 
@@ -53,6 +54,15 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
     public convenience init(operations: [AnyHashable:Operation]) {
         self.init(operations: operations,
                   reducer: nil,
+                  errorHandler: nil,
+                  outputAnchor: QLoopAnchor<Output>())
+    }
+
+    public convenience init(operations: [AnyHashable:Operation],
+                            errorHandler: ErrorHandler?) {
+        self.init(operations: operations,
+                  reducer: nil,
+                  errorHandler: errorHandler,
                   outputAnchor: QLoopAnchor<Output>())
     }
 
@@ -60,29 +70,61 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
                             reducer: Reducer?) {
         self.init(operations: operations,
                   reducer: reducer,
+                  errorHandler: nil,
+                  outputAnchor: QLoopAnchor<Output>())
+    }
+
+    public convenience init(operations: [AnyHashable:Operation],
+                            reducer: Reducer?,
+                            errorHandler: ErrorHandler?) {
+        self.init(operations: operations,
+                  reducer: reducer,
+                  errorHandler: errorHandler,
                   outputAnchor: QLoopAnchor<Output>())
     }
 
     public convenience init<Unknown>(operations: [AnyHashable:Operation],
                                      reducer: Reducer?,
-                                     _ output: QLoopSegment<Output, Unknown>) {
+                                     output: QLoopSegment<Output, Unknown>) {
         self.init(operations: operations,
                   reducer: reducer,
+                  errorHandler: nil,
                   outputAnchor: output.inputAnchor)
+    }
+
+    public convenience init<Unknown>(operations: [AnyHashable:Operation],
+                                     reducer: Reducer?,
+                                     errorHandler: ErrorHandler?,
+                                     output: QLoopSegment<Output, Unknown>) {
+        self.init(operations: operations,
+                  reducer: reducer,
+                  errorHandler: errorHandler,
+                  outputAnchor: output.inputAnchor)
+    }
+
+    public convenience init(operations: [AnyHashable:Operation],
+                         reducer: Reducer?,
+                         outputAnchor: QLoopAnchor<Output>) {
+        self.init(operations: operations,
+                  reducer: reducer,
+                  errorHandler: nil,
+                  outputAnchor: outputAnchor)
     }
 
     public required init(operations: [AnyHashable:Operation],
                          reducer: Reducer?,
+                         errorHandler: ErrorHandler?,
                          outputAnchor: QLoopAnchor<Output>) {
         super.init()
         self.reducer = reducer
+        self.errorHandler = errorHandler
         self.operations = operations.map { OperationBox($0.key, $0.value) }
         self.outputAnchor = outputAnchor
         self.inputAnchor = QLoopAnchor<Input>()
     }
 
     private final func applyInputObservers() {
-        guard let outAnchor = self.outputAnchor else { return }
+        guard let _ = self.outputAnchor else { return }
 
         self.inputAnchor.onChange = ({ input in
             for opBox in self.operations {
@@ -93,13 +135,13 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
                         self.totalCompleted += 1
                     })
                 } catch {
-                    outAnchor.error = error
+                    type(of: self).handleError(error: error, segment: self)
                 }
             }
         })
 
         self.inputAnchor.onError = ({ error in
-            outAnchor.error = error
+            type(of: self).handleError(error: error, segment: self)
         })
     }
 }

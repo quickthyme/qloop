@@ -19,7 +19,8 @@ class QLoopSegmentTests: XCTestCase {
 
     func test_segment_performs_operation_on_nil_input() {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
-        let seg = QLoopLinearSegment("numStr", MockOp.IntToStr(), finalAnchor)
+        let seg = QLoopLinearSegment("numStr", MockOp.IntToStr(),
+                                     outputAnchor: finalAnchor)
 
         seg.inputAnchor.input = nil
 
@@ -30,7 +31,8 @@ class QLoopSegmentTests: XCTestCase {
     func test_find_segments_for_operation_succeeds_when_only() {
         let (_, finalAnchor) = SpyAnchor<String>().CapturingAnchor
 
-        let _ = QLoopLinearSegment(1, MockOp.VoidToStr("One"), finalAnchor)
+        let _ = QLoopLinearSegment(1, MockOp.VoidToStr("One"),
+                                   outputAnchor: finalAnchor)
 
         let last = finalAnchor.backwardOwner
         XCTAssertEqual(last?.findSegments(with: 1).count, 1)
@@ -40,17 +42,56 @@ class QLoopSegmentTests: XCTestCase {
         let (_, finalAnchor) = SpyAnchor<String>().CapturingAnchor
 
         let _ = QLoopLinearSegment(
-            0x0A, MockOp.VoidToStr("One"),
+            0x0A, MockOp.VoidToStr("One"), output:
             QLoopLinearSegment(
-                0x0B, MockOp.AddToStr("Two"),
+                0x0B, MockOp.AddToStr("Two"), output:
                 QLoopLinearSegment(
-                    0x0C, MockOp.AddToStr("Three"),
+                    0x0C, MockOp.AddToStr("Three"), output:
                     QLoopLinearSegment(
-                        0x0B, MockOp.AddToStr("Four"), finalAnchor))))
+                        0x0B, MockOp.AddToStr("Four"), outputAnchor:
+                        finalAnchor))))
 
         let last = finalAnchor.backwardOwner
         XCTAssertEqual(last?.findSegments(with: 0x0A).count, 1)
         XCTAssertEqual(last?.findSegments(with: 0x0B).count, 2)
         XCTAssertEqual(last?.findSegments(with: 0x0C).count, 1)
+    }
+
+    func test_givenLinearSegment_withErrorHandlerSet_whenErrorThrown_itHandles() {
+        let (captured, outputAnchor) = SpyAnchor<Int>().CapturingAnchor
+        var err: Error? = nil
+        let handler: QLoopLinearSegment<Int, Int>.ErrorHandler = {
+            error, completion in
+            err = error
+            completion(0)
+        }
+
+        let seg1 = QLoopLinearSegment(1, MockOp.IntThrowsError(QLoopError.Unknown),
+                                      errorHandler: handler,
+                                      outputAnchor: outputAnchor)
+
+        seg1.inputAnchor.input = 4
+        XCTAssertNotNil(err)
+        XCTAssertTrue(captured.didHappen)
+    }
+
+    func test_givenCompoundSegment_withErrorHandlerSet_whenErrorThrown_itHandles() {
+        let (captured, outputAnchor) = SpyAnchor<Int>().CapturingAnchor
+        var err: Error? = nil
+        let handler: QLoopCompoundSegment<Int, Int>.ErrorHandler = {
+            error, completion in
+            err = error
+            completion(0)
+        }
+
+        let seg1 = QLoopCompoundSegment.init(
+            operations: [1:MockOp.IntThrowsError(QLoopError.Unknown)],
+            reducer: nil,
+            errorHandler: handler,
+            outputAnchor: outputAnchor)
+
+        seg1.inputAnchor.input = 4
+        XCTAssertNotNil(err)
+        XCTAssertTrue(captured.didHappen)
     }
 }

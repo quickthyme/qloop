@@ -45,7 +45,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
         let subject = QLoopCompoundSegment<Int, String>(
             operations: ["numStr":MockOp.IntToStr()],
             reducer: nil,
-            QLoopCompoundSegment(
+            output: QLoopCompoundSegment(
                 operations: ["addStr":MockOp.AddToStr(" eleven")],
                 reducer: nil,
                 outputAnchor: finalAnchor))
@@ -62,7 +62,8 @@ class QLoopCompoundSegmentTests: XCTestCase {
             operations: ["add5":MockOp.AddToInt(5),
                          "add4":MockOp.AddToInt(4)],
             reducer: (0, { $0 + ($1.1 ?? 0) }),
-            QLoopLinearSegment("add10", MockOp.AddToInt(10), finalAnchor))
+            output: QLoopLinearSegment("add10", MockOp.AddToInt(10),
+                                       outputAnchor: finalAnchor))
 
         subject.inputAnchor.input = 10
 

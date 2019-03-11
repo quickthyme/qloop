@@ -10,6 +10,7 @@ public protocol AnyLoopSegment: class {
 
 open class QLoopSegment<Input, Output>: AnyLoopSegment {
     public typealias Operation = (Input?, @escaping Completion) throws -> ()
+    public typealias ErrorHandler = (Error, @escaping Completion) throws -> ()
     public typealias Completion = (Output?) -> ()
 
     internal init() {}
@@ -19,6 +20,8 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
 
     open var operation: Operation = {_,_  in }
     open var operationIds: [AnyHashable] { return [] }
+
+    open var errorHandler: ErrorHandler? = {_,_  in }
 
     public var anyInputAnchor: AnyLoopAnchor {
         return self.inputAnchor
@@ -54,5 +57,18 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
 
         guard let next = fromSegment.anyInputAnchor.backwardOwner else { return newResults }
         return findSegments(with: operationId, fromSegment: next, currentResults: newResults)
+    }
+
+    internal static func handleError(error: Error, segment: QLoopSegment<Input, Output>) {
+        guard let outAnchor = segment.outputAnchor else { return }
+        guard let handler = segment.errorHandler
+            else { outAnchor.error = error; return }
+
+        let completion: Completion = { outAnchor.input = $0 }
+        do {
+            try handler(error, completion)
+        } catch {
+            outAnchor.error = error
+        }
     }
 }

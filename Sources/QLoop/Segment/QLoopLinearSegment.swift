@@ -1,6 +1,7 @@
 
 public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output> {
     public typealias Operation = QLoopSegment<Input, Output>.Operation
+    public typealias ErrorHandler = QLoopSegment<Input, Output>.ErrorHandler
     public typealias Completion = QLoopSegment<Input, Output>.Completion
 
     public override var inputAnchor: QLoopAnchor<Input> {
@@ -20,21 +21,50 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
 
     public convenience init(_ operationId: AnyHashable,
                             _ operation: @escaping Operation) {
-        self.init(operationId, operation, QLoopAnchor<Output>())
+        self.init(operationId, operation, errorHandler: nil, outputAnchor: QLoopAnchor<Output>())
+    }
+
+    public convenience init(_ operationId: AnyHashable,
+                            _ operation: @escaping Operation,
+                            errorHandler: ErrorHandler?) {
+        self.init(operationId, operation, errorHandler: errorHandler, outputAnchor: QLoopAnchor<Output>())
     }
 
     public convenience init<Unknown>(_ operationId: AnyHashable,
                                      _ operation: @escaping Operation,
-                                     _ output: QLoopSegment<Output, Unknown>) {
-        self.init(operationId, operation, output.inputAnchor)
+                                     output: QLoopSegment<Output, Unknown>) {
+        self.init(operationId, operation, errorHandler: nil, outputAnchor: output.inputAnchor)
     }
 
-    public required init(_ operationId: AnyHashable,
-                         _ operation: @escaping Operation,
-                         _ outputAnchor: QLoopAnchor<Output>) {
+    public convenience init(_ operationId: AnyHashable,
+                            _ operation: @escaping Operation,
+                            outputAnchor: QLoopAnchor<Output>) {
+        self.init(operationId, operation, errorHandler: nil, outputAnchor: outputAnchor)
+    }
+
+    public convenience init<Unknown>(_ operationId: AnyHashable,
+                                     _ operation: @escaping Operation,
+                                     errorHandler: ErrorHandler?,
+                                     output: QLoopSegment<Output, Unknown>) {
+        self.init(operationId, operation, errorHandler: errorHandler, outputAnchor: output.inputAnchor)
+    }
+
+    public convenience init(_ operationId: AnyHashable,
+                            _ operation: @escaping Operation,
+                            errorHandler: ErrorHandler?,
+                            outputAnchor: QLoopAnchor<Output>) {
+        self.init(operationId: operationId, operation: operation,
+                  errorHandler: errorHandler, outputAnchor: outputAnchor)
+    }
+
+    public required init(operationId: AnyHashable,
+                         operation: @escaping Operation,
+                         errorHandler: ErrorHandler?,
+                         outputAnchor: QLoopAnchor<Output>) {
         self.operationId = operationId
         super.init()
         self.operation = operation
+        self.errorHandler = errorHandler
         self.outputAnchor = outputAnchor
         self.inputAnchor = QLoopAnchor<Input>()
     }
@@ -43,15 +73,16 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
         guard let outAnchor = self.outputAnchor else { return }
 
         self.inputAnchor.onChange = ({ input in
+            let completion: Completion = { outAnchor.input = $0 }
             do {
-                try self.operation(input, { outAnchor.input = $0 })
+                try self.operation(input, completion)
             } catch {
-                outAnchor.error = error
+                type(of: self).handleError(error: error, segment: self)
             }
         })
 
         self.inputAnchor.onError = ({ error in
-            outAnchor.error = error
+            type(of: self).handleError(error: error, segment: self)
         })
     }
 }

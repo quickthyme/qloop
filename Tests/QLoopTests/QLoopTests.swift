@@ -15,11 +15,11 @@ class QLoopTests: XCTestCase {
 
         mockComponent.phoneDataLoop.inputAnchor =
             QLoopLinearSegment(
-                1, MockOp.VoidToStr("(210) "),
+                1, MockOp.VoidToStr("(210) "), output:
                 QLoopLinearSegment(
-                    2, MockOp.AddToStr("555-"),
+                    2, MockOp.AddToStr("555-"), output:
                     QLoopLinearSegment(
-                        3, MockOp.AddToStr("1212"),
+                        3, MockOp.AddToStr("1212"), outputAnchor:
                         mockComponent.phoneDataLoop.outputAnchor))).inputAnchor
 
         mockComponent.userAction()
@@ -46,7 +46,7 @@ class QLoopTests: XCTestCase {
 
         mockComponent.progressDataLoop.inputAnchor =
             QLoopLinearSegment(
-                1, MockOp.AddToStr("#"),
+                1, MockOp.AddToStr("#"), outputAnchor:
                 finalAnchor).inputAnchor
         mockComponent.progressDataLoop.iterator = QLoopIteratorContinueNilMax(2)
 
@@ -62,7 +62,7 @@ class QLoopTests: XCTestCase {
         mockComponent.progressDataLoop.inputAnchor =
             QLoopLinearSegment(
                 1, MockOp.AddToStr("#"),
-                finalAnchor).inputAnchor
+                outputAnchor: finalAnchor).inputAnchor
         mockComponent.progressDataLoop.iterator = QLoopIteratorContinueOutputMax(3)
 
         mockComponent.userAction()
@@ -78,7 +78,7 @@ class QLoopTests: XCTestCase {
         mockComponent.progressDataLoop.inputAnchor =
             QLoopLinearSegment(
                 1, MockOp.StrThrowsError(QLoopError.Unknown),
-                finalAnchor).inputAnchor
+                outputAnchor: finalAnchor).inputAnchor
 
         mockComponent.userAction()
 
@@ -96,7 +96,7 @@ class QLoopTests: XCTestCase {
         mockComponent.progressDataLoop.inputAnchor =
             QLoopLinearSegment(
                 1, MockOp.StrThrowsError(QLoopError.Unknown),
-                finalAnchor).inputAnchor
+                outputAnchor: finalAnchor).inputAnchor
 
         mockComponent.userAction()
 
