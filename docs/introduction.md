@@ -32,7 +32,7 @@ light-weight, non-imposing, and universally cross-platform.
 
 #### Less Testing
 
-Testing and composition are primary use-cases, so rather than make seting up
+Testing and composition are primary use-cases, so rather than make setting up
 the test environment more difficult, it actually simplifies it a great deal.
 One way this is achieved, is that loops essentially mock themselves, given
 that they are naturally empty and void of personality until something binds
