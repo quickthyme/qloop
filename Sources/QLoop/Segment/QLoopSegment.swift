@@ -3,11 +3,12 @@ public protocol AnyLoopSegment: class {
     var anyInputAnchor: AnyLoopAnchor { get }
     var anyOutputAnchor: AnyLoopAnchor? { get }
     var operationIds: [AnyHashable] { get }
+    var hasErrorHandler: Bool { get }
     func linked(to otherSegment: AnyLoopSegment) -> Self?
     func applyOutputAnchor(_ otherAnchor: AnyLoopAnchor)
     func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment]
     func describeOperationPath() -> String
-    func operationPath() -> [[AnyHashable]]
+    func operationPath() -> [([AnyHashable], Bool)]
 }
 
 open class QLoopSegment<Input, Output>: AnyLoopSegment {
@@ -24,7 +25,9 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
     open var operation: Operation = {_,_  in }
     open var operationIds: [AnyHashable] { return [] }
 
-    open var errorHandler: ErrorHandler? = {_,_,_  in }
+    public var hasErrorHandler: Bool { return self.errorHandler != nil }
+
+    public var errorHandler: ErrorHandler? = {_,_,_  in }
 
     internal static func handleError(error: Error, segment: QLoopSegment<Input, Output>) {
         guard let outAnchor = segment.outputAnchor else { return }
@@ -82,7 +85,7 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
         return opPath.reduce("", { (currentOps, next) in
             let nextOps: String =
                 "{"
-                + next.map({ "\($0)" })
+                    + next.0.map({ "\($0)\((next.1) ? "*" : "")" })
                     .sorted()
                     .joined(separator: ":")
                 + "}"
@@ -93,13 +96,13 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
     }
 
 
-    public func operationPath() -> [[AnyHashable]] {
+    public func operationPath() -> [([AnyHashable], Bool)] {
         return type(of: self).operationPath(fromSegment: self)
     }
 
     public static func operationPath(fromSegment: AnyLoopSegment,
-                                     currentResults: [[AnyHashable]] = []) -> [[AnyHashable]] {
-        let newResults = [fromSegment.operationIds] + currentResults
+                                     currentResults: [([AnyHashable], Bool)] = []) -> [([AnyHashable], Bool)] {
+        let newResults = [(fromSegment.operationIds, fromSegment.hasErrorHandler)] + currentResults
         guard let next = fromSegment.anyInputAnchor.backwardOwner else { return newResults }
         return operationPath(fromSegment: next, currentResults: newResults)
     }

@@ -152,8 +152,8 @@ class QLoopCompoundSegmentTests: XCTestCase {
         let last = outputAnchor.backwardOwner
         let opPath = last?.operationPath()
 
-        XCTAssertNotNil(opPath?.first?.first {$0 as? String == "plus"})
-        XCTAssertNotNil(opPath?.first?.first {$0 as? String == "minus"})
+        XCTAssertNotNil(opPath?.first?.0.first {$0 as? String == "plus"})
+        XCTAssertNotNil(opPath?.first?.0.first {$0 as? String == "minus"})
     }
 
     func test_operation_path_when_multiple() {
@@ -172,10 +172,10 @@ class QLoopCompoundSegmentTests: XCTestCase {
         let last = outputAnchor.backwardOwner
         let opPath = last?.operationPath()
 
-        XCTAssertEqual(opPath?[0], [10])
-        XCTAssertNotNil(opPath?[1].first {$0 as? String == "plus"})
-        XCTAssertNotNil(opPath?[1].first {$0 as? String == "minus"})
-        XCTAssertEqual(opPath?[2], [12])
+        XCTAssertEqual(opPath?[0].0, [10])
+        XCTAssertNotNil(opPath?[1].0.first {$0 as? String == "plus"})
+        XCTAssertNotNil(opPath?[1].0.first {$0 as? String == "minus"})
+        XCTAssertEqual(opPath?[2].0, [12])
     }
 
     func test_describe_operation_path_when_multiple() {

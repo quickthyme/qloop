@@ -14,7 +14,7 @@ public class QLoopPath<Input, Output> {
         return outputAnchor.backwardOwner?.describeOperationPath() ?? ""
     }
 
-    public func operationPath() -> [[AnyHashable]] {
+    public func operationPath() -> [([AnyHashable], Bool)] {
         return outputAnchor.backwardOwner?.operationPath() ?? []
     }
 

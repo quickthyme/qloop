@@ -138,7 +138,8 @@ class QLoopLinearSegmentTests: XCTestCase {
         let last = outputAnchor.backwardOwner
         let opPath = last?.operationPath()
 
-        XCTAssertEqual(opPath, [[1]])
+        XCTAssertEqual(opPath?[0].0, [1])
+        XCTAssertEqual(opPath?[0].1, false)
     }
 
     func test_operation_path_when_multiple() {
@@ -154,7 +155,12 @@ class QLoopLinearSegmentTests: XCTestCase {
         let last = outputAnchor.backwardOwner
         let opPath = last?.operationPath()
 
-        XCTAssertEqual(opPath, [[0x0A],[0x0B],[0x0C]])
+        XCTAssertEqual(opPath?[0].0, [0x0A])
+        XCTAssertEqual(opPath?[1].0, [0x0B])
+        XCTAssertEqual(opPath?[2].0, [0x0C])
+        XCTAssertEqual(opPath?[0].1, false)
+        XCTAssertEqual(opPath?[1].1, false)
+        XCTAssertEqual(opPath?[2].1, false)
     }
 
     func test_describe_operation_path_when_multiple() {

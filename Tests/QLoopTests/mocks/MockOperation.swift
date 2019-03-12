@@ -32,4 +32,11 @@ class MockOp {
     static func StrThrowsError(_ err: QLoopError) -> QLoopSegment<String, String>.Operation {
         return { input, compl in throw err }
     }
+
+    static func StrErrorHandler(_ shouldRetry: Bool) -> QLoopSegment<String, String>.ErrorHandler {
+        return { err, compl, errCompl in
+            if shouldRetry { compl("") }
+            else { errCompl(err) }
+        }
+    }
 }

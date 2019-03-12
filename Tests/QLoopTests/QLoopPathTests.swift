@@ -78,7 +78,8 @@ class QLoopPathTests: XCTestCase {
         let path = QLoopPath<String, String>(seg1, seg2, seg3)!
         let opPath = path.operationPath()
 
-        XCTAssertEqual(opPath, [["animal"],["vegetable"],["mineral"]])
+        XCTAssertEqual(opPath.map {$0.0}, [["animal"],["vegetable"],["mineral"]])
+        XCTAssertEqual(opPath.map {$0.1}, [false,false,false])
     }
 
     func test_describe_operation_path() {

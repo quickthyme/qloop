@@ -113,7 +113,8 @@ class QLoopTests: XCTestCase {
         loop.bind(path: QLoopPath<String, String>(seg1, seg2, seg3)!)
         let opPath = loop.operationPath()
 
-        XCTAssertEqual(opPath, [["animal"],["vegetable"],["mineral"]])
+        XCTAssertEqual(opPath.map {$0.0}, [["animal"],["vegetable"],["mineral"]])
+        XCTAssertEqual(opPath.map {$0.1}, [false,false,false])
     }
 
     func test_describe_operation_path() {
@@ -125,5 +126,17 @@ class QLoopTests: XCTestCase {
         let opPath = loop.describeOperationPath()
 
         XCTAssertEqual(opPath, "{animal}-{vegetable}-{mineral}")
+    }
+
+    func test_describe_operation_path_with_error_handler() {
+        let seg1 = QLoopLinearSegment("animal", MockOp.AddToStr("!"))
+        let seg2 = QLoopLinearSegment("vegetable", MockOp.AddToStr("@"),
+                                      errorHandler: MockOp.StrErrorHandler(false))
+        let seg3 = QLoopLinearSegment("mineral", MockOp.AddToStr("#"))
+        let loop = QLoop<String, String>()
+        loop.bind(path: QLoopPath<String, String>(seg1, seg2, seg3)!)
+        let opPath = loop.describeOperationPath()
+
+        XCTAssertEqual(opPath, "{animal}-{vegetable*}-{mineral}")
     }
 }
