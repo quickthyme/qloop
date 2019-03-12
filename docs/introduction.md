@@ -16,6 +16,34 @@ At a high level, the features provided are:
   - swiftPM compatible package
   - universal cross-platform
 
+<br />
+
+#### More promising
+
+In a lot of ways, QLoop works very much like "promise chains", but with a few
+twists. Like promises, loops allow you to link asynchronous operations, propagate
+results between them, safely handle exceptions, and provide observable results.
+Unlike promises, however, QLoop makes it easy to statically compose, thoroughly
+test, inspect, and reason over complex operating routines with minimal effort.
+
+QLoop enables *declarative-reactive* development **without obfuscation** or
+spaghetti mess. Compared to some similar frameworks, it is extremely
+light-weight, non-imposing, and universally cross-platform.
+
+#### Less Testing
+
+Testing and composition are primary use-cases, so rather than make seting up
+the test environment more difficult, it actually simplifies it a great deal.
+One way this is achieved, is that loops essentially mock themselves, given
+that they are naturally empty and void of personality until something binds
+to its anchors. Each anchor acts as a sort of landing pad for any input it
+receives, or for "output anchors", anything it emits. So everything you need
+to simulate reactions for testing purposes comes built-in.
+
+Another testing-oriented feature is `describeOperationPath()`, which
+produces human-readable, as well as reliably-parsable, snapshots that can
+be used for diagnostic purposes and/or for test comparisons.
+
 
 <br />
 

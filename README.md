@@ -17,5 +17,19 @@
 
 ## [Introduction](docs/introduction.md)
 
-An [introduction](docs/introduction.md) to the library and what it does.
+An *[introduction](docs/introduction.md)* to the library and what it does.
+
+
+
+## [Getting Started](docs/getting-started.md)
+
+Install and start building right away using this quick-start *[overview](docs/getting-started.md)*.
+
+
+## [Demo App](https://github.com/quickthyme/qloop-demo)
+
+The example app, *[qloop-demo](https://github.com/quickthyme/qloop-demo)*,
+demonstrates how to write a declarative iOS app using QLoop, which includes
+real-world working examples of static composition, error handling, concurrent
+threads, and unit-testing.
 
