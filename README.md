@@ -33,3 +33,11 @@ demonstrates how to write a declarative iOS app using QLoop, which includes
 real-world working examples of static composition, error handling, concurrent
 threads, and unit-testing.
 
+<br />
+
+Enjoying QLoop? You might check out its soul-mate:
+[QRoute](https://github.com/quickthyme/qroute),
+a library providing declarative navigation and routing features with similar
+enthusiasm. Using them together, or separately, is up to you.
+
+:)

@@ -30,7 +30,7 @@ QLoop enables *declarative-reactive* development **without obfuscation** or
 spaghetti mess. Compared to some similar frameworks, it is extremely
 light-weight, non-imposing, and universally cross-platform.
 
-#### Less Testing
+#### Less frustrating
 
 Testing and composition are primary use-cases, so rather than make setting up
 the test environment more difficult, it actually simplifies it a great deal.
@@ -59,6 +59,24 @@ Because loops are circular, they provide both `input` (**observation**) as
 well as `output` (**delegation**) anchors, which relieves many of the
 infrastructural demands otherwise often placed on the developer.
 
+Loops can also be connected to other `loops`, `paths`, or `segments`;
+basically anything that can bind to an `anchor`.
+
+
+<br />
+
+### Paths
+
+`QLoopPath` allows you to compose a series of segments together,
+in a non-violent, and perhaps more readable, way. (In other words,
+*type erasure*.) The failable initializer will return `nil` if any
+segment fails to match its neighboring segments' anchors.
+
+The main benefit of using `path`, is that it improves readability
+of composed `segments`, as well as providing a convenient bundle which
+can then be bound to any loop, or combined with other paths and/or
+segments to form even more complex operation chains.
+
 
 <br />
 
@@ -72,15 +90,25 @@ number of complex sequences.
 
 To choose from currently there are `linear segments`, those which perform
 a **single operation** and then move on, and then there are `compound segments`,
-those which perform **multiple operations simultaneously**, waiting for them
+those which perform **multiple operations concurrently**, waiting for them
 all to complete before moving on.
-
 
 <br />
 
 ### Anchors
 
 An `anchor` is what facilitates the contract binding the segments. Binding
-to an anchor means to respond to its `onChange(_)` and/or `onError(_)` events.
+to an anchor essentially means to respond to its `onChange(_)` and/or
+`onError(_)` events.
 
+An anchor has an `input` var, of whatever type it was constructed as, and also
+an `error` var, expecting an error. The anchor observes both of these and
+raises the appropriate event to its current subscriber. (An anchor can only
+have one subscriber, but can receive input from *anyone*.)
 
+<br />
+
+For more, please refer to the **[Getting Started](getting-started.md)** guide
+or try out the **[demo app](https://github.com/quickthyme/qloop-demo)**!
+
+<br />
