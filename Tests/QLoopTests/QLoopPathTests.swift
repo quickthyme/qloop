@@ -70,4 +70,24 @@ class QLoopPathTests: XCTestCase {
         XCTAssertEqual(path.findSegments(with: 3).count, 1)
         XCTAssertEqual(path.findSegments(with: 4).count, 1)
     }
+
+    func test_operation_path() {
+        let seg1 = QLoopLinearSegment("animal", MockOp.AddToStr("!"))
+        let seg2 = QLoopLinearSegment("vegetable", MockOp.AddToStr("@"))
+        let seg3 = QLoopLinearSegment("mineral", MockOp.AddToStr("#"))
+        let path = QLoopPath<String, String>(seg1, seg2, seg3)!
+        let opPath = path.operationPath()
+
+        XCTAssertEqual(opPath, [["animal"],["vegetable"],["mineral"]])
+    }
+
+    func test_describe_operation_path() {
+        let seg1 = QLoopLinearSegment("animal", MockOp.AddToStr("!"))
+        let seg2 = QLoopLinearSegment("vegetable", MockOp.AddToStr("@"))
+        let seg3 = QLoopLinearSegment("mineral", MockOp.AddToStr("#"))
+        let path = QLoopPath<String, String>(seg1, seg2, seg3)!
+        let opPath = path.describeOperationPath()
+
+        XCTAssertEqual(opPath, "{animal}-{vegetable}-{mineral}")
+    }
 }

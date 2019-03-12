@@ -6,6 +6,8 @@ public protocol AnyLoopSegment: class {
     func linked(to otherSegment: AnyLoopSegment) -> Self?
     func applyOutputAnchor(_ otherAnchor: AnyLoopAnchor)
     func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment]
+    func describeOperationPath() -> String
+    func operationPath() -> [[AnyHashable]]
 }
 
 open class QLoopSegment<Input, Output>: AnyLoopSegment {
@@ -23,6 +25,18 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
     open var operationIds: [AnyHashable] { return [] }
 
     open var errorHandler: ErrorHandler? = {_,_,_  in }
+
+    internal static func handleError(error: Error, segment: QLoopSegment<Input, Output>) {
+        guard let outAnchor = segment.outputAnchor else { return }
+        guard let handler = segment.errorHandler
+            else { outAnchor.error = error; return }
+        let completion: Completion = { outAnchor.input = $0 }
+        let errorCompletion: ErrorCompletion = { outAnchor.error = $0 }
+        handler(error, completion, errorCompletion)
+    }
+
+
+    // MARK: - Shared type-erased functions
 
     public var anyInputAnchor: AnyLoopAnchor {
         return self.inputAnchor
@@ -44,29 +58,49 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
         self.outputAnchor = otherAnchor as? QLoopAnchor<Output> 
     }
 
+
     public func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment] {
-        return QLoopSegment.findSegments(with: operationId, fromSegment: self)
+        return type(of: self).findSegments(with: operationId, fromSegment: self)
     }
 
-    public static func findSegments(with operationId: AnyHashable,
-                                    fromSegment: AnyLoopSegment,
+    public static func findSegments(with operationId: AnyHashable, fromSegment: AnyLoopSegment,
                                     currentResults: [AnyLoopSegment] = []) -> [AnyLoopSegment] {
-
         let newResults = (fromSegment.operationIds.contains(operationId))
             ? [fromSegment] + currentResults
             : currentResults
-
         guard let next = fromSegment.anyInputAnchor.backwardOwner else { return newResults }
         return findSegments(with: operationId, fromSegment: next, currentResults: newResults)
     }
 
-    internal static func handleError(error: Error, segment: QLoopSegment<Input, Output>) {
-        guard let outAnchor = segment.outputAnchor else { return }
-        guard let handler = segment.errorHandler
-            else { outAnchor.error = error; return }
 
-        let completion: Completion = { outAnchor.input = $0 }
-        let errorCompletion: ErrorCompletion = { outAnchor.error = $0 }
-        handler(error, completion, errorCompletion)
+    public func describeOperationPath() -> String {
+        return type(of: self).describeOperationPath(fromSegment: self)
+    }
+
+    public static func describeOperationPath(fromSegment: AnyLoopSegment) -> String {
+        let opPath = operationPath(fromSegment: fromSegment)
+        return opPath.reduce("", { (currentOps, next) in
+            let nextOps: String =
+                "{"
+                + next.map({ "\($0)" })
+                    .sorted()
+                    .joined(separator: ":")
+                + "}"
+            return (currentOps != "")
+                ? [currentOps, nextOps].joined(separator: "-")
+                : nextOps
+        })
+    }
+
+
+    public func operationPath() -> [[AnyHashable]] {
+        return type(of: self).operationPath(fromSegment: self)
+    }
+
+    public static func operationPath(fromSegment: AnyLoopSegment,
+                                     currentResults: [[AnyHashable]] = []) -> [[AnyHashable]] {
+        let newResults = [fromSegment.operationIds] + currentResults
+        guard let next = fromSegment.anyInputAnchor.backwardOwner else { return newResults }
+        return operationPath(fromSegment: next, currentResults: newResults)
     }
 }

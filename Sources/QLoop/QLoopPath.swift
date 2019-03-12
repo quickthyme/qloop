@@ -10,6 +10,15 @@ public class QLoopPath<Input, Output> {
         return outputAnchor.backwardOwner?.findSegments(with: operationId) ?? []
     }
 
+    public func describeOperationPath() -> String {
+        return outputAnchor.backwardOwner?.describeOperationPath() ?? ""
+    }
+
+    public func operationPath() -> [[AnyHashable]] {
+        return outputAnchor.backwardOwner?.operationPath() ?? []
+    }
+
+
     public init?(_ segments: AnyLoopSegment...) {
 
         guard

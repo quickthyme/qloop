@@ -104,4 +104,26 @@ class QLoopTests: XCTestCase {
         XCTAssertNil(finalAnchor.input)
         XCTAssertFalse(mockComponent.progressDataLoop.discontinue)
     }
+
+    func test_operation_path() {
+        let seg1 = QLoopLinearSegment("animal", MockOp.AddToStr("!"))
+        let seg2 = QLoopLinearSegment("vegetable", MockOp.AddToStr("@"))
+        let seg3 = QLoopLinearSegment("mineral", MockOp.AddToStr("#"))
+        let loop = QLoop<String, String>()
+        loop.bind(path: QLoopPath<String, String>(seg1, seg2, seg3)!)
+        let opPath = loop.operationPath()
+
+        XCTAssertEqual(opPath, [["animal"],["vegetable"],["mineral"]])
+    }
+
+    func test_describe_operation_path() {
+        let seg1 = QLoopLinearSegment("animal", MockOp.AddToStr("!"))
+        let seg2 = QLoopLinearSegment("vegetable", MockOp.AddToStr("@"))
+        let seg3 = QLoopLinearSegment("mineral", MockOp.AddToStr("#"))
+        let loop = QLoop<String, String>()
+        loop.bind(path: QLoopPath<String, String>(seg1, seg2, seg3)!)
+        let opPath = loop.describeOperationPath()
+
+        XCTAssertEqual(opPath, "{animal}-{vegetable}-{mineral}")
+    }
 }

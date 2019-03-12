@@ -39,6 +39,14 @@ public final class QLoop<Input, Output>: QLoopIterable {
         return outputAnchor.backwardOwner?.findSegments(with: operationId) ?? []
     }
 
+    public func describeOperationPath() -> String {
+        return outputAnchor.backwardOwner?.describeOperationPath() ?? ""
+    }
+
+    public func operationPath() -> [[AnyHashable]] {
+        return outputAnchor.backwardOwner?.operationPath() ?? []
+    }
+
     public convenience init() {
         self.init(iterator: QLoopIteratorSingle(), onChange: {_ in}, onError: {_ in})
     }

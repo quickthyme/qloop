@@ -112,9 +112,8 @@ class QLoopCompoundSegmentTests: XCTestCase {
 
         let seg1 = QLoopCompoundSegment.init(
             operations: [1:MockOp.IntThrowsError(QLoopError.Unknown)],
-            reducer: nil,
-            errorHandler: handler,
-            outputAnchor: outputAnchor)
+            errorHandler: handler)
+        seg1.outputAnchor = outputAnchor
 
         seg1.inputAnchor.input = 4
         XCTAssertNotNil(err)
@@ -130,7 +129,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
             errCompletion(error)
         }
 
-        let seg1 = QLoopCompoundSegment.init(
+        let seg1 = QLoopCompoundSegment(
             operations: [1:MockOp.IntThrowsError(QLoopError.Unknown)],
             reducer: nil,
             errorHandler: handler,
@@ -140,5 +139,61 @@ class QLoopCompoundSegmentTests: XCTestCase {
         XCTAssertNotNil(err)
         XCTAssertFalse(captured.didHappen)
         XCTAssertEqual(outputAnchor.error as! QLoopError, QLoopError.Unknown)
+    }
+
+    func test_operation_path_when_single() {
+        let outputAnchor = QLoopAnchor<String>()
+        let _ = QLoopCompoundSegment<String, String>(
+            operations: ["plus":MockOp.AddToStr("plus"),
+                         "minus":MockOp.AddToStr("minus")],
+            reducer: nil,
+            outputAnchor: outputAnchor)
+
+        let last = outputAnchor.backwardOwner
+        let opPath = last?.operationPath()
+
+        XCTAssertNotNil(opPath?.first?.first {$0 as? String == "plus"})
+        XCTAssertNotNil(opPath?.first?.first {$0 as? String == "minus"})
+    }
+
+    func test_operation_path_when_multiple() {
+        let outputAnchor = QLoopAnchor<String>()
+        let _ = QLoopLinearSegment(
+            10, MockOp.VoidToStr("One"), output:
+            QLoopCompoundSegment<String, String>(
+                operations: ["plus":MockOp.AddToStr("plus"),
+                             "minus":MockOp.AddToStr("minus")],
+                reducer: nil,
+                output:
+                QLoopLinearSegment(
+                    12, MockOp.AddToStr("Three"), outputAnchor:
+                    outputAnchor)))
+
+        let last = outputAnchor.backwardOwner
+        let opPath = last?.operationPath()
+
+        XCTAssertEqual(opPath?[0], [10])
+        XCTAssertNotNil(opPath?[1].first {$0 as? String == "plus"})
+        XCTAssertNotNil(opPath?[1].first {$0 as? String == "minus"})
+        XCTAssertEqual(opPath?[2], [12])
+    }
+
+    func test_describe_operation_path_when_multiple() {
+        let outputAnchor = QLoopAnchor<String>()
+        let _ = QLoopLinearSegment(
+            0x0A, MockOp.VoidToStr("One"), output:
+            QLoopCompoundSegment<String, String>(
+                operations: ["plus":MockOp.AddToStr("plus"),
+                             "minus":MockOp.AddToStr("minus")],
+                reducer: nil,
+                output:
+                QLoopLinearSegment(
+                    0x0C, MockOp.AddToStr("Three"), outputAnchor:
+                    outputAnchor)))
+
+        let last = outputAnchor.backwardOwner
+        let opPath = last?.describeOperationPath()
+
+        XCTAssertEqual(opPath, "{10}-{minus:plus}-{12}")
     }
 }

@@ -75,8 +75,8 @@ class QLoopLinearSegmentTests: XCTestCase {
         }
 
         let seg1 = QLoopLinearSegment(1, MockOp.IntThrowsError(QLoopError.Unknown),
-                                      errorHandler: handler,
-                                      outputAnchor: outputAnchor)
+                                      errorHandler: handler)
+        seg1.outputAnchor = outputAnchor
 
         seg1.inputAnchor.input = 4
         XCTAssertNotNil(err)
@@ -100,5 +100,76 @@ class QLoopLinearSegmentTests: XCTestCase {
         XCTAssertNotNil(err)
         XCTAssertFalse(captured.didHappen)
         XCTAssertEqual(outputAnchor.error as! QLoopError, QLoopError.Unknown)
+    }
+
+    func test_find_segments_for_operation_succeeds_when_single() {
+        let (_, finalAnchor) = SpyAnchor<String>().CapturingAnchor
+
+        let _ = QLoopLinearSegment(1, MockOp.VoidToStr("One"),
+                                   outputAnchor: finalAnchor)
+
+        let last = finalAnchor.backwardOwner
+        XCTAssertEqual(last?.findSegments(with: 1).count, 1)
+    }
+
+    func test_find_segments_for_operation_succeeds_when_mix() {
+        let (_, finalAnchor) = SpyAnchor<String>().CapturingAnchor
+
+        let _ = QLoopLinearSegment(
+            0x0A, MockOp.VoidToStr("One"), output:
+            QLoopLinearSegment(
+                0x0B, MockOp.AddToStr("Two"), output:
+                QLoopLinearSegment(
+                    0x0C, MockOp.AddToStr("Three"), output:
+                    QLoopLinearSegment(
+                        0x0B, MockOp.AddToStr("Four"), outputAnchor:
+                        finalAnchor))))
+
+        let last = finalAnchor.backwardOwner
+        XCTAssertEqual(last?.findSegments(with: 0x0A).count, 1)
+        XCTAssertEqual(last?.findSegments(with: 0x0B).count, 2)
+        XCTAssertEqual(last?.findSegments(with: 0x0C).count, 1)
+    }
+
+    func test_operation_path_when_single() {
+        let outputAnchor = QLoopAnchor<String>()
+        let _ = QLoopLinearSegment(1, MockOp.VoidToStr("One"), outputAnchor: outputAnchor)
+
+        let last = outputAnchor.backwardOwner
+        let opPath = last?.operationPath()
+
+        XCTAssertEqual(opPath, [[1]])
+    }
+
+    func test_operation_path_when_multiple() {
+        let outputAnchor = QLoopAnchor<String>()
+        let _ = QLoopLinearSegment(
+            0x0A, MockOp.VoidToStr("One"), output:
+            QLoopLinearSegment(
+                0x0B, MockOp.AddToStr("Two"), output:
+                QLoopLinearSegment(
+                    0x0C, MockOp.AddToStr("Three"), outputAnchor:
+                    outputAnchor)))
+
+        let last = outputAnchor.backwardOwner
+        let opPath = last?.operationPath()
+
+        XCTAssertEqual(opPath, [[0x0A],[0x0B],[0x0C]])
+    }
+
+    func test_describe_operation_path_when_multiple() {
+        let outputAnchor = QLoopAnchor<String>()
+        let _ = QLoopLinearSegment(
+            "open", MockOp.VoidToStr("One"), output:
+            QLoopLinearSegment(
+                "speak", MockOp.AddToStr("Two"), output:
+                QLoopLinearSegment(
+                    "close", MockOp.AddToStr("Three"), outputAnchor:
+                    outputAnchor)))
+
+        let last = outputAnchor.backwardOwner
+        let opPath = last?.describeOperationPath()
+
+        XCTAssertEqual(opPath, "{open}-{speak}-{close}")
     }
 }
