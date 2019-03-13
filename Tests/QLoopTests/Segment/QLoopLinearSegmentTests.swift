@@ -108,7 +108,7 @@ class QLoopLinearSegmentTests: XCTestCase {
         let _ = QLoopLinearSegment(1, MockOp.VoidToStr("One"),
                                    outputAnchor: finalAnchor)
 
-        let last = finalAnchor.backwardOwner
+        let last = finalAnchor.inputSegment
         XCTAssertEqual(last?.findSegments(with: 1).count, 1)
     }
 
@@ -125,7 +125,7 @@ class QLoopLinearSegmentTests: XCTestCase {
                         0x0B, MockOp.AddToStr("Four"), outputAnchor:
                         finalAnchor))))
 
-        let last = finalAnchor.backwardOwner
+        let last = finalAnchor.inputSegment
         XCTAssertEqual(last?.findSegments(with: 0x0A).count, 1)
         XCTAssertEqual(last?.findSegments(with: 0x0B).count, 2)
         XCTAssertEqual(last?.findSegments(with: 0x0C).count, 1)
@@ -135,7 +135,7 @@ class QLoopLinearSegmentTests: XCTestCase {
         let outputAnchor = QLoopAnchor<String>()
         let _ = QLoopLinearSegment(1, MockOp.VoidToStr("One"), outputAnchor: outputAnchor)
 
-        let last = outputAnchor.backwardOwner
+        let last = outputAnchor.inputSegment
         let opPath = last?.operationPath()
 
         XCTAssertEqual(opPath?[0].0, [1])
@@ -152,7 +152,7 @@ class QLoopLinearSegmentTests: XCTestCase {
                     0x0C, MockOp.AddToStr("Three"), outputAnchor:
                     outputAnchor)))
 
-        let last = outputAnchor.backwardOwner
+        let last = outputAnchor.inputSegment
         let opPath = last?.operationPath()
 
         XCTAssertEqual(opPath?[0].0, [0x0A])
@@ -173,7 +173,7 @@ class QLoopLinearSegmentTests: XCTestCase {
                     "close", MockOp.AddToStr("Three"), outputAnchor:
                     outputAnchor)))
 
-        let last = outputAnchor.backwardOwner
+        let last = outputAnchor.inputSegment
         let opPath = last?.describeOperationPath()
 
         XCTAssertEqual(opPath, "{open}-{speak}-{close}")

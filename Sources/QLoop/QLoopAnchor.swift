@@ -1,6 +1,6 @@
 
 public protocol AnyLoopAnchor: class {
-    var backwardOwner: AnyLoopSegment? { get }
+    var inputSegment: AnyLoopSegment? { get }
 }
 
 public final class QLoopAnchor<Input>: AnyLoopAnchor {
@@ -20,7 +20,7 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
     public var onChange: OnChange
     public var onError: OnError
 
-    public var backwardOwner: AnyLoopSegment?
+    public var inputSegment: AnyLoopSegment?
 
     public convenience init() {
         self.init(onChange: {_ in }, onError: {_ in })

@@ -71,7 +71,7 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
         let newResults = (fromSegment.operationIds.contains(operationId))
             ? [fromSegment] + currentResults
             : currentResults
-        guard let next = fromSegment.anyInputAnchor.backwardOwner else { return newResults }
+        guard let next = fromSegment.anyInputAnchor.inputSegment else { return newResults }
         return findSegments(with: operationId, fromSegment: next, currentResults: newResults)
     }
 
@@ -103,7 +103,7 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
     public static func operationPath(fromSegment: AnyLoopSegment,
                                      currentResults: [([AnyHashable], Bool)] = []) -> [([AnyHashable], Bool)] {
         let newResults = [(fromSegment.operationIds, fromSegment.hasErrorHandler)] + currentResults
-        guard let next = fromSegment.anyInputAnchor.backwardOwner else { return newResults }
+        guard let next = fromSegment.anyInputAnchor.inputSegment else { return newResults }
         return operationPath(fromSegment: next, currentResults: newResults)
     }
 }

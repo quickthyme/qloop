@@ -25,7 +25,7 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
 
     public override weak var outputAnchor: QLoopAnchor<Output>? {
         didSet {
-            self.outputAnchor?.backwardOwner = self
+            self.outputAnchor?.inputSegment = self
             applyInputObservers()
         }
     }

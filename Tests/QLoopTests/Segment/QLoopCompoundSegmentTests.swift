@@ -149,7 +149,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
             reducer: nil,
             outputAnchor: outputAnchor)
 
-        let last = outputAnchor.backwardOwner
+        let last = outputAnchor.inputSegment
         let opPath = last?.operationPath()
 
         XCTAssertNotNil(opPath?.first?.0.first {$0 as? String == "plus"})
@@ -169,7 +169,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
                     12, MockOp.AddToStr("Three"), outputAnchor:
                     outputAnchor)))
 
-        let last = outputAnchor.backwardOwner
+        let last = outputAnchor.inputSegment
         let opPath = last?.operationPath()
 
         XCTAssertEqual(opPath?[0].0, [10])
@@ -191,7 +191,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
                     0x0C, MockOp.AddToStr("Three"), outputAnchor:
                     outputAnchor)))
 
-        let last = outputAnchor.backwardOwner
+        let last = outputAnchor.inputSegment
         let opPath = last?.describeOperationPath()
 
         XCTAssertEqual(opPath, "{10}-{minus:plus}-{12}")

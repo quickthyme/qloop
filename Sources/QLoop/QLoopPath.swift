@@ -7,15 +7,15 @@ public class QLoopPath<Input, Output> {
     public var outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>()
 
     public func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment] {
-        return outputAnchor.backwardOwner?.findSegments(with: operationId) ?? []
+        return outputAnchor.inputSegment?.findSegments(with: operationId) ?? []
     }
 
     public func describeOperationPath() -> String {
-        return outputAnchor.backwardOwner?.describeOperationPath() ?? ""
+        return outputAnchor.inputSegment?.describeOperationPath() ?? ""
     }
 
     public func operationPath() -> [([AnyHashable], Bool)] {
-        return outputAnchor.backwardOwner?.operationPath() ?? []
+        return outputAnchor.inputSegment?.operationPath() ?? []
     }
 
 
