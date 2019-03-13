@@ -1,4 +1,27 @@
 
+#if canImport(Dispatch)
+import Dispatch
+fileprivate let completionQueue = DispatchQueue(label: "CompletionQueue", attributes: .concurrent)
+fileprivate func incrementTotalCompleted<Input, Output>(_ segment: QLoopCompoundSegment<Input, Output>) {
+    completionQueue.async(flags: .barrier) { segment.totalCompleted += 1 }
+    segment.didSetTotalCompleted()
+}
+fileprivate func readTotalCompleted<Input, Output>(_ segment: QLoopCompoundSegment<Input, Output>) -> Int {
+    var result: Int = 0
+    completionQueue.sync() { result = segment.totalCompleted }
+    return result
+}
+#else
+fileprivate func incrementTotalCompleted<Input, Output>(_ segment: QLoopCompoundSegment<Input, Output>) {
+    segment.totalCompleted += 1
+    segment.didSetTotalCompleted()
+}
+fileprivate func readTotalCompleted<Input, Output>(_ segment: QLoopCompoundSegment<Input, Output>) -> Int {
+    return segment.totalCompleted
+}
+#endif
+
+
 public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Output> {
     public typealias Operation = QLoopSegment<Input, Output>.Operation
     public typealias ErrorHandler = QLoopSegment<Input, Output>.ErrorHandler
@@ -109,20 +132,21 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
 
     private var operations: [OperationBox<Output>] = []
 
-    private var totalCompleted: Int = 0 {
-        didSet {
-            guard (totalCompleted >= self.operations.count) else { return }
+    fileprivate var totalCompleted: Int = 0
 
-            guard let r = self.reducer else {
-                self.outputAnchor?.input = self.operations.first?.value
-                return
-            }
+    fileprivate func didSetTotalCompleted() {
+        let totalCompleted = readTotalCompleted(self)
+        guard (totalCompleted >= self.operations.count) else { return }
 
-            self.outputAnchor?.input =
-                self.operations
-                    .map { ($0.id, $0.value) }
-                    .reduce(r.0, r.1)
+        guard let r = self.reducer else {
+            self.outputAnchor?.input = self.operations.first?.value
+            return
         }
+
+        self.outputAnchor?.input =
+            self.operations
+                .map { ($0.id, $0.value) }
+                .reduce(r.0, r.1)
     }
 
     private final func applyInputObservers() {
@@ -135,7 +159,7 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
                     try opBox.operation(input, { output in
                         opBox.value = output
                         opBox.completed = true
-                        self.totalCompleted += 1
+                        incrementTotalCompleted(self)
                     })
                 }
 
