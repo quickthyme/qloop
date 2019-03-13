@@ -35,7 +35,7 @@ threads, and unit-testing.
 
 <br />
 
--
+--
 
 Enjoying QLoop? You might check out its soul-mate:
 [QRoute](https://github.com/quickthyme/qroute),

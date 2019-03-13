@@ -137,22 +137,40 @@ There are currently two types of segments to choose from:
  - `QLoopCompoundSegment` - performs **multiple concurrent operations**,
    waiting for them all to complete before moving on.
 
+When connecting segments together, the `inputAnchor` of the second
+(or *isolated anchor*)
+gets *assigned* to the `outputAnchor` of the first, and so on. You can
+choose to link segments upon instantiation, or anytime thereafter.
+
+  - A `segment` only observes its own `inputAnchor`.
+  - A `segment` only runs its operation if it has an `outputAnchor` assigned
+
 <br />
 
 ### Anchors
 
-An `anchor` is what facilitates the contract binding the segments. Binding
+An `anchor` is what facilitates the **contract** binding segments. To bind
 to an anchor essentially means to respond to its `onChange(_)` and/or
 `onError(_)` events.
 
-Anchors only receive `input` or `error`, and can only have one subscriber
-at a time. When connecting segments together, the output anchor of the first
-gets assigned to the input anchor provided by the next. (Segments only ever
-observe their own input anchor.)
+ - An `anchor` can only receive an `input` or an `error`
+ - An `anchor` can only have **one subscriber**
+ - An anchor *can* have **any number of input providers**, but it can only
+ *retain* one `segment` at a time.
+
+Only reason this might come up, is should you go and try doing something brave
+like fusing several inputs together "mid-stream". While one *can* in-fact do
+this, in such instances, it would be better to first determine whether its
+possible to just use a compound segment instead, or possibly even additional
+loops.
+
+Remember, the goal here is to *clarify* the *intent*, not to build *Marble Madness*.†
 
 <br />
 
--
+† - (Unless your intent *is* to build *Marble Madness*, in which case, ok.)
+
+--
 
 For more, please refer to the **[Getting Started](getting-started.md)** guide
 or try out the **[demo app](https://github.com/quickthyme/qloop-demo)**!
