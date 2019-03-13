@@ -35,6 +35,8 @@ threads, and unit-testing.
 
 <br />
 
+-
+
 Enjoying QLoop? You might check out its soul-mate:
 [QRoute](https://github.com/quickthyme/qroute),
 a library providing declarative navigation and routing features with similar

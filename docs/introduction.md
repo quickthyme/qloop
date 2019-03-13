@@ -4,11 +4,12 @@
 
 ## Introduction
 
-Here is an introduction to the [QLoop](https://github.com/quickthyme/qloop) library, and
-what it does. It assumes that you already have a basic understanding of Swift. Although,
-knowledge of Xcode or any other IDE will be irrelevant to the topics covered here.
+Here is an introduction to the [QLoop](https://github.com/quickthyme/qloop)
+library, and what it does. It assumes that you already have a basic
+understanding of Swift. Although, knowledge of Xcode or any other IDE will
+be irrelevant to the topics covered here.
 
-At a high level, the features provided are:
+At a high level, features it provides include:
 
   - compose asynchronous operation paths as reusable "loop" constructs
   - *test-friendly* observer-pattern module favoring declarative composition
@@ -16,33 +17,41 @@ At a high level, the features provided are:
   - swiftPM compatible package
   - universal cross-platform
 
-<br />
-
 #### More promising
 
-In a lot of ways, QLoop works very much like "promise chains", but with a few
-twists. Like promises, loops allow you to link asynchronous operations, propagate
-results between them, safely handle exceptions, and provide observable results.
-Unlike promises, however, QLoop makes it easy to statically compose, thoroughly
-test, inspect, and reason over complex operating routines with minimal effort.
+If you're familiar with "promise chains", then you will no doubt feel right
+at home, here. In many ways, QLoop works very much like promises: link together
+asynchronous operations, propagate output and/or errors, handle exceptions
+safely, allow for synchronous testing, and expose observable results.
+
+The differences, however, are far less subtle. There's obvious stuff, such
+as iteration control and operation grouping. (it is a loop, after all)
+
+But what really makes QLoop stand out, is how well one can statically compose,
+thoroughly test, inspect, and reason over complex operations with ease.
 
 QLoop enables *declarative-reactive* development **without obfuscation** or
-spaghetti mess. Compared to some similar frameworks, it is extremely
-light-weight, non-imposing, and universally cross-platform.
+*callback hell*. And when compared to some similar frameworks, it is extremely
+light-weight, non-intrusive, and universally cross-platform.
 
-#### Less frustrating
+#### Less mocking
 
-Testing and composition are primary use-cases, so rather than make setting up
-the test environment more difficult, it actually simplifies it a great deal.
-One way this is achieved, is that loops essentially mock themselves, given
-that they are naturally empty and void of personality until something binds
-to its anchors. Each anchor acts as a sort of landing pad for any input it
-receives, or for "output anchors", anything it emits. So everything you need
-to simulate reactions for testing purposes comes built-in.
+Testing, composition, and inspection are the three top priorities of QLoop.
+Rather than make setting up the test environment more difficult, it actually
+simplifies it a great deal.
 
-Another testing-oriented feature is `describeOperationPath()`, which
-produces human-readable, as well as reliably-parsable, snapshots that can
-be used for diagnostic purposes and/or for test comparisons.
+Loops essentially mock themselves, given that they are naturally
+empty and void of personality until both of its anchors are bound (which they
+are not, by default).
+
+Pretty much everything you need to simulate reactions for testing
+purposes comes entirely built-in, saving you the trouble of writing mocks and
+other such foolery.
+
+Then there's `describeOperationPath()`, which produces human-readable,
+as well as reliably-parsable, "snapshots" that can be used for diagnostic
+purposes and/or for test comparisons. You can see exactly which operations
+are to be called and in what order.
 
 
 <br />
@@ -55,22 +64,34 @@ to react to output streams using simple `onChange` and `onError` events.
 
 ![loops](loops.png)
 
-Because loops are circular, they provide both `input` (**observation**) as
-well as `output` (**delegation**) anchors, which relieves many of the
-infrastructural demands otherwise often placed on the developer.
+Because loops are circular, they provide both `output` (**observation**) as
+well as `input` (**delegation**) anchors.
 
 Loops can also be connected to other `loops`, `paths`, or `segments`;
 basically anything that can bind to an `anchor`.
+
+By default, a QLoop has no bound functionality on creation. You must bestow
+its behavior by binding it to paths and/or segments.
 
 
 <br />
 
 ### Paths
 
-`QLoopPath` allows you to compose a series of segments together,
-in a non-violent, and perhaps more readable, way. (In other words,
-*type erasure*.) The failable initializer will return `nil` if any
-segment fails to match its neighboring segments' anchors.
+The default segment constructors allow them to be linked explicitly,
+in a type-safe manner, but they can quickly become difficult to read
+or muck around with for any practical use of chaining.
+
+Instead, `QLoopPath` is provided, which allows you to compose series
+of segments together, in a less-violent, more readable way.
+
+We don't have to give up complete type safety, however, as the failable
+initializer will return `nil` if any segment fails to link to one of its
+neighboring segments.
+
+You always have a way to ensure everything is correct. Besides, it's
+trivial to verify the operation chains in our unit-tests, thanks to their
+ability to consistently describe themselves.
 
 The main benefit of using `path`, is that it improves readability
 of composed `segments`, as well as providing a convenient bundle which
@@ -88,10 +109,14 @@ number of complex sequences.
 
 ![segments](segments.png)
 
-To choose from currently there are `linear segments`, those which perform
-a **single operation** and then move on, and then there are `compound segments`,
-those which perform **multiple operations concurrently**, waiting for them
-all to complete before moving on.
+You do not subclass segments. Instead, you simply attach your asynchronous
+operations to them using a contract enforced by a simple swift closure.
+
+There are currently two types of segments to choose from:
+
+ - `QLoopLinearSegment` - performs a **single operation** and then moves on
+ - `QLoopCompoundSegment` - performs **multiple concurrent operations**,
+   waiting for them all to complete before moving on.
 
 <br />
 
@@ -101,12 +126,14 @@ An `anchor` is what facilitates the contract binding the segments. Binding
 to an anchor essentially means to respond to its `onChange(_)` and/or
 `onError(_)` events.
 
-An anchor has an `input` var, of whatever type it was constructed as, and also
-an `error` var, expecting an error. The anchor observes both of these and
-raises the appropriate event to its current subscriber. (An anchor can only
-have one subscriber, but can receive input from *anyone*.)
+Anchors only receive `input` or `error`, and can only have one subscriber
+at a time. When connecting segments together, the output anchor of the first
+gets assigned to the input anchor provided by the next. (Segments only ever
+observe their own input anchor.)
 
 <br />
+
+-
 
 For more, please refer to the **[Getting Started](getting-started.md)** guide
 or try out the **[demo app](https://github.com/quickthyme/qloop-demo)**!
