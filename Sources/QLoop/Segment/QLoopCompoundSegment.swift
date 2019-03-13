@@ -1,26 +1,8 @@
 
-#if canImport(Dispatch)
 import Dispatch
-fileprivate let completionQueue = DispatchQueue(label: "CompletionQueue", attributes: .concurrent)
-fileprivate func incrementTotalCompleted<Input, Output>(_ segment: QLoopCompoundSegment<Input, Output>) {
-    completionQueue.async(flags: .barrier) { segment.totalCompleted += 1 }
-    segment.didSetTotalCompleted()
-}
-fileprivate func readTotalCompleted<Input, Output>(_ segment: QLoopCompoundSegment<Input, Output>) -> Int {
-    var result: Int = 0
-    completionQueue.sync() { result = segment.totalCompleted }
-    return result
-}
-#else
-fileprivate func incrementTotalCompleted<Input, Output>(_ segment: QLoopCompoundSegment<Input, Output>) {
-    segment.totalCompleted += 1
-    segment.didSetTotalCompleted()
-}
-fileprivate func readTotalCompleted<Input, Output>(_ segment: QLoopCompoundSegment<Input, Output>) -> Int {
-    return segment.totalCompleted
-}
-#endif
 
+fileprivate let completionQueue = DispatchQueue(label: "QLoopCompoundSegment.CompletionQueue",
+                                                attributes: .concurrent)
 
 public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Output> {
     public typealias Operation = QLoopSegment<Input, Output>.Operation
@@ -132,10 +114,24 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
 
     private var operations: [OperationBox<Output>] = []
 
-    fileprivate var totalCompleted: Int = 0
+    fileprivate var totalCompleted: Int {
+        get {
+            var totalCompleted: Int = 0
+            completionQueue.sync() {
+                totalCompleted = self._totalCompleted
+            }
+            return totalCompleted
+        }
+        set {
+            completionQueue.async(flags: .barrier) {
+                self._totalCompleted = newValue
+            }
+            self.didSetTotalCompleted(newValue)
+        }
+    }
+    fileprivate var _totalCompleted: Int = 0
 
-    fileprivate func didSetTotalCompleted() {
-        let totalCompleted = readTotalCompleted(self)
+    fileprivate func didSetTotalCompleted(_ totalCompleted: Int) {
         guard (totalCompleted >= self.operations.count) else { return }
 
         guard let r = self.reducer else {
@@ -159,7 +155,7 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
                     try opBox.operation(input, { output in
                         opBox.value = output
                         opBox.completed = true
-                        incrementTotalCompleted(self)
+                        self.totalCompleted += 1
                     })
                 }
 
