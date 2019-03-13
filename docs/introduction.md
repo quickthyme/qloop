@@ -58,20 +58,37 @@ are to be called and in what order.
 
 ### Loops
 
-Compose sequences of asynchronous operation `segments`, then wrap them
-up into *observable* loops. Decorating a given entity with loops allows it
+![loops](loops.png)
+
+Compose entire sequences of asynchronous operation `segments`, then wrap them
+up into *observable* loops. Decorating an entity with loops makes it easy
 to react to output streams using simple `onChange` and `onError` events.
 
-![loops](loops.png)
+##### Delegable
 
 Because loops are circular, they provide both `output` (**observation**) as
 well as `input` (**delegation**) anchors.
 
-Loops can also be connected to other `loops`, `paths`, or `segments`;
-basically anything that can bind to an `anchor`.
+##### Observable
 
 By default, a QLoop has no bound functionality on creation. You must bestow
 its behavior by binding it to paths and/or segments.
+
+
+##### Iterating
+
+Loops provide **iteration**, should it be desired. By default, a loop will
+run once per input set, but they can be made to run however you like, simply
+by swapping out its `iterator`. There are several included out-of-the-box,
+but you can also create your own in order to extend the loop's functionality.
+
+Any iterator you wish to use with QLoop must conform to `QLoopIterating`.
+
+##### Chainable
+
+Loops can also be connected to other `loops`, `paths`, or `segments`;
+basically anything that can bind to an `anchor`.
+
 
 
 <br />
@@ -82,21 +99,23 @@ The default segment constructors allow them to be linked explicitly,
 in a type-safe manner, but they can quickly become difficult to read
 or muck around with for any practical use of chaining.
 
-Instead, `QLoopPath` is provided, which allows you to compose series
+`QLoopPath` addresses this, by allowing you to compose a series
 of segments together, in a less-violent, more readable way.
 
-We don't have to give up complete type safety, however, as the failable
-initializer will return `nil` if any segment fails to link to one of its
-neighboring segments.
+This is accomplished using *type-erasure*, but we don't have to give up
+type safety completely. The *failable initializer* will return `nil` if
+any segment in the chain fails to link to one of its neighboring segments.
 
-You always have a way to ensure everything is correct. Besides, it's
-trivial to verify the operation chains in our unit-tests, thanks to their
-ability to consistently describe themselves.
+When using paths, **you always have a way to ensure everything is correct.**
+Besides, it's trivial to verify the operation chains in our unit-tests,
+thanks to their ability to consistently describe themselves.
 
-The main benefit of using `path`, is that it improves readability
-of composed `segments`, as well as providing a convenient bundle which
-can then be bound to any loop, or combined with other paths and/or
-segments to form even more complex operation chains.
+Just like with a loop, a path behaves as a bundle for its segments. They
+are typically bound to a loop at some point, or combined with other paths
+and/or segments to form more complex chains.
+
+The practical benefit of using `path`, is that it improves readability of
+composed `segments`. In practice, once "baked in", they seldom need changing.
 
 
 <br />

@@ -19,39 +19,6 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         }
     }
 
-    public override var inputAnchor: QLoopAnchor<Input> {
-        didSet { applyInputObservers() }
-    }
-
-    public override weak var outputAnchor: QLoopAnchor<Output>? {
-        didSet {
-            self.outputAnchor?.inputSegment = self
-            applyInputObservers()
-        }
-    }
-
-    public override var operationIds: [AnyHashable] { return operations.map { $0.id } }
-
-    private var reducer: Reducer? = nil
-
-    private var operations: [OperationBox<Output>] = []
-
-    private var totalCompleted: Int = 0 {
-        didSet {
-            guard (totalCompleted >= self.operations.count) else { return }
-
-            guard let r = self.reducer else {
-                self.outputAnchor?.input = self.operations.first?.value
-                return
-            }
-
-            self.outputAnchor?.input =
-                self.operations
-                    .map { ($0.id, $0.value) }
-                    .reduce(r.0, r.1)
-        }
-    }
-
     public convenience init(operations: [AnyHashable:Operation]) {
         self.init(operations: operations,
                   reducer: nil,
@@ -104,8 +71,8 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
     }
 
     public convenience init(operations: [AnyHashable:Operation],
-                         reducer: Reducer?,
-                         outputAnchor: QLoopAnchor<Output>) {
+                            reducer: Reducer?,
+                            outputAnchor: QLoopAnchor<Output>) {
         self.init(operations: operations,
                   reducer: reducer,
                   errorHandler: nil,
@@ -124,25 +91,62 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         self.inputAnchor = QLoopAnchor<Input>()
     }
 
+
+    public override var inputAnchor: QLoopAnchor<Input> {
+        didSet { applyInputObservers() }
+    }
+
+    public override weak var outputAnchor: QLoopAnchor<Output>? {
+        didSet {
+            self.outputAnchor?.inputSegment = self
+            applyInputObservers()
+        }
+    }
+
+    public override var operationIds: [AnyHashable] { return operations.map { $0.id } }
+
+    private var reducer: Reducer? = nil
+
+    private var operations: [OperationBox<Output>] = []
+
+    private var totalCompleted: Int = 0 {
+        didSet {
+            guard (totalCompleted >= self.operations.count) else { return }
+
+            guard let r = self.reducer else {
+                self.outputAnchor?.input = self.operations.first?.value
+                return
+            }
+
+            self.outputAnchor?.input =
+                self.operations
+                    .map { ($0.id, $0.value) }
+                    .reduce(r.0, r.1)
+        }
+    }
+
     private final func applyInputObservers() {
         guard let _ = self.outputAnchor else { return }
 
         self.inputAnchor.onChange = ({ input in
             for opBox in self.operations {
+
                 do {
                     try opBox.operation(input, { output in
                         opBox.value = output
                         opBox.completed = true
                         self.totalCompleted += 1
                     })
-                } catch {
-                    type(of: self).handleError(error: error, segment: self)
+                }
+
+                catch {
+                    type(of: self).handleError(error, self)
                 }
             }
         })
 
         self.inputAnchor.onError = ({ error in
-            type(of: self).handleError(error: error, segment: self)
+            type(of: self).handleError(error, self)
         })
     }
 }

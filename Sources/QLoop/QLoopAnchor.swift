@@ -6,21 +6,6 @@ public protocol AnyLoopAnchor: class {
 public final class QLoopAnchor<Input>: AnyLoopAnchor {
     public typealias OnChange = (Input?)->()
     public typealias OnError = (Error)->()
-    private struct NotAnError: Error { }
-
-    public var input: Input? {
-        didSet { onChange(input) }
-    }
-
-    public var error: Error = NotAnError() {
-        didSet {
-            if !(error is NotAnError) { onError(error) } }
-    }
-
-    public var onChange: OnChange
-    public var onError: OnError
-
-    public var inputSegment: AnyLoopSegment?
 
     public convenience init() {
         self.init(onChange: {_ in }, onError: {_ in })
@@ -35,4 +20,17 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
         self.onChange = onChange
         self.onError = onError
     }
+
+    public var input: Input? {
+        didSet { onChange(input) }
+    }
+
+    public var error: Error? {
+        didSet { if let err = error { onError(err) } }
+    }
+
+    public var onChange: OnChange
+    public var onError: OnError
+
+    public var inputSegment: AnyLoopSegment?
 }

@@ -5,21 +5,6 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
     public typealias Completion = QLoopSegment<Input, Output>.Completion
     public typealias ErrorCompletion = QLoopSegment<Input, Output>.ErrorCompletion
 
-    public override var inputAnchor: QLoopAnchor<Input> {
-        didSet { applyInputObservers() }
-    }
-
-    public override weak var outputAnchor: QLoopAnchor<Output>? {
-        didSet {
-            self.outputAnchor?.inputSegment = self
-            applyInputObservers()
-        }
-    }
-
-    public let operationId: AnyHashable
-
-    public override var operationIds: [AnyHashable] { return [operationId] }
-
     public convenience init(_ operationId: AnyHashable,
                             _ operation: @escaping Operation) {
         self.init(operationId, operation, errorHandler: nil, outputAnchor: QLoopAnchor<Output>())
@@ -70,20 +55,33 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
         self.inputAnchor = QLoopAnchor<Input>()
     }
 
+
+    public override var inputAnchor: QLoopAnchor<Input> {
+        didSet { applyInputObservers() }
+    }
+
+    public override weak var outputAnchor: QLoopAnchor<Output>? {
+        didSet {
+            self.outputAnchor?.inputSegment = self
+            applyInputObservers()
+        }
+    }
+
+    public let operationId: AnyHashable
+
+    public override var operationIds: [AnyHashable] { return [operationId] }
+
     private final func applyInputObservers() {
         guard let outAnchor = self.outputAnchor else { return }
 
         self.inputAnchor.onChange = ({ input in
             let completion: Completion = { outAnchor.input = $0 }
-            do {
-                try self.operation(input, completion)
-            } catch {
-                type(of: self).handleError(error: error, segment: self)
-            }
+            do { try self.operation(input, completion) }
+            catch { type(of: self).handleError(error, self) }
         })
 
         self.inputAnchor.onError = ({ error in
-            type(of: self).handleError(error: error, segment: self)
+            type(of: self).handleError(error, self)
         })
     }
 }

@@ -29,7 +29,7 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
 
     public var errorHandler: ErrorHandler? = {_,_,_  in }
 
-    internal static func handleError(error: Error, segment: QLoopSegment<Input, Output>) {
+    internal static func handleError(_ error: Error, _ segment: QLoopSegment<Input, Output>) {
         guard let outAnchor = segment.outputAnchor else { return }
         guard let handler = segment.errorHandler
             else { outAnchor.error = error; return }

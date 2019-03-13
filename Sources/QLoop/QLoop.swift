@@ -5,6 +5,28 @@ public final class QLoop<Input, Output>: QLoopIterable {
     public typealias OnChange = QLoopAnchor<Output>.OnChange
     public typealias OnError = QLoopAnchor<Output>.OnError
 
+    public convenience init() {
+        self.init(iterator: QLoopIteratorSingle(), onChange: {_ in}, onError: {_ in})
+    }
+
+    public convenience init(onChange: @escaping (Output?)->()) {
+        self.init(iterator: QLoopIteratorSingle(), onChange: onChange, onError: {_ in})
+    }
+
+    public convenience init(iterator: QLoopIterating,
+                            onChange: @escaping OnChange) {
+        self.init(iterator: iterator, onChange: onChange, onError: {_ in})
+    }
+
+    public required init(iterator: QLoopIterating,
+                         onChange: @escaping OnChange,
+                         onError: @escaping OnError) {
+        self.iterator = iterator
+        self.onChange = onChange
+        self.onError = onError
+        self.applyOutputObservers()
+    }
+
     public var inputAnchor: QLoopAnchor<Input> = QLoopAnchor<Input>()
     public var outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>() {
         didSet { applyOutputObservers() }
@@ -47,29 +69,7 @@ public final class QLoop<Input, Output>: QLoopIterable {
         return outputAnchor.inputSegment?.operationPath() ?? []
     }
 
-    public convenience init() {
-        self.init(iterator: QLoopIteratorSingle(), onChange: {_ in}, onError: {_ in})
-    }
-
-    public convenience init(onChange: @escaping (Output?)->()) {
-        self.init(iterator: QLoopIteratorSingle(), onChange: onChange, onError: {_ in})
-    }
-
-    public convenience init(iterator: QLoopIterating,
-                            onChange: @escaping OnChange) {
-        self.init(iterator: iterator, onChange: onChange, onError: {_ in})
-    }
-
-    public required init(iterator: QLoopIterating,
-                         onChange: @escaping OnChange,
-                         onError: @escaping OnError) {
-        self.iterator = iterator
-        self.onChange = onChange
-        self.onError = onError
-        self.applyOutputObservers()
-    }
-
-    private final func applyOutputObservers() {
+    private func applyOutputObservers() {
         self.outputAnchor.onChange = ({
             self.onChange($0)
             self.iterator.iterate(self)
