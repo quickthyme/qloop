@@ -190,7 +190,7 @@ The default behavior is to just forward the error.
 
 An `anchor` is what facilitates the **contract** binding segments. To bind
 to an anchor essentially means to respond to its `onChange(_)` and/or
-`onError(_)` events.
+`onError(_)` events.†
 
  - An `anchor` can only receive an `input` or an `error`
  - An `anchor` can only have **one subscriber**
@@ -207,12 +207,18 @@ brave such as attempting to fuse several inputs together "mid-stream". While one
 possible to just use a compound segment instead, or maybe consider placing
 additional loops.
 
-Remember, the goal here is to *clarify* the *intent*, not to build *Marble Madness*.†
+Remember, the goal here is to *clarify* the *intent*, not to build *Marble Madness*.††
 
 
 <br />
 
-† - (unless your intent *is* to build *Marble Madness*.)
+ - † : `QLoopAnchor` comes configured by default as such that it only remembers its
+   last value when the `DEBUG` compiler flag is present. This means you should not *rely*
+   on any persistence of an anchor's input or error values outside of development and
+   testing. Instead, you should always use the `onChange` and `onError` events as
+   described.
+
+ - †† : (unless your intent *is* to build *Marble Madness*.)
 
 ---
 

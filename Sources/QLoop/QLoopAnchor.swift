@@ -1,8 +1,7 @@
 
 import Dispatch
 
-fileprivate let inputQueue = DispatchQueue(label: "QLoopAnchor.InputQueue",
-                                           attributes: .concurrent)
+fileprivate let inputQueue = DispatchQueue(label: "QLoopAnchor.InputQueue")
 
 public protocol AnyLoopAnchor: class {
     var inputSegment: AnyLoopSegment? { get }
@@ -29,16 +28,19 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
     public var input: Input? {
         get {
             var safeInput: Input? = nil
-            inputQueue.sync() {
+            inputQueue.sync {
                 safeInput = self._input
             }
             return safeInput
         }
         set {
-            inputQueue.async(flags: .barrier) {
+            inputQueue.sync {
                 self._input = newValue
             }
             self.onChange(newValue)
+            #if !DEBUG
+                self._input = nil
+            #endif
         }
     }
     private var _input: Input?
@@ -47,17 +49,20 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
     public var error: Error? {
         get {
             var safeError: Error? = nil
-            inputQueue.sync() {
+            inputQueue.sync {
                 safeError = self._error
             }
             return safeError
         }
         set {
             let err: Error = newValue ?? QLoopError.ErrorThrownButNotSet
-            inputQueue.async(flags: .barrier) {
+            inputQueue.sync {
                 self._error = err
             }
             self.onError(err)
+            #if !DEBUG
+                self._error = nil
+            #endif
         }
     }
     private var _error: Error?

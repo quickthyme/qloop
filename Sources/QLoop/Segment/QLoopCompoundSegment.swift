@@ -1,8 +1,7 @@
 
 import Dispatch
 
-fileprivate let completionQueue = DispatchQueue(label: "QLoopCompoundSegment.CompletionQueue",
-                                                attributes: .concurrent)
+fileprivate let completionQueue = DispatchQueue(label: "QLoopCompoundSegment.CompletionQueue")
 
 public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Output> {
     public typealias Operation = QLoopSegment<Input, Output>.Operation
@@ -117,13 +116,13 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
     fileprivate var totalCompleted: Int {
         get {
             var totalCompleted: Int = 0
-            completionQueue.sync() {
+            completionQueue.sync {
                 totalCompleted = self._totalCompleted
             }
             return totalCompleted
         }
         set {
-            completionQueue.async(flags: .barrier) {
+            completionQueue.sync {
                 self._totalCompleted = newValue
             }
             self.didSetTotalCompleted(newValue)
