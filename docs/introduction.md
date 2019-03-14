@@ -151,7 +151,8 @@ an operation to a segment, it must be compatible (either inately or wrapped)
 with this signature:
 
 ```
-((_ input: String?), _ completion: (_ output: String?) -> ()) throws -> ()
+( _ input: String?,
+  _ completion: (_ output: Output?) -> () ) throws -> ()
 ```
 
 That is to say, it must take in an `input` of whatever type (which includes tuples),
