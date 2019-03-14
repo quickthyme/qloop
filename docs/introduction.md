@@ -113,9 +113,6 @@ Just like with a loop, a path behaves as a bundle for its segments. They
 are typically bound to a loop at some point, or combined with other paths
 and/or segments to form more complex chains.
 
-The practical benefit of using `path`, is that it improves readability of
-composed `segments`. In practice, once "baked in", they seldom need changing.
-
 
 <br />
 
@@ -171,8 +168,8 @@ get thrown. The error handler signature looks like this:
 
 ```
 ( _ error: Error,
-  _ completion: @escaping (_ output: String?) -> (),
-  _ errCompletion: @escaping (_ output: String?) -> () ) -> ()
+  _ completion: @escaping (_ output: Output?) -> (),
+  _ errCompletion: @escaping (_ error: Swift.Error?) -> () ) -> ()
 ```
 
 Whenever the operation throws an error, or if an error is passed via the input
@@ -180,6 +177,8 @@ anchor, then the error handler (if set) will try and handle the error. If it is 
 then it may choose to call the standard `outputCompletion` with resolved data.
 Otherwise, it should forward the error (or generate a new one, depending) down
 the line by calling `errCompletion` instead.
+
+The error handler should *not* throw an error.
 
 The default behavior is to just forward the error.
 
