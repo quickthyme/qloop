@@ -113,6 +113,20 @@
 		DCA1FD2A2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
 		DCA1FD2B2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
 		DCA1FD2C2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
+		DCF860C22239D02C0018C1A1 /* QLoopGlobalThreadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLoopGlobalThreadOperation.swift */; };
+		DCF860C32239D02C0018C1A1 /* QLoopGlobalThreadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLoopGlobalThreadOperation.swift */; };
+		DCF860C42239D02C0018C1A1 /* QLoopGlobalThreadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLoopGlobalThreadOperation.swift */; };
+		DCF860C52239D02C0018C1A1 /* QLoopGlobalThreadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLoopGlobalThreadOperation.swift */; };
+		DCF860C62239D02C0018C1A1 /* QLoopMainThreadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLoopMainThreadOperation.swift */; };
+		DCF860C72239D02C0018C1A1 /* QLoopMainThreadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLoopMainThreadOperation.swift */; };
+		DCF860C82239D02C0018C1A1 /* QLoopMainThreadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLoopMainThreadOperation.swift */; };
+		DCF860C92239D02C0018C1A1 /* QLoopMainThreadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLoopMainThreadOperation.swift */; };
+		DCF860D52239D0780018C1A1 /* QLoopGlobalThreadOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLoopGlobalThreadOperationTests.swift */; };
+		DCF860D62239D0780018C1A1 /* QLoopGlobalThreadOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLoopGlobalThreadOperationTests.swift */; };
+		DCF860D72239D0790018C1A1 /* QLoopGlobalThreadOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLoopGlobalThreadOperationTests.swift */; };
+		DCF860D82239D0800018C1A1 /* QLoopMainThreadOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLoopMainThreadOperationTests.swift */; };
+		DCF860D92239D0810018C1A1 /* QLoopMainThreadOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLoopMainThreadOperationTests.swift */; };
+		DCF860DA2239D0810018C1A1 /* QLoopMainThreadOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLoopMainThreadOperationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +224,10 @@
 		DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopSegment.swift; sourceTree = "<group>"; };
 		DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopLinearSegmentTests.swift; sourceTree = "<group>"; };
 		DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopCompoundSegmentTests.swift; sourceTree = "<group>"; };
+		DCF860C02239D02B0018C1A1 /* QLoopGlobalThreadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopGlobalThreadOperation.swift; sourceTree = "<group>"; };
+		DCF860C12239D02B0018C1A1 /* QLoopMainThreadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopMainThreadOperation.swift; sourceTree = "<group>"; };
+		DCF860CB2239D03E0018C1A1 /* QLoopGlobalThreadOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopGlobalThreadOperationTests.swift; sourceTree = "<group>"; };
+		DCF860CC2239D03E0018C1A1 /* QLoopMainThreadOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopMainThreadOperationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +361,7 @@
 				DC8F2B58223342E000277F70 /* QLoopPath.swift */,
 				DC374A322231F28A006F1272 /* Iterating */,
 				DCA1FD232230C8E5006015BD /* Segment */,
+				DCF860BF2239D02B0018C1A1 /* ThreadOperations */,
 			);
 			path = QLoop;
 			sourceTree = "<group>";
@@ -364,6 +383,7 @@
 				DC68AB042234609600BC3528 /* QLoopPathTests.swift */,
 				DC374A472231F864006F1272 /* Iterating */,
 				DCA1FD282230CA49006015BD /* Segment */,
+				DCF860CA2239D03E0018C1A1 /* ThreadOperations */,
 				DC6FAF40222F451D008BB070 /* helpers */,
 				DC6FAF42222F451D008BB070 /* mocks */,
 			);
@@ -408,6 +428,24 @@
 				DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */,
 			);
 			path = Segment;
+			sourceTree = "<group>";
+		};
+		DCF860BF2239D02B0018C1A1 /* ThreadOperations */ = {
+			isa = PBXGroup;
+			children = (
+				DCF860C02239D02B0018C1A1 /* QLoopGlobalThreadOperation.swift */,
+				DCF860C12239D02B0018C1A1 /* QLoopMainThreadOperation.swift */,
+			);
+			path = ThreadOperations;
+			sourceTree = "<group>";
+		};
+		DCF860CA2239D03E0018C1A1 /* ThreadOperations */ = {
+			isa = PBXGroup;
+			children = (
+				DCF860CB2239D03E0018C1A1 /* QLoopGlobalThreadOperationTests.swift */,
+				DCF860CC2239D03E0018C1A1 /* QLoopMainThreadOperationTests.swift */,
+			);
+			path = ThreadOperations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,7 +670,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA1FD1A2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
+				DCF860C62239D02C0018C1A1 /* QLoopMainThreadOperation.swift in Sources */,
 				DC374A2E2231F20C006F1272 /* QLoopIterating.swift in Sources */,
+				DCF860C22239D02C0018C1A1 /* QLoopGlobalThreadOperation.swift in Sources */,
 				DC374A292231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
 				DC8F2B59223342E000277F70 /* QLoopPath.swift in Sources */,
 				DC6FAF33222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
@@ -652,7 +692,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA1FD1B2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
+				DCF860C72239D02C0018C1A1 /* QLoopMainThreadOperation.swift in Sources */,
 				DC374A2F2231F20C006F1272 /* QLoopIterating.swift in Sources */,
+				DCF860C32239D02C0018C1A1 /* QLoopGlobalThreadOperation.swift in Sources */,
 				DC374A2A2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
 				DC8F2B5A223342E000277F70 /* QLoopPath.swift in Sources */,
 				DC6FAF34222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
@@ -672,7 +714,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA1FD1C2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
+				DCF860C82239D02C0018C1A1 /* QLoopMainThreadOperation.swift in Sources */,
 				DC374A302231F20C006F1272 /* QLoopIterating.swift in Sources */,
+				DCF860C42239D02C0018C1A1 /* QLoopGlobalThreadOperation.swift in Sources */,
 				DC374A2B2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
 				DC8F2B5B223342E000277F70 /* QLoopPath.swift in Sources */,
 				DC6FAF35222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
@@ -692,7 +736,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA1FD1D2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
+				DCF860C92239D02C0018C1A1 /* QLoopMainThreadOperation.swift in Sources */,
 				DC374A312231F20C006F1272 /* QLoopIterating.swift in Sources */,
+				DCF860C52239D02C0018C1A1 /* QLoopGlobalThreadOperation.swift in Sources */,
 				DC374A2C2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
 				DC8F2B5C223342E000277F70 /* QLoopPath.swift in Sources */,
 				DC6FAF36222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
@@ -719,10 +765,12 @@
 				DC374A4A2231F8B6006F1272 /* MockLoopIterable.swift in Sources */,
 				DCA1FD1122304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6C222F7326008BB070 /* MockOperation.swift in Sources */,
+				DCF860D52239D0780018C1A1 /* QLoopGlobalThreadOperationTests.swift in Sources */,
 				DCA1FD2C2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
 				DCA1FD252230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
 				DC8F2B502232DAF000277F70 /* QLoopSegmentTests.swift in Sources */,
 				DC374A4E2231F987006F1272 /* MockLoopIterator.swift in Sources */,
+				DCF860D82239D0800018C1A1 /* QLoopMainThreadOperationTests.swift in Sources */,
 				DCA1FD08222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC374A512231FAC8006F1272 /* QLoopIteratorSingleTests.swift in Sources */,
 				DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */,
@@ -743,10 +791,12 @@
 				DC374A4B2231F8B6006F1272 /* MockLoopIterable.swift in Sources */,
 				DCA1FD1222304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6D222F7326008BB070 /* MockOperation.swift in Sources */,
+				DCF860D62239D0780018C1A1 /* QLoopGlobalThreadOperationTests.swift in Sources */,
 				DCA1FD2B2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
 				DCA1FD262230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
 				DC8F2B512232DAF000277F70 /* QLoopSegmentTests.swift in Sources */,
 				DC374A4F2231F987006F1272 /* MockLoopIterator.swift in Sources */,
+				DCF860D92239D0810018C1A1 /* QLoopMainThreadOperationTests.swift in Sources */,
 				DCA1FD09222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC374A522231FAC9006F1272 /* QLoopIteratorSingleTests.swift in Sources */,
 				DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */,
@@ -767,10 +817,12 @@
 				DC374A4C2231F8B6006F1272 /* MockLoopIterable.swift in Sources */,
 				DCA1FD1322304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6E222F7326008BB070 /* MockOperation.swift in Sources */,
+				DCF860D72239D0790018C1A1 /* QLoopGlobalThreadOperationTests.swift in Sources */,
 				DCA1FD2A2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
 				DC374A572231FBBF006F1272 /* QLoopIteratorContinueOutputTests.swift in Sources */,
 				DC8F2B522232DAF000277F70 /* QLoopSegmentTests.swift in Sources */,
 				DCA1FD272230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
+				DCF860DA2239D0810018C1A1 /* QLoopMainThreadOperationTests.swift in Sources */,
 				DC374A502231F987006F1272 /* MockLoopIterator.swift in Sources */,
 				DCA1FD0A222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC374A532231FACA006F1272 /* QLoopIteratorSingleTests.swift in Sources */,

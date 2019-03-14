@@ -19,8 +19,8 @@ At a high level, features it provides include:
 
 #### More promising
 
-If you're familiar with "promise chains", then you will no doubt feel right
-at home, here. In many ways, QLoop works very much like promises: link together
+If you're familiar with "promise chains", then you will no doubt feel right at
+home, here. In many ways, QLoop works very much like promises: link together
 asynchronous operations, propagate output and/or errors, handle exceptions
 safely, allow for synchronous testing, and expose observable results.
 
@@ -64,18 +64,17 @@ Compose entire sequences of asynchronous operation `segments`, then wrap them
 up into *observable* loops. Decorating an entity with loops makes it easy
 to react to output streams using simple `onChange` and `onError` events.
 
-##### Delegable
+##### Observation & Delegation
 
 Because loops are circular, they provide both `output` (**observation**) as
 well as `input` (**delegation**) anchors.
 
-##### Observable
+##### Flavorless
 
 By default, a QLoop has no bound functionality on creation. You must bestow
 its behavior by binding it to paths and/or segments.
 
-
-##### Iterating
+##### Iteration
 
 Loops provide **iteration**, should it be desired. By default, a loop will
 run once per input set, but they can be made to run however you like, simply
@@ -84,7 +83,7 @@ but you can also create your own in order to extend the loop's functionality.
 
 Any iterator you wish to use with QLoop must conform to `QLoopIterating`.
 
-##### Chainable
+##### Chaining
 
 Loops can also be connected to other `loops`, `paths`, or `segments`;
 basically anything that can bind to an `anchor`.
@@ -145,6 +144,46 @@ choose to link segments upon instantiation, or anytime thereafter.
   - A `segment` only observes its own `inputAnchor`.
   - A `segment` only runs its operation if it has an `outputAnchor` assigned
 
+
+<br />
+
+##### Operations
+
+Operations are your application's workers, interactors, etc. In order to attach
+an operation to a segment, it must be compatible (either inately or wrapped)
+with this signature:
+
+```
+((_ input: String?), _ completion: (_ output: String?) -> ()) throws -> ()
+```
+
+That is to say, it must take in an `input` of whatever type (which includes tuples),
+perform its operation(s), then either call the completion handler with appropriate
+output, or throw an error.
+
+
+<br />
+
+##### ErrorHandlers
+
+Error handlers are optional things you can add whenever you suspect errors might
+get thrown. The error handler signature looks like this:
+
+```
+( _ error: Error,
+  _ completion: @escaping (_ output: String?) -> (),
+  _ errCompletion: @escaping (_ output: String?) -> () ) -> ()
+```
+
+Whenever the operation throws an error, or if an error is passed via the input
+anchor, then the error handler (if set) will try and handle the error. If it is successful,
+then it may choose to call the standard `outputCompletion` with resolved data.
+Otherwise, it should forward the error (or generate a new one, depending) down
+the line by calling `errCompletion` instead.
+
+The default behavior is to just forward the error.
+
+
 <br />
 
 ### Anchors
@@ -155,22 +194,27 @@ to an anchor essentially means to respond to its `onChange(_)` and/or
 
  - An `anchor` can only receive an `input` or an `error`
  - An `anchor` can only have **one subscriber**
- - An anchor *can* have **any number of input providers**, but it can only
- *retain* one `segment` at a time.
+ - An `anchor` *can* have **any number of input providers**
 
-Only reason this might come up, is should you go and try doing something brave
-like fusing several inputs together "mid-stream". While one *can* in-fact do
-this, in such instances, it would be better to first determine whether its
-possible to just use a compound segment instead, or possibly even additional
-loops.
+Regarding that last item, you can feed an anchor from multiple inputs, and it
+ensures *thread-safety* through the use of Dispatch queues. However, even
+though it can have any number of input providers, it can only *retain* one
+`segment` at a time.
+
+Only reason this might come up, is probably because you tried to do something
+brave such as attempting to fuse several inputs together "mid-stream". While one
+*can* do this, in such instances, it would be better to determine whether its
+possible to just use a compound segment instead, or maybe consider placing
+additional loops.
 
 Remember, the goal here is to *clarify* the *intent*, not to build *Marble Madness*.†
 
+
 <br />
 
-† - (Unless your intent *is* to build *Marble Madness*, in which case, ok.)
+† - (unless your intent *is* to build *Marble Madness*.)
 
---
+---
 
 For more, please refer to the **[Getting Started](getting-started.md)** guide
 or try out the **[demo app](https://github.com/quickthyme/qloop-demo)**!
