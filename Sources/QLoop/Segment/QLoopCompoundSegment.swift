@@ -78,7 +78,7 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         super.init()
         self.reducer = reducer
         self.errorHandler = errorHandler
-        self.operations = operations.map { OperationBox($0.key, $0.value) }
+        self.operations = operations.map { ($0.key, $0.value) }
         self.outputAnchor = outputAnchor
         self.inputAnchor = QLoopAnchor<Input>()
     }
@@ -95,11 +95,11 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         }
     }
 
-    public override var operationIds: [AnyHashable] { return operations.map { $0.id } }
+    public override var operationIds: [AnyHashable] { return operations.map { $0.0 } }
 
     private var reducer: Reducer? = nil
 
-    private var operations: [OperationBox] = []
+    private var operations: [(AnyHashable, Operation)] = []
     private var operationSetsStarted: Int = 0
     private var runningOperations: Set<OperationSet> = []
 
@@ -165,9 +165,11 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
 
     private class OperationSet: Hashable {
         init(_ id: AnyHashable,
-             _ operations: [OperationBox]) {
+             _ operations: [(AnyHashable, Operation)]) {
             self.id = id
-            self.operations = operations
+            self.operations = operations.map {
+                return OperationBox($0.0, $0.1)
+            }
         }
 
         var id: AnyHashable
