@@ -30,7 +30,7 @@ class QLoopTests: XCTestCase {
     func test_loop_whenFindingSegmentsByOperationId_succeeds() {
         let seg1 = QLoopLinearSegment(1, MockOp.AddToStr("A"))
         let seg2 = QLoopLinearSegment(2, MockOp.AddToStr("B"))
-        let seg3 = QLoopCompoundSegment(operations: [3:MockOp.AddToStr("C")])
+        let seg3 = QLoopCompoundSegment([3:MockOp.AddToStr("C")])
         let path = QLoopPath<String, String>(seg1, seg2, seg3)!
         let loop = QLoop<String, String>()
         loop.bind(path: path)

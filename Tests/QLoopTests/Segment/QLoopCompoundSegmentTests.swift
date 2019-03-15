@@ -5,9 +5,9 @@ import QLoop
 class QLoopCompoundSegmentTests: XCTestCase {
 
     func test_reveals_its_operation_ids() {
-        let subject = QLoopCompoundSegment<Void, Int>.init(
-            operations: [0xAB:MockOp.VoidToInt(),
-                         0xCD:MockOp.VoidToInt()],
+        let subject = QLoopCompoundSegment<Void, Int>(
+            [0xAB:MockOp.VoidToInt(),
+             0xCD:MockOp.VoidToInt()],
             reducer: nil)
 
         XCTAssert(subject.operationIds.contains(0xAB))
@@ -17,7 +17,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     func test_basicSegmentWithOutputAnchor_whenInputSet_itCallsCompletionWithoutResult() {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLoopCompoundSegment<Void, String>(
-            operations: ["genStr":MockOp.VoidToStr()],
+            ["genStr":MockOp.VoidToStr()],
             reducer: nil,
             outputAnchor: finalAnchor)
 
@@ -30,7 +30,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     func test_givenIntToStringAndOutputAnchor_whenInputSet_itCallsCompletionWithResult() {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLoopCompoundSegment<Int, String>(
-            operations: ["numStr":MockOp.IntToStr()],
+            ["numStr":MockOp.IntToStr()],
             reducer: nil,
             outputAnchor: finalAnchor)
 
@@ -43,10 +43,10 @@ class QLoopCompoundSegmentTests: XCTestCase {
     func test_givenTwoSegments_whenInputSet_itCallsEndCompletionWithCorrectResult() {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLoopCompoundSegment<Int, String>(
-            operations: ["numStr":MockOp.IntToStr()],
+            ["numStr":MockOp.IntToStr()],
             reducer: nil,
             output: QLoopCompoundSegment(
-                operations: ["addStr":MockOp.AddToStr(" eleven")],
+                ["addStr":MockOp.AddToStr(" eleven")],
                 reducer: nil,
                 outputAnchor: finalAnchor))
 
@@ -59,8 +59,8 @@ class QLoopCompoundSegmentTests: XCTestCase {
     func test_givenTwoSegments_oneWithCompoundOperationsAndReducer_whenInputSet_itReduces_andCallsEndCompletionWithCorrectResult() {
         let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
         let subject = QLoopCompoundSegment<Int, Int>(
-            operations: ["add5":MockOp.AddToInt(5),
-                         "add4":MockOp.AddToInt(4)],
+            ["add5":MockOp.AddToInt(5),
+             "add4":MockOp.AddToInt(4)],
             reducer: (0, { $0 + ($1.1 ?? 0) }),
             output: QLoopLinearSegment("add10", MockOp.AddToInt(10),
                                        outputAnchor: finalAnchor))
@@ -74,7 +74,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     func test_whenErrorThrown_itPropagatesErrorToOutputAnchor() {
         let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
         let subject = QLoopCompoundSegment<Int, Int>(
-            operations: ["numNum":MockOp.IntThrowsError(QLoopError.Unknown)],
+            ["numNum":MockOp.IntThrowsError(QLoopError.Unknown)],
             reducer: nil,
             outputAnchor: finalAnchor)
 
@@ -89,7 +89,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
     func test_whenInputErrorIsReceived_itPropagatesErrorToOutputAnchor() {
         let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
         let subject = QLoopCompoundSegment<Int, Int>(
-            operations: ["numNum":MockOp.AddToInt(5)],
+            ["numNum":MockOp.AddToInt(5)],
             reducer: nil,
             outputAnchor: finalAnchor)
 
@@ -110,8 +110,8 @@ class QLoopCompoundSegmentTests: XCTestCase {
             completion(0)
         }
 
-        let seg1 = QLoopCompoundSegment.init(
-            operations: [1:MockOp.IntThrowsError(QLoopError.Unknown)],
+        let seg1 = QLoopCompoundSegment(
+            [1:MockOp.IntThrowsError(QLoopError.Unknown)],
             errorHandler: handler)
         seg1.outputAnchor = outputAnchor
 
@@ -130,7 +130,7 @@ class QLoopCompoundSegmentTests: XCTestCase {
         }
 
         let seg1 = QLoopCompoundSegment(
-            operations: [1:MockOp.IntThrowsError(QLoopError.Unknown)],
+            [1:MockOp.IntThrowsError(QLoopError.Unknown)],
             reducer: nil,
             errorHandler: handler,
             outputAnchor: outputAnchor)
@@ -138,14 +138,15 @@ class QLoopCompoundSegmentTests: XCTestCase {
         seg1.inputAnchor.input = 4
         XCTAssertNotNil(err)
         XCTAssertFalse(captured.didHappen)
-        XCTAssertEqual(outputAnchor.error as! QLoopError, QLoopError.Unknown)
+        XCTAssertNotNil(outputAnchor.error)
+        XCTAssertEqual(outputAnchor.error as? QLoopError, QLoopError.Unknown)
     }
 
     func test_operation_path_when_single() {
         let outputAnchor = QLoopAnchor<String>()
         let _ = QLoopCompoundSegment<String, String>(
-            operations: ["plus":MockOp.AddToStr("plus"),
-                         "minus":MockOp.AddToStr("minus")],
+            ["plus":MockOp.AddToStr("plus"),
+             "minus":MockOp.AddToStr("minus")],
             reducer: nil,
             outputAnchor: outputAnchor)
 
@@ -161,8 +162,8 @@ class QLoopCompoundSegmentTests: XCTestCase {
         let _ = QLoopLinearSegment(
             10, MockOp.VoidToStr("One"), output:
             QLoopCompoundSegment<String, String>(
-                operations: ["plus":MockOp.AddToStr("plus"),
-                             "minus":MockOp.AddToStr("minus")],
+                ["plus":MockOp.AddToStr("plus"),
+                 "minus":MockOp.AddToStr("minus")],
                 reducer: nil,
                 output:
                 QLoopLinearSegment(
@@ -183,8 +184,8 @@ class QLoopCompoundSegmentTests: XCTestCase {
         let _ = QLoopLinearSegment(
             0x0A, MockOp.VoidToStr("One"), output:
             QLoopCompoundSegment<String, String>(
-                operations: ["plus":MockOp.AddToStr("plus"),
-                             "minus":MockOp.AddToStr("minus")],
+                ["plus":MockOp.AddToStr("plus"),
+                 "minus":MockOp.AddToStr("minus")],
                 reducer: nil,
                 output:
                 QLoopLinearSegment(

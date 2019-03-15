@@ -38,9 +38,10 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
                 self._input = newValue
             }
             self.onChange(newValue)
-            #if !DEBUG
+
+            if (QLoopCommon.Config.Anchor.releaseValues) {
                 self._input = nil
-            #endif
+            }
         }
     }
     private var _input: Input?
@@ -60,9 +61,10 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
                 self._error = err
             }
             self.onError(err)
-            #if !DEBUG
+
+            if (QLoopCommon.Config.Anchor.releaseValues) {
                 self._error = nil
-            #endif
+            }
         }
     }
     private var _error: Error?

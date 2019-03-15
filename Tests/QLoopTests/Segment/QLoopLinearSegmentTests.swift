@@ -99,7 +99,8 @@ class QLoopLinearSegmentTests: XCTestCase {
         seg1.inputAnchor.input = 4
         XCTAssertNotNil(err)
         XCTAssertFalse(captured.didHappen)
-        XCTAssertEqual(outputAnchor.error as! QLoopError, QLoopError.Unknown)
+        XCTAssertNotNil(outputAnchor.error)
+        XCTAssertEqual(outputAnchor.error as? QLoopError, QLoopError.Unknown)
     }
 
     func test_find_segments_for_operation_succeeds_when_single() {
