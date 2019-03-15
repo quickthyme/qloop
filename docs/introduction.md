@@ -212,11 +212,11 @@ Remember, the goal here is to *clarify* the *intent*, not to build *Marble Madne
 
 <br />
 
- - † : `QLoopAnchor` comes configured by default as such that it only remembers its
-   last value when the `DEBUG` compiler flag is present. This means you should not *rely*
-   on any persistence of an anchor's input or error values outside of development and
-   testing. Instead, you should always use the `onChange` and `onError` events as
-   described.
+ - † : `QLoopAnchor` releases its values in production builds by default,
+   but this can be controlled by explicitly setting:
+   
+   `QLoopCommon.Config.Anchor.releaseValues = true | false`
+   
 
  - †† : (unless your intent *is* to build *Marble Madness*.)
 

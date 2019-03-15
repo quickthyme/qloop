@@ -12,7 +12,7 @@ the [Swift Package Manager](https://swift.org/package-manager/).
 
 ### 1) Install the package
 
-Either add it as a *submodule* (for use with **Xcode**), otherwise use **SwiftPM** ...
+Either add it as a *submodule* or use **SwiftPM** ...
 
 <br />
 
