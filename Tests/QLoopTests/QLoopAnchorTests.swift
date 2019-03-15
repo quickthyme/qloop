@@ -35,4 +35,15 @@ final class QLoopAnchorTests: XCTestCase {
 
         XCTAssert((receivedError as? QLoopError) == QLoopError.Unknown)
     }
+
+    func test_when_error_set_nil_then_it_invokes_onError_with_ErrorThrownButNotSet() {
+        var receivedError: Error? = nil
+
+        let subject = QLoopAnchor<Int>(onChange: { _ in },
+                                       onError: { receivedError = $0 })
+        subject.onChange(nil)
+        subject.error = nil
+
+        XCTAssert((receivedError as? QLoopError) == QLoopError.ErrorThrownButNotSet)
+    }
 }

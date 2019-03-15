@@ -183,14 +183,15 @@ class QLoopCompoundSegmentTests: XCTestCase {
         let outputAnchor = QLoopAnchor<String>()
         let _ = QLoopLinearSegment(
             0x0A, MockOp.VoidToStr("One"), output:
+
             QLoopCompoundSegment<String, String>(
                 ["plus":MockOp.AddToStr("plus"),
                  "minus":MockOp.AddToStr("minus")],
-                reducer: nil,
-                output:
-                QLoopLinearSegment(
-                    0x0C, MockOp.AddToStr("Three"), outputAnchor:
-                    outputAnchor)))
+                reducer: nil, errorHandler: nil,
+                output: QLoopLinearSegment(
+                    0x0C, MockOp.AddToStr("Three"),
+
+                    outputAnchor: outputAnchor)))
 
         let last = outputAnchor.inputSegment
         let opPath = last?.describeOperationPath()

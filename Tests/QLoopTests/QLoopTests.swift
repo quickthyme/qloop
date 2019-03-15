@@ -10,6 +10,20 @@ class QLoopTests: XCTestCase {
         XCTAssertFalse(loop.discontinue)
     }
 
+    func test_givenLoopWithSegments_outputtingNil_objectReceivesFinalNil() {
+        let mockComponent = MockPhoneComponent()
+        mockComponent.userPhoneNumberField = "...and then"
+        mockComponent.phoneDataLoop.inputAnchor =
+            QLoopLinearSegment(
+                1, MockOp.VoidToStr(nil),
+                outputAnchor: mockComponent.phoneDataLoop.outputAnchor)
+                .inputAnchor
+
+        mockComponent.userAction()
+
+        XCTAssertEqual(mockComponent.userPhoneNumberField, "")
+    }
+
     func test_givenLoopWithSegments_objectReceivesFinalValue() {
         let mockComponent = MockPhoneComponent()
 
