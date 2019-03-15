@@ -11,7 +11,7 @@ final class QLoopAnchorTests: XCTestCase {
         subject.onChange(nil)
         subject.onError(QLoopError.Unknown)
         subject.onChange = { received = $0! }
-        subject.input = 99
+        subject.value = 99
 
         XCTAssertEqual(received, 99)
     }
@@ -20,7 +20,7 @@ final class QLoopAnchorTests: XCTestCase {
         var received: Int = -1
 
         let subject = QLoopAnchor<Int>(onChange: { received = $0! })
-        subject.input = 99
+        subject.value = 99
 
         XCTAssertEqual(received, 99)
     }

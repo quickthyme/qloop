@@ -66,8 +66,8 @@ to react to output streams using simple `onChange` and `onError` events.
 
 ##### Observation & Delegation
 
-Because loops are circular, they provide both `output` (**observation**) as
-well as `input` (**delegation**) anchors.
+Loops are circular, and therefore provide both `Input` (**delegation**) as well as
+`Output` (**observation**) capabilities.
 
 ##### Flavorless
 
@@ -151,13 +151,13 @@ an operation to a segment, it must be compatible (either inately or wrapped)
 with this signature:
 
 ```
-( _ input: String?,
+( _ input: Input?,
   _ completion: (_ output: Output?) -> () ) throws -> ()
 ```
 
-That is to say, it must take in an `input` of whatever type (which includes tuples),
-perform its operation(s), then either call the completion handler with appropriate
-output, or throw an error.
+That is to say, it must take in an `Input` of whatever type, perform whatever
+operation(s), then either call the completion handler with appropriate
+`Output`, or throw an error.
 
 
 <br />
@@ -174,14 +174,26 @@ get thrown. The error handler signature looks like this:
 ```
 
 Whenever the operation throws an error, or if an error is passed via the input
-anchor, then the error handler (if set) will try and handle the error. If it is successful,
-then it may choose to call the standard `outputCompletion` with resolved data.
-Otherwise, it should forward the error (or generate a new one, depending) down
-the line by calling `errCompletion` instead.
+anchor, then the error handler (if set) will try and handle the error. If it is
+successful, then it may choose to call the `outputCompletion`. Otherwise, it
+should forward the error (or generate a new one, depending) down the line by
+calling `errCompletion` instead.
 
 The error handler should *not* throw an error.
 
 The default behavior is to just forward the error.
+
+<br />
+
+##### Common Operations
+
+`QLoopCommon.Operation` provides some out-of-the-box operations for routing
+your custom operations into dispatch queues. This is very useful for situations 
+where you need to stream input into something that expects it on a specific
+thread, such as when dealing with views for instance.
+
+ - `DispatchGlobal(qosClass)`
+ - `DispatchMain()`
 
 
 <br />
@@ -190,35 +202,26 @@ The default behavior is to just forward the error.
 
 An `anchor` is what facilitates the **contract** binding segments. To bind
 to an anchor essentially means to respond to its `onChange(_)` and/or
-`onError(_)` events.†
+`onError(_)` events.
 
- - An `anchor` can only receive an `input` or an `error`
+ - An `anchor` can only receive a `value` or an `error`
  - An `anchor` can only have **one subscriber**
  - An `anchor` *can* have **any number of input providers**
 
-Regarding that last item, you can feed an anchor from multiple inputs, and it
-ensures *thread-safety* through the use of Dispatch queues. However, even
-though it can have any number of input providers, it can only *retain* one
-`segment` at a time.
+Regarding that last item, you can feed an anchor from multiple inputs, but it can
+*retain* only one `segment` at a time.
 
-Only reason this might come up, is probably because you tried to do something
-brave such as attempting to fuse several inputs together "mid-stream". While one
-*can* do this, in such instances, it would be better to determine whether its
-possible to just use a compound segment instead, or maybe consider placing
-additional loops.
+`QLoopAnchor` behaves as a **semaphore** by making use of synchronous dispatch
+queues around its `value` and `error` nodes. Inputs can safely arrive on any thread,
+and the events are guaranteed to arrive in serial fashion, although their order is not.
 
-Remember, the goal here is to *clarify* the *intent*, not to build *Marble Madness*.††
+By default, `QLoopAnchor` always remembers the last `value` or `error` it received, but
+it  **releases them in production builds**. This behavior can be disabled by
+setting the anchor global config `releaseValues` to `false`:
 
+`QLoopCommon.Config.Anchor.releaseValues = false`
 
 <br />
-
- - † : `QLoopAnchor` releases its values in production builds by default,
-   but this can be controlled by explicitly setting:
-   
-   `QLoopCommon.Config.Anchor.releaseValues = true | false`
-   
-
- - †† : (unless your intent *is* to build *Marble Madness*.)
 
 ---
 

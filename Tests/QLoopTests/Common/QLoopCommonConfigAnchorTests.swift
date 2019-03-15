@@ -14,10 +14,10 @@ class QLoopCommonConfigAnchorTests: XCTestCase {
         let subject = QLoopAnchor<Int>(onChange: { received = $0! })
 
         QLoopCommon.Config.Anchor.releaseValues = true
-        subject.input = 99
+        subject.value = 99
 
         XCTAssertEqual(received, 99)
-        XCTAssertNil(subject.input)
+        XCTAssertNil(subject.value)
     }
 
     func test_when_releaseValues_is_disabled() {
@@ -25,9 +25,9 @@ class QLoopCommonConfigAnchorTests: XCTestCase {
         let subject = QLoopAnchor<Int>(onChange: { received = $0! })
 
         QLoopCommon.Config.Anchor.releaseValues = false
-        subject.input = 99
+        subject.value = 99
 
         XCTAssertEqual(received, 99)
-        XCTAssertEqual(subject.input, 99)
+        XCTAssertEqual(subject.value, 99)
     }
 }

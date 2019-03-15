@@ -83,7 +83,7 @@ class QLoopTests: XCTestCase {
         mockComponent.userAction()
 
         XCTAssert((finalAnchor.error as? QLoopError) == QLoopError.Unknown)
-        XCTAssertNil(finalAnchor.input)
+        XCTAssertNil(finalAnchor.value)
         XCTAssertTrue(mockComponent.progressDataLoop.discontinue)
     }
 
@@ -101,7 +101,7 @@ class QLoopTests: XCTestCase {
         mockComponent.userAction()
 
         XCTAssert((finalAnchor.error as? QLoopError) == QLoopError.Unknown)
-        XCTAssertNil(finalAnchor.input)
+        XCTAssertNil(finalAnchor.value)
         XCTAssertFalse(mockComponent.progressDataLoop.discontinue)
     }
 

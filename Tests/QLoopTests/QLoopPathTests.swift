@@ -47,8 +47,8 @@ class QLoopPathTests: XCTestCase {
         XCTAssert(seg1.outputAnchor === seg2.inputAnchor)
         XCTAssert(seg2.outputAnchor === seg3.inputAnchor)
         XCTAssert(seg3.outputAnchor === seg4.inputAnchor)
-        seg1.inputAnchor.input = nil
-        XCTAssertEqual(seg4.inputAnchor.input, "++--**")
+        seg1.inputAnchor.value = nil
+        XCTAssertEqual(seg4.inputAnchor.value, "++--**")
     }
 
     func test_givenIncompatibleCompatibleSegment_whenConstructingPath_returnsNil() {

@@ -134,11 +134,11 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         guard (totalCompleted >= self.operations.count) else { return }
 
         guard let r = self.reducer else {
-            self.outputAnchor?.input = self.operations.first?.value
+            self.outputAnchor?.value = self.operations.first?.value
             return
         }
 
-        self.outputAnchor?.input =
+        self.outputAnchor?.value =
             self.operations
                 .map { ($0.id, $0.value) }
                 .reduce(r.0, r.1)

@@ -75,7 +75,7 @@ public final class QLoopLinearSegment<Input, Output>: QLoopSegment<Input, Output
         guard let outAnchor = self.outputAnchor else { return }
 
         self.inputAnchor.onChange = ({ input in
-            let completion: Completion = { outAnchor.input = $0 }
+            let completion: Completion = { outAnchor.value = $0 }
             do { try self.operation(input, completion) }
             catch { type(of: self).handleError(error, self) }
         })

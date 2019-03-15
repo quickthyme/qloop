@@ -25,22 +25,22 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
         self.onError = onError
     }
 
-    public var input: Input? {
+    public var value: Input? {
         get {
             var safeInput: Input? = nil
-            inputQueue.sync { safeInput = self._input }
+            inputQueue.sync { safeInput = self._value }
             return safeInput
         }
         set {
-            inputQueue.sync { self._input = newValue }
+            inputQueue.sync { self._value = newValue }
             self.onChange(newValue)
 
             if (QLoopCommon.Config.Anchor.releaseValues) {
-                inputQueue.sync { self._input = nil }
+                inputQueue.sync { self._value = nil }
             }
         }
     }
-    private var _input: Input?
+    private var _value: Input?
 
 
     public var error: Error? {

@@ -14,7 +14,7 @@ class QLoopLinearSegmentTests: XCTestCase {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLoopLinearSegment<Void, String>(0, MockOp.VoidToStr(), outputAnchor: finalAnchor)
 
-        subject.inputAnchor.input = nil
+        subject.inputAnchor.value = nil
 
         XCTAssertTrue(captured.didHappen)
         XCTAssertNil(captured.value)
@@ -24,7 +24,7 @@ class QLoopLinearSegmentTests: XCTestCase {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLoopLinearSegment<Int, String>(0, MockOp.IntToStr(), outputAnchor: finalAnchor)
 
-        subject.inputAnchor.input = 3
+        subject.inputAnchor.value = 3
 
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value, "3")
@@ -35,7 +35,7 @@ class QLoopLinearSegmentTests: XCTestCase {
         let subject = QLoopLinearSegment(0, MockOp.IntToStr(),
                                          output: QLoopLinearSegment(0, MockOp.AddToStr(" eleven"),
                                                                     outputAnchor: finalAnchor))
-        subject.inputAnchor.input = 7
+        subject.inputAnchor.value = 7
 
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value, "7 eleven")
@@ -45,10 +45,10 @@ class QLoopLinearSegmentTests: XCTestCase {
         let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
         let subject = QLoopLinearSegment<Int, Int>(0, MockOp.IntThrowsError(QLoopError.Unknown), outputAnchor: finalAnchor)
 
-        subject.inputAnchor.input = 404
+        subject.inputAnchor.value = 404
 
         XCTAssert((finalAnchor.error as? QLoopError) == QLoopError.Unknown)
-        XCTAssertNil(finalAnchor.input)
+        XCTAssertNil(finalAnchor.value)
         XCTAssertFalse(captured.didHappen)
         XCTAssertNotEqual(captured.value, 404)
     }
@@ -60,7 +60,7 @@ class QLoopLinearSegmentTests: XCTestCase {
         subject.inputAnchor.error = QLoopError.Unknown
 
         XCTAssert((finalAnchor.error as? QLoopError) == QLoopError.Unknown)
-        XCTAssertNil(finalAnchor.input)
+        XCTAssertNil(finalAnchor.value)
         XCTAssertFalse(captured.didHappen)
         XCTAssertNotEqual(captured.value, 404)
     }
@@ -78,7 +78,7 @@ class QLoopLinearSegmentTests: XCTestCase {
                                       errorHandler: handler)
         seg1.outputAnchor = outputAnchor
 
-        seg1.inputAnchor.input = 4
+        seg1.inputAnchor.value = 4
         XCTAssertNotNil(err)
         XCTAssertTrue(captured.didHappen)
     }
@@ -96,7 +96,7 @@ class QLoopLinearSegmentTests: XCTestCase {
                                       errorHandler: handler,
                                       outputAnchor: outputAnchor)
 
-        seg1.inputAnchor.input = 4
+        seg1.inputAnchor.value = 4
         XCTAssertNotNil(err)
         XCTAssertFalse(captured.didHappen)
         XCTAssertNotNil(outputAnchor.error)
