@@ -23,67 +23,67 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         }
     }
 
-    public convenience init(operations: [AnyHashable:Operation]) {
-        self.init(operations: operations,
+    public convenience init(_ operations: [AnyHashable:Operation]) {
+        self.init(operations,
                   reducer: nil,
                   errorHandler: nil,
                   outputAnchor: QLoopAnchor<Output>())
     }
 
-    public convenience init(operations: [AnyHashable:Operation],
+    public convenience init(_ operations: [AnyHashable:Operation],
                             errorHandler: ErrorHandler?) {
-        self.init(operations: operations,
+        self.init(operations,
                   reducer: nil,
                   errorHandler: errorHandler,
                   outputAnchor: QLoopAnchor<Output>())
     }
 
-    public convenience init(operations: [AnyHashable:Operation],
+    public convenience init(_ operations: [AnyHashable:Operation],
                             reducer: Reducer?) {
-        self.init(operations: operations,
+        self.init(operations,
                   reducer: reducer,
                   errorHandler: nil,
                   outputAnchor: QLoopAnchor<Output>())
     }
 
-    public convenience init(operations: [AnyHashable:Operation],
+    public convenience init(_ operations: [AnyHashable:Operation],
                             reducer: Reducer?,
                             errorHandler: ErrorHandler?) {
-        self.init(operations: operations,
+        self.init(operations,
                   reducer: reducer,
                   errorHandler: errorHandler,
                   outputAnchor: QLoopAnchor<Output>())
     }
 
-    public convenience init<Unknown>(operations: [AnyHashable:Operation],
+    public convenience init<Unknown>(_ operations: [AnyHashable:Operation],
                                      reducer: Reducer?,
                                      output: QLoopSegment<Output, Unknown>) {
-        self.init(operations: operations,
+        self.init(operations,
                   reducer: reducer,
                   errorHandler: nil,
                   outputAnchor: output.inputAnchor)
     }
 
-    public convenience init<Unknown>(operations: [AnyHashable:Operation],
+    public convenience init<Unknown>(_ operations: [AnyHashable:Operation],
                                      reducer: Reducer?,
                                      errorHandler: ErrorHandler?,
                                      output: QLoopSegment<Output, Unknown>) {
-        self.init(operations: operations,
+        self.init(operations,
                   reducer: reducer,
                   errorHandler: errorHandler,
                   outputAnchor: output.inputAnchor)
     }
 
-    public convenience init(operations: [AnyHashable:Operation],
+    public convenience init(_ operations: [AnyHashable:Operation],
                             reducer: Reducer?,
                             outputAnchor: QLoopAnchor<Output>) {
-        self.init(operations: operations,
+        self.init(operations,
                   reducer: reducer,
                   errorHandler: nil,
                   outputAnchor: outputAnchor)
     }
 
-    public required init(operations: [AnyHashable:Operation],
+    public required init(_ operations: [AnyHashable:Operation],
                          reducer: Reducer?,
                          errorHandler: ErrorHandler?,
                          outputAnchor: QLoopAnchor<Output>) {
@@ -134,11 +134,11 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
         guard (totalCompleted >= self.operations.count) else { return }
 
         guard let r = self.reducer else {
-            self.outputAnchor?.input = self.operations.first?.value
+            self.outputAnchor?.value = self.operations.first?.value
             return
         }
 
-        self.outputAnchor?.input =
+        self.outputAnchor?.value =
             self.operations
                 .map { ($0.id, $0.value) }
                 .reduce(r.0, r.1)

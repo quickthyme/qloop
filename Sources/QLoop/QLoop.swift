@@ -33,15 +33,15 @@ public final class QLoop<Input, Output>: QLoopIterable {
     }
 
     public func perform() {
-        inputAnchor.input = nil
+        inputAnchor.value = nil
     }
 
     public func perform(_ input: Input?) {
-        inputAnchor.input = input
+        inputAnchor.value = input
     }
 
     public func performFromLastOutput() {
-        self.perform(self.outputAnchor.input as? Input)
+        self.perform(self.outputAnchor.value as? Input)
     }
 
     public var discontinue: Bool = false

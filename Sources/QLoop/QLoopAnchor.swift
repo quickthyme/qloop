@@ -25,44 +25,38 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
         self.onError = onError
     }
 
-    public var input: Input? {
+    public var value: Input? {
         get {
             var safeInput: Input? = nil
-            inputQueue.sync {
-                safeInput = self._input
-            }
+            inputQueue.sync { safeInput = self._value }
             return safeInput
         }
         set {
-            inputQueue.sync {
-                self._input = newValue
-            }
+            inputQueue.sync { self._value = newValue }
             self.onChange(newValue)
-            #if !DEBUG
-                self._input = nil
-            #endif
+
+            if (QLoopCommon.Config.Anchor.releaseValues) {
+                inputQueue.sync { self._value = nil }
+            }
         }
     }
-    private var _input: Input?
+    private var _value: Input?
 
 
     public var error: Error? {
         get {
             var safeError: Error? = nil
-            inputQueue.sync {
-                safeError = self._error
-            }
+            inputQueue.sync { safeError = self._error }
             return safeError
         }
         set {
             let err: Error = newValue ?? QLoopError.ErrorThrownButNotSet
-            inputQueue.sync {
-                self._error = err
-            }
+            inputQueue.sync { self._error = err }
             self.onError(err)
-            #if !DEBUG
-                self._error = nil
-            #endif
+
+            if (QLoopCommon.Config.Anchor.releaseValues) {
+                inputQueue.sync { self._error = nil }
+            }
         }
     }
     private var _error: Error?

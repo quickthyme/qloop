@@ -2,16 +2,16 @@
 import XCTest
 import QLoop
 
-class QLoopGlobalThreadOperationTests: XCTestCase {
+class QLoopCommonOperationDispatchGlobalTests: XCTestCase {
     typealias Completion = (Int?) -> ()
     typealias ErrCompletion = (Error) -> ()
     typealias Operation = (Int?, @escaping Completion) -> ()
     typealias Handler = (Error, @escaping Completion, @escaping ErrCompletion) -> ()
 
-    var subject: QLoopGlobalThreadOperation<Int>!
+    var subject: QLoopCommon.Operation.DispatchGlobal<Int>!
 
     override func setUp() {
-        subject = QLoopGlobalThreadOperation(.background)
+        subject = QLoopCommon.Operation.DispatchGlobal(.background)
     }
 
     func test_has_id() {
@@ -47,13 +47,5 @@ class QLoopGlobalThreadOperationTests: XCTestCase {
         wait(for: [expectBackgroundThread], timeout: 3.0)
         XCTAssertNotNil(thread)
         XCTAssertFalse(thread?.isMainThread ?? false)
-    }
-
-    func test_segment_factory_function_connects_output_and_error_correctly() throws {
-        let segment = QLoopGlobalThreadOperation<Int>.constructSegment(.background)
-
-        XCTAssertNotNil(segment.operation)
-        XCTAssertEqual(segment.operationIds, ["global_qos_thread_background"])
-        XCTAssertTrue(segment.hasErrorHandler)
     }
 }

@@ -22,7 +22,7 @@ class QLoopSegmentTests: XCTestCase {
         let seg = QLoopLinearSegment("numStr", MockOp.IntToStr(),
                                      outputAnchor: finalAnchor)
 
-        seg.inputAnchor.input = nil
+        seg.inputAnchor.value = nil
 
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value, "-1")

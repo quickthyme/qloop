@@ -33,7 +33,7 @@ open class QLoopSegment<Input, Output>: AnyLoopSegment {
         guard let outAnchor = segment.outputAnchor else { return }
         guard let handler = segment.errorHandler
             else { outAnchor.error = error; return }
-        let completion: Completion = { outAnchor.input = $0 }
+        let completion: Completion = { outAnchor.value = $0 }
         let errorCompletion: ErrorCompletion = { outAnchor.error = $0 }
         handler(error, completion, errorCompletion)
     }

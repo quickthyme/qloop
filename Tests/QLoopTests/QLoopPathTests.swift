@@ -47,8 +47,8 @@ class QLoopPathTests: XCTestCase {
         XCTAssert(seg1.outputAnchor === seg2.inputAnchor)
         XCTAssert(seg2.outputAnchor === seg3.inputAnchor)
         XCTAssert(seg3.outputAnchor === seg4.inputAnchor)
-        seg1.inputAnchor.input = nil
-        XCTAssertEqual(seg4.inputAnchor.input, "++--**")
+        seg1.inputAnchor.value = nil
+        XCTAssertEqual(seg4.inputAnchor.value, "++--**")
     }
 
     func test_givenIncompatibleCompatibleSegment_whenConstructingPath_returnsNil() {
@@ -61,7 +61,7 @@ class QLoopPathTests: XCTestCase {
     func test_path_whenFindingSegmentsByOperationId_succeeds() {
         let seg1 = QLoopLinearSegment(1, MockOp.AddToStr("A"))
         let seg2 = QLoopLinearSegment(2, MockOp.AddToStr("B"))
-        let seg3 = QLoopCompoundSegment(operations: [3:MockOp.AddToStr("C")])
+        let seg3 = QLoopCompoundSegment([3:MockOp.AddToStr("C")])
         let seg4 = QLoopLinearSegment(4, MockOp.AddToStr("D"))
         let path = QLoopPath<String, String>(seg1, seg2, seg3, seg4)!
 
