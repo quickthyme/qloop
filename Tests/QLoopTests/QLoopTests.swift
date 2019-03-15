@@ -139,4 +139,15 @@ class QLoopTests: XCTestCase {
 
         XCTAssertEqual(opPath, "{animal}-{vegetable*}-{mineral}")
     }
+
+    func test_when_destroy_is_called_then_it_should_have_no_path() {
+        let loop = QLoop<String, String>()
+        loop.bind(path: QLoopPath<String, String>(
+            QLoopLinearSegment("who", MockOp.AddToStr("me")),
+            QLoopLinearSegment("why", MockOp.AddToStr("yes")),
+            QLoopLinearSegment("wrd", MockOp.AddToStr("huh")))!)
+        XCTAssertEqual(loop.describeOperationPath(), "{who}-{why}-{wrd}")
+        loop.destroy()
+        XCTAssertEqual(loop.describeOperationPath(), "")
+    }
 }

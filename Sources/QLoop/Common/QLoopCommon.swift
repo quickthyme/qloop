@@ -17,4 +17,14 @@ public struct QLoopCommon {
 
     public struct Operation {
     }
+
+    public struct Path {
+        func Disconnected<Input, Output>() -> QLoopPath<Input, Output> {
+            return
+                QLoopPath<Input, Output>(
+                    QLoopLinearSegment<Input, Output>(
+                        "DisconnectedLoopSegment",
+                        ({ (_, _) in }) ))!
+        }
+    }
 }

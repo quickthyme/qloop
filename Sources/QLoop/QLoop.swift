@@ -57,6 +57,11 @@ public final class QLoop<Input, Output>: QLoopIterable {
         self.outputAnchor = path.outputAnchor
     }
 
+    public func destroy() {
+        self.inputAnchor = QLoopAnchor<Input>()
+        self.outputAnchor = QLoopAnchor<Output>()
+    }
+
     public func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment] {
         return outputAnchor.inputSegment?.findSegments(with: operationId) ?? []
     }
