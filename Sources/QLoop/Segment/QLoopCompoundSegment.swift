@@ -1,6 +1,7 @@
 
 import Dispatch
 
+fileprivate let startingQueue = DispatchQueue(label: "QLoopCompoundSegment.StartingQueue")
 fileprivate let completionQueue = DispatchQueue(label: "QLoopCompoundSegment.CompletionQueue")
 
 public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Output> {
@@ -9,19 +10,6 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
     public typealias Completion = QLoopSegment<Input, Output>.Completion
     public typealias ErrorCompletion = QLoopSegment<Input, Output>.ErrorCompletion
     public typealias Reducer = (Output, nextPartialResult: (Output, (AnyHashable, Output?)) -> Output)
-
-    class OperationBox<Output> {
-        var id: AnyHashable
-        var operation: Operation
-        var completed: Bool
-        var value: Output?
-        init(_ id: AnyHashable, _ operation: @escaping Operation) {
-            self.id = id
-            self.operation = operation
-            self.completed = false
-            self.value = nil
-        }
-    }
 
     public convenience init(_ operations: [AnyHashable:Operation]) {
         self.init(operations,
@@ -111,43 +99,83 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
 
     private var reducer: Reducer? = nil
 
-    private var operations: [OperationBox<Output>] = []
+    private var operations: [OperationBox] = []
+    private var operationSetsStarted: Int = 0
+    private var runningOperations: Set<OperationSet> = []
 
-    fileprivate var totalCompleted: Int {
-        get {
-            var totalCompleted: Int = 0
-            completionQueue.sync {
-                totalCompleted = self._totalCompleted
-            }
-            return totalCompleted
+    fileprivate func reduceOperationResults(_ opResults:[(AnyHashable, Output?)]) {
+        if let r = self.reducer {
+            self.outputAnchor?.value = opResults.reduce(r.0, r.1)
+        } else {
+            self.outputAnchor?.value = opResults.first?.1
         }
-        set {
-            completionQueue.sync {
-                self._totalCompleted = newValue
-            }
-            self.didSetTotalCompleted(newValue)
-        }
-    }
-    fileprivate var _totalCompleted: Int = 0
-
-    fileprivate func didSetTotalCompleted(_ totalCompleted: Int) {
-        guard (totalCompleted >= self.operations.count) else { return }
-
-        guard let r = self.reducer else {
-            self.outputAnchor?.value = self.operations.first?.value
-            return
-        }
-
-        self.outputAnchor?.value =
-            self.operations
-                .map { ($0.id, $0.value) }
-                .reduce(r.0, r.1)
     }
 
     private final func applyInputObservers() {
         guard let _ = self.outputAnchor else { return }
 
         self.inputAnchor.onChange = ({ input in
+
+            var setId: Int = 0
+            startingQueue.sync {
+                setId = self.operationSetsStarted + 1
+                self.operationSetsStarted = setId
+            }
+
+            let newOperationSet = OperationSet(setId, self.operations)
+
+            newOperationSet.completion = ({ results in
+                self.reduceOperationResults(results)
+                self.destoryOperationSet(newOperationSet)
+            })
+
+            newOperationSet.errorCompletion = ({ error in
+                type(of: self).handleError(error, self)
+            })
+
+            self.startOperationSet(newOperationSet, input)
+        })
+
+        self.inputAnchor.onError = ({ error in
+            type(of: self).handleError(error, self)
+        })
+    }
+
+    private func startOperationSet(_ operationSet: OperationSet, _ input: Input?) {
+        startingQueue.sync { let _ = self.runningOperations.insert(operationSet) }
+        operationSet.run(input)
+    }
+
+    private func destoryOperationSet(_ operationSet: OperationSet) {
+        startingQueue.sync { let _ = runningOperations.remove(operationSet) }
+    }
+
+    private class OperationBox {
+        var id: AnyHashable
+        var operation: Operation
+        var completed: Bool
+        var value: Output?
+        init(_ id: AnyHashable, _ operation: @escaping Operation) {
+            self.id = id
+            self.operation = operation
+            self.completed = false
+            self.value = nil
+        }
+    }
+
+    private class OperationSet: Hashable {
+        init(_ id: AnyHashable,
+             _ operations: [OperationBox]) {
+            self.id = id
+            self.operations = operations
+        }
+
+        var id: AnyHashable
+        var operations: [OperationBox] = []
+        var completion: ( ([(AnyHashable, Output?)])->() )!
+        var errorCompletion: ( (Error)->() )!
+
+        func run(_ input: Input?) {
             for opBox in self.operations {
 
                 do {
@@ -159,13 +187,40 @@ public final class QLoopCompoundSegment<Input, Output>: QLoopSegment<Input, Outp
                 }
 
                 catch {
-                    type(of: self).handleError(error, self)
+                    self.errorCompletion(error)
                 }
             }
-        })
+        }
 
-        self.inputAnchor.onError = ({ error in
-            type(of: self).handleError(error, self)
-        })
+        var totalCompleted: Int {
+            get {
+                var totalCompleted: Int = 0
+                completionQueue.sync {
+                    totalCompleted = self._totalCompleted
+                }
+                return totalCompleted
+            }
+            set {
+                completionQueue.sync {
+                    self._totalCompleted = newValue
+                }
+                self.didSetTotalCompleted(newValue)
+            }
+        }
+        private var _totalCompleted: Int = 0
+
+        fileprivate func didSetTotalCompleted(_ totalCompleted: Int) {
+            guard (totalCompleted >= self.operations.count) else { return }
+            self.completion(operations.map { ($0.id, $0.value) })
+        }
+
+        static func == (lhs: QLoopCompoundSegment<Input, Output>.OperationSet,
+                        rhs: QLoopCompoundSegment<Input, Output>.OperationSet) -> Bool {
+            return lhs.id == rhs.id
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
     }
 }

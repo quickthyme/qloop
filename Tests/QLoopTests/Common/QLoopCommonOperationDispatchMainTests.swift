@@ -28,7 +28,7 @@ class QLoopCommonOperationDispatchMainTests: XCTestCase {
 
         subject.op(1, completion)
 
-        wait(for: [expectDispatchMain], timeout: 3.0)
+        wait(for: [expectDispatchMain], timeout: 6.0)
         XCTAssertNotNil(thread)
         XCTAssertTrue(thread?.isMainThread ?? false)
     }
@@ -44,7 +44,7 @@ class QLoopCommonOperationDispatchMainTests: XCTestCase {
 
         subject.err(QLoopError.Unknown, completion, errCompletion)
 
-        wait(for: [expectDispatchMain], timeout: 3.0)
+        wait(for: [expectDispatchMain], timeout: 6.0)
         XCTAssertNotNil(thread)
         XCTAssertTrue(thread?.isMainThread ?? false)
     }

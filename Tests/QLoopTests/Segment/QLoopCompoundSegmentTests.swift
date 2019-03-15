@@ -40,6 +40,23 @@ class QLoopCompoundSegmentTests: XCTestCase {
         XCTAssertEqual(captured.value, "3")
     }
 
+    func test_givenIntToStringAndOutputAnchor_whenInputSet_repeatedly_itShouldStillOutputResults() {
+        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
+        let subject = QLoopCompoundSegment<Int, String>(
+            ["numStr":MockOp.IntToStr()],
+            reducer: nil, errorHandler: nil)
+        subject.outputAnchor = finalAnchor
+
+        for _ in 0..<22 {
+            captured.didHappen = false
+            captured.value = nil
+            subject.inputAnchor.value = 3
+        }
+
+        XCTAssertTrue(captured.didHappen)
+        XCTAssertEqual(captured.value, "3")
+    }
+
     func test_givenTwoSegments_whenInputSet_itCallsEndCompletionWithCorrectResult() {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLoopCompoundSegment<Int, String>(
