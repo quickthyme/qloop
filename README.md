@@ -20,6 +20,10 @@
 An *[introduction](docs/introduction.md)* to the library and what it does.
 
 
+## [API Reference](docs/reference.md)
+
+More details about integrating with QLoop can be found in the [reference](docs/reference.md) section.
+
 
 ## [Getting Started](docs/getting-started.md)
 
@@ -35,6 +39,11 @@ threads, and unit-testing.
 
 <br />
 
+## [Change Log](docs/changelog.md)
+
+ 
+ <br />
+ 
 ---
 
 Enjoying QLoop? You might check out its soul-mate:
