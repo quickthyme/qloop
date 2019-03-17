@@ -1,35 +1,29 @@
 
 import Dispatch
 
-public extension QLoopCommon.Operation {
+public extension QLCommon.Op {
 
-    public struct DispatchGlobal<Input> {
+    public struct DispatchMain<Input> {
         public typealias Completion = (Input?) -> ()
         public typealias ErrCompletion = (Error) -> ()
         public typealias Operation = (Input?, @escaping Completion) -> ()
         public typealias Handler = (Error, @escaping Completion, @escaping ErrCompletion) -> ()
 
-        public init(_ qosClass: DispatchQoS.QoSClass) {
-            self.id = "global_qos_thread_\(qosClass)"
-            self.qosClass = qosClass
-        }
+        public init() {}
 
-        public let id: String
-        public let qosClass: DispatchQoS.QoSClass
+        public let id: String = "main_thread"
 
         public var op: Operation {
-            let qos = qosClass
             return ({ input, completion in
-                DispatchQueue.global(qos: qos).async {
+                DispatchQueue.main.async {
                     completion(input)
                 }
             })
         }
 
         public var err: Handler {
-            let qos = qosClass
             return ({ error, _, errCompletion in
-                DispatchQueue.global(qos: qos).async {
+                DispatchQueue.main.async {
                     errCompletion(error)
                 }
             })

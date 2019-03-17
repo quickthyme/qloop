@@ -13,11 +13,11 @@ class QLoopTests: XCTestCase {
     func test_givenLoopWithSegments_outputtingNil_objectReceivesFinalNil() {
         let mockComponent = MockPhoneComponent()
         mockComponent.userPhoneNumberField = "...and then"
-        mockComponent.phoneDataLoop.inputAnchor =
-            QLoopLinearSegment(
+        mockComponent.phoneDataLoop.input =
+            QLSerialSegment(
                 1, MockOp.VoidToStr(nil),
-                outputAnchor: mockComponent.phoneDataLoop.outputAnchor)
-                .inputAnchor
+                output: mockComponent.phoneDataLoop.output)
+                .input
 
         mockComponent.userAction()
 
@@ -27,14 +27,14 @@ class QLoopTests: XCTestCase {
     func test_givenLoopWithSegments_objectReceivesFinalValue() {
         let mockComponent = MockPhoneComponent()
 
-        mockComponent.phoneDataLoop.inputAnchor =
-            QLoopLinearSegment(
-                1, MockOp.VoidToStr("(210) "), output:
-                QLoopLinearSegment(
-                    2, MockOp.AddToStr("555-"), output:
-                    QLoopLinearSegment(
-                        3, MockOp.AddToStr("1212"), outputAnchor:
-                        mockComponent.phoneDataLoop.outputAnchor))).inputAnchor
+        mockComponent.phoneDataLoop.input =
+            QLSerialSegment(
+                1, MockOp.VoidToStr("(210) "), outputSegment:
+                QLSerialSegment(
+                    2, MockOp.AddToStr("555-"), outputSegment:
+                    QLSerialSegment(
+                        3, MockOp.AddToStr("1212"), output:
+                        mockComponent.phoneDataLoop.output))).input
 
         mockComponent.userAction()
 
@@ -42,10 +42,11 @@ class QLoopTests: XCTestCase {
     }
 
     func test_loop_whenFindingSegmentsByOperationId_succeeds() {
-        let seg1 = QLoopLinearSegment(1, MockOp.AddToStr("A"))
-        let seg2 = QLoopLinearSegment(2, MockOp.AddToStr("B"))
-        let seg3 = QLoopCompoundSegment([3:MockOp.AddToStr("C")])
-        let path = QLoopPath<String, String>(seg1, seg2, seg3)!
+        let seg1 = QLSerialSegment(1, MockOp.AddToStr("A"))
+        let seg2 = QLSerialSegment(2, MockOp.AddToStr("B"))
+        let seg3 = QLParallelSegment<String, String>(
+            [3:MockOp.AddToStr("C")])
+        let path = QLPath<String, String>(seg1, seg2, seg3)!
         let loop = QLoop<String, String>()
         loop.bind(path: path)
 
@@ -56,12 +57,12 @@ class QLoopTests: XCTestCase {
 
     func test_givenLoopWithSegments_withIteratorCountNil_losesValueBetweenIterations() {
         let mockComponent = MockProgressComponent()
-        let finalAnchor = mockComponent.progressDataLoop.outputAnchor
+        let finalAnchor = mockComponent.progressDataLoop.output
 
-        mockComponent.progressDataLoop.inputAnchor =
-            QLoopLinearSegment(
-                1, MockOp.AddToStr("#"), outputAnchor:
-                finalAnchor).inputAnchor
+        mockComponent.progressDataLoop.input =
+            QLSerialSegment(
+                1, MockOp.AddToStr("#"), output:
+                finalAnchor).input
         mockComponent.progressDataLoop.iterator = QLoopIteratorContinueNilMax(2)
 
         mockComponent.userAction()
@@ -71,12 +72,12 @@ class QLoopTests: XCTestCase {
 
     func test_givenLoopWithSegments_withIteratorCountOutput_accumulatesValueBetweenIterations() {
         let mockComponent = MockProgressComponent()
-        let finalAnchor = mockComponent.progressDataLoop.outputAnchor
+        let finalAnchor = mockComponent.progressDataLoop.output
 
-        mockComponent.progressDataLoop.inputAnchor =
-            QLoopLinearSegment(
+        mockComponent.progressDataLoop.input =
+            QLSerialSegment(
                 1, MockOp.AddToStr("#"),
-                outputAnchor: finalAnchor).inputAnchor
+                output: finalAnchor).input
         mockComponent.progressDataLoop.iterator = QLoopIteratorContinueOutputMax(3)
 
         mockComponent.userAction()
@@ -86,45 +87,45 @@ class QLoopTests: XCTestCase {
 
     func test_givenShouldResumeFalse_whenInputErrorIsReceived_itPropagatesErrorToOutputAnchor_itDiscontinues() {
         let mockComponent = MockProgressComponent()
-        let finalAnchor = mockComponent.progressDataLoop.outputAnchor
+        let finalAnchor = mockComponent.progressDataLoop.output
         mockComponent.progressDataLoop.iterator = MockLoopIterator()
 
-        mockComponent.progressDataLoop.inputAnchor =
-            QLoopLinearSegment(
-                1, MockOp.StrThrowsError(QLoopError.Unknown),
-                outputAnchor: finalAnchor).inputAnchor
+        mockComponent.progressDataLoop.input =
+            QLSerialSegment(
+                1, MockOp.StrThrowsError(QLCommon.Error.Unknown),
+                output: finalAnchor).input
 
         mockComponent.userAction()
 
-        XCTAssert((finalAnchor.error as? QLoopError) == QLoopError.Unknown)
+        XCTAssert((finalAnchor.error as? QLCommon.Error) == QLCommon.Error.Unknown)
         XCTAssertNil(finalAnchor.value)
         XCTAssertTrue(mockComponent.progressDataLoop.discontinue)
     }
 
     func test_givenShouldResumeTrue_whenInputErrorIsReceived_itPropagatesErrorToOutputAnchor_itContinues() {
         let mockComponent = MockProgressComponent()
-        let finalAnchor = mockComponent.progressDataLoop.outputAnchor
+        let finalAnchor = mockComponent.progressDataLoop.output
         mockComponent.progressDataLoop.iterator = MockLoopIterator()
         mockComponent.progressDataLoop.shouldResume = true
 
-        mockComponent.progressDataLoop.inputAnchor =
-            QLoopLinearSegment(
-                1, MockOp.StrThrowsError(QLoopError.Unknown),
-                outputAnchor: finalAnchor).inputAnchor
+        mockComponent.progressDataLoop.input =
+            QLSerialSegment(
+                1, MockOp.StrThrowsError(QLCommon.Error.Unknown),
+                output: finalAnchor).input
 
         mockComponent.userAction()
 
-        XCTAssert((finalAnchor.error as? QLoopError) == QLoopError.Unknown)
+        XCTAssert((finalAnchor.error as? QLCommon.Error) == QLCommon.Error.Unknown)
         XCTAssertNil(finalAnchor.value)
         XCTAssertFalse(mockComponent.progressDataLoop.discontinue)
     }
 
     func test_operation_path() {
-        let seg1 = QLoopLinearSegment("animal", MockOp.AddToStr("!"))
-        let seg2 = QLoopLinearSegment("vegetable", MockOp.AddToStr("@"))
-        let seg3 = QLoopLinearSegment("mineral", MockOp.AddToStr("#"))
+        let seg1 = QLSerialSegment("animal", MockOp.AddToStr("!"))
+        let seg2 = QLSerialSegment("vegetable", MockOp.AddToStr("@"))
+        let seg3 = QLSerialSegment("mineral", MockOp.AddToStr("#"))
         let loop = QLoop<String, String>()
-        loop.bind(path: QLoopPath<String, String>(seg1, seg2, seg3)!)
+        loop.bind(path: QLPath<String, String>(seg1, seg2, seg3)!)
         let opPath = loop.operationPath()
 
         XCTAssertEqual(opPath.map {$0.0}, [["animal"],["vegetable"],["mineral"]])
@@ -132,23 +133,23 @@ class QLoopTests: XCTestCase {
     }
 
     func test_describe_operation_path() {
-        let seg1 = QLoopLinearSegment("animal", MockOp.AddToStr("!"))
-        let seg2 = QLoopLinearSegment("vegetable", MockOp.AddToStr("@"))
-        let seg3 = QLoopLinearSegment("mineral", MockOp.AddToStr("#"))
+        let seg1 = QLSerialSegment("animal", MockOp.AddToStr("!"))
+        let seg2 = QLSerialSegment("vegetable", MockOp.AddToStr("@"))
+        let seg3 = QLSerialSegment("mineral", MockOp.AddToStr("#"))
         let loop = QLoop<String, String>()
-        loop.bind(path: QLoopPath<String, String>(seg1, seg2, seg3)!)
+        loop.bind(path: QLPath<String, String>(seg1, seg2, seg3)!)
         let opPath = loop.describeOperationPath()
 
         XCTAssertEqual(opPath, "{animal}-{vegetable}-{mineral}")
     }
 
     func test_describe_operation_path_with_error_handler() {
-        let seg1 = QLoopLinearSegment("animal", MockOp.AddToStr("!"))
-        let seg2 = QLoopLinearSegment("vegetable", MockOp.AddToStr("@"),
+        let seg1 = QLSerialSegment("animal", MockOp.AddToStr("!"))
+        let seg2 = QLSerialSegment("vegetable", MockOp.AddToStr("@"),
                                       errorHandler: MockOp.StrErrorHandler(false))
-        let seg3 = QLoopLinearSegment("mineral", MockOp.AddToStr("#"))
+        let seg3 = QLSerialSegment("mineral", MockOp.AddToStr("#"))
         let loop = QLoop<String, String>()
-        loop.bind(path: QLoopPath<String, String>(seg1, seg2, seg3)!)
+        loop.bind(path: QLPath<String, String>(seg1, seg2, seg3)!)
         let opPath = loop.describeOperationPath()
 
         XCTAssertEqual(opPath, "{animal}-{vegetable*}-{mineral}")
@@ -156,10 +157,10 @@ class QLoopTests: XCTestCase {
 
     func test_when_destroy_is_called_then_it_should_have_no_path() {
         let loop = QLoop<String, String>()
-        loop.bind(path: QLoopPath<String, String>(
-            QLoopLinearSegment("who", MockOp.AddToStr("me")),
-            QLoopLinearSegment("why", MockOp.AddToStr("yes")),
-            QLoopLinearSegment("wrd", MockOp.AddToStr("huh")))!)
+        loop.bind(path: QLPath<String, String>(
+            QLSerialSegment("who", MockOp.AddToStr("me")),
+            QLSerialSegment("why", MockOp.AddToStr("yes")),
+            QLSerialSegment("wrd", MockOp.AddToStr("huh")))!)
         XCTAssertEqual(loop.describeOperationPath(), "{who}-{why}-{wrd}")
         loop.destroy()
         XCTAssertEqual(loop.describeOperationPath(), "")

@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC1934A92231CB870064B89B /* QLoopError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1934A82231CB870064B89B /* QLoopError.swift */; };
-		DC1934AB2231CB870064B89B /* QLoopError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1934A82231CB870064B89B /* QLoopError.swift */; };
-		DC1934AC2231CB870064B89B /* QLoopError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1934A82231CB870064B89B /* QLoopError.swift */; };
-		DC1934AD2231CFD10064B89B /* QLoopError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1934A82231CB870064B89B /* QLoopError.swift */; };
 		DC374A292231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A282231ECD9006F1272 /* QLoopIteratorSingle.swift */; };
 		DC374A2A2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A282231ECD9006F1272 /* QLoopIteratorSingle.swift */; };
 		DC374A2B2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A282231ECD9006F1272 /* QLoopIteratorSingle.swift */; };
@@ -56,30 +52,30 @@
 		DC374A63223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */; };
 		DC374A64223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */; };
 		DC374A65223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */; };
-		DC413D23223B191300000480 /* QLoopCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D22223B191300000480 /* QLoopCommon.swift */; };
-		DC413D24223B191300000480 /* QLoopCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D22223B191300000480 /* QLoopCommon.swift */; };
-		DC413D25223B191300000480 /* QLoopCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D22223B191300000480 /* QLoopCommon.swift */; };
-		DC413D26223B191300000480 /* QLoopCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D22223B191300000480 /* QLoopCommon.swift */; };
-		DC413D37223B24D800000480 /* QLoopCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLoopCommonConfigAnchorTests.swift */; };
-		DC413D38223B24D800000480 /* QLoopCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLoopCommonConfigAnchorTests.swift */; };
-		DC413D39223B24D800000480 /* QLoopCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLoopCommonConfigAnchorTests.swift */; };
-		DC68AB052234609600BC3528 /* QLoopPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLoopPathTests.swift */; };
-		DC68AB062234609600BC3528 /* QLoopPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLoopPathTests.swift */; };
-		DC68AB072234609600BC3528 /* QLoopPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLoopPathTests.swift */; };
+		DC413D23223B191300000480 /* QLCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D22223B191300000480 /* QLCommon.swift */; };
+		DC413D24223B191300000480 /* QLCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D22223B191300000480 /* QLCommon.swift */; };
+		DC413D25223B191300000480 /* QLCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D22223B191300000480 /* QLCommon.swift */; };
+		DC413D26223B191300000480 /* QLCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D22223B191300000480 /* QLCommon.swift */; };
+		DC413D37223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */; };
+		DC413D38223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */; };
+		DC413D39223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */; };
+		DC68AB052234609600BC3528 /* QLPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLPathTests.swift */; };
+		DC68AB062234609600BC3528 /* QLPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLPathTests.swift */; };
+		DC68AB072234609600BC3528 /* QLPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLPathTests.swift */; };
 		DC6FAF06222F41DD008BB070 /* libQLoop-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */; };
 		DC6FAF15222F4232008BB070 /* libQLoop-macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */; };
 		DC6FAF24222F4241008BB070 /* libQLoop-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */; };
-		DC6FAF33222F4377008BB070 /* QLoopLinearSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */; };
-		DC6FAF34222F4377008BB070 /* QLoopLinearSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */; };
-		DC6FAF35222F4377008BB070 /* QLoopLinearSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */; };
-		DC6FAF36222F4377008BB070 /* QLoopLinearSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */; };
-		DC6FAF5E222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
-		DC6FAF5F222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
-		DC6FAF60222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
-		DC6FAF61222F4EF5008BB070 /* QLoopAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */; };
-		DC6FAF68222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
-		DC6FAF69222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
-		DC6FAF6A222F632F008BB070 /* QLoopAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */; };
+		DC6FAF33222F4377008BB070 /* QLSerialSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLSerialSegment.swift */; };
+		DC6FAF34222F4377008BB070 /* QLSerialSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLSerialSegment.swift */; };
+		DC6FAF35222F4377008BB070 /* QLSerialSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLSerialSegment.swift */; };
+		DC6FAF36222F4377008BB070 /* QLSerialSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF32222F4377008BB070 /* QLSerialSegment.swift */; };
+		DC6FAF5E222F4EF5008BB070 /* QLAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLAnchor.swift */; };
+		DC6FAF5F222F4EF5008BB070 /* QLAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLAnchor.swift */; };
+		DC6FAF60222F4EF5008BB070 /* QLAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLAnchor.swift */; };
+		DC6FAF61222F4EF5008BB070 /* QLAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF5D222F4EF5008BB070 /* QLAnchor.swift */; };
+		DC6FAF68222F632F008BB070 /* QLAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLAnchorTests.swift */; };
+		DC6FAF69222F632F008BB070 /* QLAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLAnchorTests.swift */; };
+		DC6FAF6A222F632F008BB070 /* QLAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF67222F632F008BB070 /* QLAnchorTests.swift */; };
 		DC6FAF6C222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
 		DC6FAF6D222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
 		DC6FAF6E222F7326008BB070 /* MockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF6B222F7326008BB070 /* MockOperation.swift */; };
@@ -89,13 +85,20 @@
 		DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
 		DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
 		DC6FAF76222F7946008BB070 /* CapturedCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */; };
-		DC8F2B502232DAF000277F70 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B4F2232DAF000277F70 /* QLoopSegmentTests.swift */; };
-		DC8F2B512232DAF000277F70 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B4F2232DAF000277F70 /* QLoopSegmentTests.swift */; };
-		DC8F2B522232DAF000277F70 /* QLoopSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B4F2232DAF000277F70 /* QLoopSegmentTests.swift */; };
-		DC8F2B59223342E000277F70 /* QLoopPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B58223342E000277F70 /* QLoopPath.swift */; };
-		DC8F2B5A223342E000277F70 /* QLoopPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B58223342E000277F70 /* QLoopPath.swift */; };
-		DC8F2B5B223342E000277F70 /* QLoopPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B58223342E000277F70 /* QLoopPath.swift */; };
-		DC8F2B5C223342E000277F70 /* QLoopPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B58223342E000277F70 /* QLoopPath.swift */; };
+		DC8F2B502232DAF000277F70 /* QLSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B4F2232DAF000277F70 /* QLSegmentTests.swift */; };
+		DC8F2B512232DAF000277F70 /* QLSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B4F2232DAF000277F70 /* QLSegmentTests.swift */; };
+		DC8F2B522232DAF000277F70 /* QLSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B4F2232DAF000277F70 /* QLSegmentTests.swift */; };
+		DC8F2B59223342E000277F70 /* QLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B58223342E000277F70 /* QLPath.swift */; };
+		DC8F2B5A223342E000277F70 /* QLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B58223342E000277F70 /* QLPath.swift */; };
+		DC8F2B5B223342E000277F70 /* QLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B58223342E000277F70 /* QLPath.swift */; };
+		DC8F2B5C223342E000277F70 /* QLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8F2B58223342E000277F70 /* QLPath.swift */; };
+		DC9BDBD6223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BDBD5223C752200EC253B /* QLParallelSegment+OperationRunner.swift */; };
+		DC9BDBD7223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BDBD5223C752200EC253B /* QLParallelSegment+OperationRunner.swift */; };
+		DC9BDBD8223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BDBD5223C752200EC253B /* QLParallelSegment+OperationRunner.swift */; };
+		DC9BDBD9223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BDBD5223C752200EC253B /* QLParallelSegment+OperationRunner.swift */; };
+		DC9BDBDB223C791900EC253B /* FibonacciTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BDBDA223C791900EC253B /* FibonacciTest.swift */; };
+		DC9BDBDC223C791900EC253B /* FibonacciTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BDBDA223C791900EC253B /* FibonacciTest.swift */; };
+		DC9BDBDD223C791900EC253B /* FibonacciTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9BDBDA223C791900EC253B /* FibonacciTest.swift */; };
 		DCA1FD08222FCF21006015BD /* MockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockComponent.swift */; };
 		DCA1FD09222FCF21006015BD /* MockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockComponent.swift */; };
 		DCA1FD0A222FCF21006015BD /* MockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD07222FCF21006015BD /* MockComponent.swift */; };
@@ -106,34 +109,42 @@
 		DCA1FD1122304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
 		DCA1FD1222304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
 		DCA1FD1322304746006015BD /* QLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1022304746006015BD /* QLoopTests.swift */; };
-		DCA1FD1A2230B827006015BD /* QLoopCompoundSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */; };
-		DCA1FD1B2230B827006015BD /* QLoopCompoundSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */; };
-		DCA1FD1C2230B827006015BD /* QLoopCompoundSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */; };
-		DCA1FD1D2230B827006015BD /* QLoopCompoundSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */; };
-		DCA1FD1F2230C8DB006015BD /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */; };
-		DCA1FD202230C8DB006015BD /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */; };
-		DCA1FD212230C8DB006015BD /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */; };
-		DCA1FD222230C8DB006015BD /* QLoopSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */; };
-		DCA1FD252230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */; };
-		DCA1FD262230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */; };
-		DCA1FD272230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */; };
-		DCA1FD2A2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
-		DCA1FD2B2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
-		DCA1FD2C2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */; };
-		DCF860C22239D02C0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift */; };
-		DCF860C32239D02C0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift */; };
-		DCF860C42239D02C0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift */; };
-		DCF860C52239D02C0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift */; };
-		DCF860C62239D02C0018C1A1 /* QLoopCommonOperationDispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLoopCommonOperationDispatchMain.swift */; };
-		DCF860C72239D02C0018C1A1 /* QLoopCommonOperationDispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLoopCommonOperationDispatchMain.swift */; };
-		DCF860C82239D02C0018C1A1 /* QLoopCommonOperationDispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLoopCommonOperationDispatchMain.swift */; };
-		DCF860C92239D02C0018C1A1 /* QLoopCommonOperationDispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLoopCommonOperationDispatchMain.swift */; };
-		DCF860D52239D0780018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift */; };
-		DCF860D62239D0780018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift */; };
-		DCF860D72239D0790018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift */; };
-		DCF860D82239D0800018C1A1 /* QLoopCommonOperationDispatchMainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLoopCommonOperationDispatchMainTests.swift */; };
-		DCF860D92239D0810018C1A1 /* QLoopCommonOperationDispatchMainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLoopCommonOperationDispatchMainTests.swift */; };
-		DCF860DA2239D0810018C1A1 /* QLoopCommonOperationDispatchMainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLoopCommonOperationDispatchMainTests.swift */; };
+		DCA1FD1A2230B827006015BD /* QLParallelSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLParallelSegment.swift */; };
+		DCA1FD1B2230B827006015BD /* QLParallelSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLParallelSegment.swift */; };
+		DCA1FD1C2230B827006015BD /* QLParallelSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLParallelSegment.swift */; };
+		DCA1FD1D2230B827006015BD /* QLParallelSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD192230B827006015BD /* QLParallelSegment.swift */; };
+		DCA1FD1F2230C8DB006015BD /* QLSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLSegment.swift */; };
+		DCA1FD202230C8DB006015BD /* QLSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLSegment.swift */; };
+		DCA1FD212230C8DB006015BD /* QLSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLSegment.swift */; };
+		DCA1FD222230C8DB006015BD /* QLSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD1E2230C8DB006015BD /* QLSegment.swift */; };
+		DCA1FD252230CA40006015BD /* QLSerialSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLSerialSegmentTests.swift */; };
+		DCA1FD262230CA40006015BD /* QLSerialSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLSerialSegmentTests.swift */; };
+		DCA1FD272230CA40006015BD /* QLSerialSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD242230CA40006015BD /* QLSerialSegmentTests.swift */; };
+		DCA1FD2A2230DE1F006015BD /* QLParallelSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLParallelSegmentTests.swift */; };
+		DCA1FD2B2230DE1F006015BD /* QLParallelSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLParallelSegmentTests.swift */; };
+		DCA1FD2C2230DE1F006015BD /* QLParallelSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA1FD292230DE1F006015BD /* QLParallelSegmentTests.swift */; };
+		DCAB9A2E223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB9A2D223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift */; };
+		DCAB9A2F223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB9A2D223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift */; };
+		DCAB9A30223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB9A2D223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift */; };
+		DCAB9A31223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB9A2D223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift */; };
+		DCAB9A33223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB9A32223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift */; };
+		DCAB9A34223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB9A32223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift */; };
+		DCAB9A35223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB9A32223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift */; };
+		DCAB9A36223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB9A32223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift */; };
+		DCF860C22239D02C0018C1A1 /* QLCommonOpDispatchGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLCommonOpDispatchGlobal.swift */; };
+		DCF860C32239D02C0018C1A1 /* QLCommonOpDispatchGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLCommonOpDispatchGlobal.swift */; };
+		DCF860C42239D02C0018C1A1 /* QLCommonOpDispatchGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLCommonOpDispatchGlobal.swift */; };
+		DCF860C52239D02C0018C1A1 /* QLCommonOpDispatchGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C02239D02B0018C1A1 /* QLCommonOpDispatchGlobal.swift */; };
+		DCF860C62239D02C0018C1A1 /* QLCommonOpDispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLCommonOpDispatchMain.swift */; };
+		DCF860C72239D02C0018C1A1 /* QLCommonOpDispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLCommonOpDispatchMain.swift */; };
+		DCF860C82239D02C0018C1A1 /* QLCommonOpDispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLCommonOpDispatchMain.swift */; };
+		DCF860C92239D02C0018C1A1 /* QLCommonOpDispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860C12239D02B0018C1A1 /* QLCommonOpDispatchMain.swift */; };
+		DCF860D52239D0780018C1A1 /* QLCommonOpDispatchGlobalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLCommonOpDispatchGlobalTests.swift */; };
+		DCF860D62239D0780018C1A1 /* QLCommonOpDispatchGlobalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLCommonOpDispatchGlobalTests.swift */; };
+		DCF860D72239D0790018C1A1 /* QLCommonOpDispatchGlobalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CB2239D03E0018C1A1 /* QLCommonOpDispatchGlobalTests.swift */; };
+		DCF860D82239D0800018C1A1 /* QLCommonOpDispatchMainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLCommonOpDispatchMainTests.swift */; };
+		DCF860D92239D0810018C1A1 /* QLCommonOpDispatchMainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLCommonOpDispatchMainTests.swift */; };
+		DCF860DA2239D0810018C1A1 /* QLCommonOpDispatchMainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF860CC2239D03E0018C1A1 /* QLCommonOpDispatchMainTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,7 +202,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DC1934A82231CB870064B89B /* QLoopError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopError.swift; sourceTree = "<group>"; };
 		DC374A282231ECD9006F1272 /* QLoopIteratorSingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopIteratorSingle.swift; sourceTree = "<group>"; };
 		DC374A2D2231F20C006F1272 /* QLoopIterating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopIterating.swift; sourceTree = "<group>"; };
 		DC374A332231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopIteratorContinueNilMax.swift; sourceTree = "<group>"; };
@@ -205,9 +215,9 @@
 		DC374A582231FE99006F1272 /* QLoopIteratorContinueNilTests copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QLoopIteratorContinueNilTests copy.swift"; sourceTree = "<group>"; };
 		DC374A5C2231FFF6006F1272 /* QLoopIteratorContinueNilMaxTests copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QLoopIteratorContinueNilMaxTests copy.swift"; sourceTree = "<group>"; };
 		DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopIteratorContinueOutputMaxTests.swift; sourceTree = "<group>"; };
-		DC413D22223B191300000480 /* QLoopCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopCommon.swift; sourceTree = "<group>"; };
-		DC413D36223B24D800000480 /* QLoopCommonConfigAnchorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopCommonConfigAnchorTests.swift; sourceTree = "<group>"; };
-		DC68AB042234609600BC3528 /* QLoopPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopPathTests.swift; sourceTree = "<group>"; };
+		DC413D22223B191300000480 /* QLCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLCommon.swift; sourceTree = "<group>"; };
+		DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLCommonConfigAnchorTests.swift; sourceTree = "<group>"; };
+		DC68AB042234609600BC3528 /* QLPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLPathTests.swift; sourceTree = "<group>"; };
 		DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6FAEEB222F4164008BB070 /* libQLoop-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,26 +227,31 @@
 		DC6FAF1F222F4241008BB070 /* QLoop-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QLoop-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6FAF2A222F42D7008BB070 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC6FAF2F222F434D008BB070 /* introduction.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = introduction.md; sourceTree = "<group>"; };
-		DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopLinearSegment.swift; sourceTree = "<group>"; };
+		DC6FAF32222F4377008BB070 /* QLSerialSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLSerialSegment.swift; sourceTree = "<group>"; };
 		DC6FAF3B222F451D008BB070 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopAnchor.swift; sourceTree = "<group>"; };
-		DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopAnchorTests.swift; sourceTree = "<group>"; };
+		DC6FAF5D222F4EF5008BB070 /* QLAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLAnchor.swift; sourceTree = "<group>"; };
+		DC6FAF67222F632F008BB070 /* QLAnchorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLAnchorTests.swift; sourceTree = "<group>"; };
 		DC6FAF6B222F7326008BB070 /* MockOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOperation.swift; sourceTree = "<group>"; };
 		DC6FAF6F222F747C008BB070 /* SpyAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyAnchor.swift; sourceTree = "<group>"; };
 		DC6FAF73222F7946008BB070 /* CapturedCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedCompletion.swift; sourceTree = "<group>"; };
-		DC8F2B4F2232DAF000277F70 /* QLoopSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopSegmentTests.swift; sourceTree = "<group>"; };
-		DC8F2B58223342E000277F70 /* QLoopPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopPath.swift; sourceTree = "<group>"; };
+		DC8F2B4F2232DAF000277F70 /* QLSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLSegmentTests.swift; sourceTree = "<group>"; };
+		DC8F2B58223342E000277F70 /* QLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLPath.swift; sourceTree = "<group>"; };
+		DC9BDBD5223C752200EC253B /* QLParallelSegment+OperationRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QLParallelSegment+OperationRunner.swift"; sourceTree = "<group>"; };
+		DC9BDBDA223C791900EC253B /* FibonacciTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibonacciTest.swift; sourceTree = "<group>"; };
 		DCA1FD07222FCF21006015BD /* MockComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockComponent.swift; sourceTree = "<group>"; };
 		DCA1FD0B22303D22006015BD /* QLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoop.swift; sourceTree = "<group>"; };
 		DCA1FD1022304746006015BD /* QLoopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopTests.swift; sourceTree = "<group>"; };
-		DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopCompoundSegment.swift; sourceTree = "<group>"; };
-		DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopSegment.swift; sourceTree = "<group>"; };
-		DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopLinearSegmentTests.swift; sourceTree = "<group>"; };
-		DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopCompoundSegmentTests.swift; sourceTree = "<group>"; };
-		DCF860C02239D02B0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopCommonOperationDispatchGlobal.swift; sourceTree = "<group>"; };
-		DCF860C12239D02B0018C1A1 /* QLoopCommonOperationDispatchMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopCommonOperationDispatchMain.swift; sourceTree = "<group>"; };
-		DCF860CB2239D03E0018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopCommonOperationDispatchGlobalTests.swift; sourceTree = "<group>"; };
-		DCF860CC2239D03E0018C1A1 /* QLoopCommonOperationDispatchMainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLoopCommonOperationDispatchMainTests.swift; sourceTree = "<group>"; };
+		DCA1FD192230B827006015BD /* QLParallelSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLParallelSegment.swift; sourceTree = "<group>"; };
+		DCA1FD1E2230C8DB006015BD /* QLSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLSegment.swift; sourceTree = "<group>"; };
+		DCA1FD242230CA40006015BD /* QLSerialSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLSerialSegmentTests.swift; sourceTree = "<group>"; };
+		DCA1FD292230DE1F006015BD /* QLParallelSegmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLParallelSegmentTests.swift; sourceTree = "<group>"; };
+		DCAB9A2D223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QLSerialSegment+ConvenienceInit.swift"; sourceTree = "<group>"; };
+		DCAB9A32223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QLParallelSegment+ConvenienceInit.swift"; sourceTree = "<group>"; };
+		DCBFEEE5223CEA720086D949 /* getting-started.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "getting-started.md"; sourceTree = "<group>"; };
+		DCF860C02239D02B0018C1A1 /* QLCommonOpDispatchGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLCommonOpDispatchGlobal.swift; sourceTree = "<group>"; };
+		DCF860C12239D02B0018C1A1 /* QLCommonOpDispatchMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLCommonOpDispatchMain.swift; sourceTree = "<group>"; };
+		DCF860CB2239D03E0018C1A1 /* QLCommonOpDispatchGlobalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLCommonOpDispatchGlobalTests.swift; sourceTree = "<group>"; };
+		DCF860CC2239D03E0018C1A1 /* QLCommonOpDispatchMainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLCommonOpDispatchMainTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +363,7 @@
 		DC6FAF2E222F434D008BB070 /* docs */ = {
 			isa = PBXGroup;
 			children = (
+				DCBFEEE5223CEA720086D949 /* getting-started.md */,
 				DC6FAF2F222F434D008BB070 /* introduction.md */,
 			);
 			path = docs;
@@ -365,12 +381,11 @@
 			isa = PBXGroup;
 			children = (
 				DCA1FD0B22303D22006015BD /* QLoop.swift */,
-				DC6FAF5D222F4EF5008BB070 /* QLoopAnchor.swift */,
-				DC1934A82231CB870064B89B /* QLoopError.swift */,
-				DC8F2B58223342E000277F70 /* QLoopPath.swift */,
+				DC6FAF5D222F4EF5008BB070 /* QLAnchor.swift */,
+				DC8F2B58223342E000277F70 /* QLPath.swift */,
+				DCF860BF2239D02B0018C1A1 /* Common */,
 				DC374A322231F28A006F1272 /* Iterating */,
 				DCA1FD232230C8E5006015BD /* Segment */,
-				DCF860BF2239D02B0018C1A1 /* Common */,
 			);
 			path = QLoop;
 			sourceTree = "<group>";
@@ -388,8 +403,9 @@
 			isa = PBXGroup;
 			children = (
 				DCA1FD1022304746006015BD /* QLoopTests.swift */,
-				DC6FAF67222F632F008BB070 /* QLoopAnchorTests.swift */,
-				DC68AB042234609600BC3528 /* QLoopPathTests.swift */,
+				DC6FAF67222F632F008BB070 /* QLAnchorTests.swift */,
+				DC68AB042234609600BC3528 /* QLPathTests.swift */,
+				DC9BDBDA223C791900EC253B /* FibonacciTest.swift */,
 				DC374A472231F864006F1272 /* Iterating */,
 				DCA1FD282230CA49006015BD /* Segment */,
 				DCF860CA2239D03E0018C1A1 /* Common */,
@@ -419,12 +435,30 @@
 			path = mocks;
 			sourceTree = "<group>";
 		};
+		DC7BE88B223CFF6B00667445 /* Op */ = {
+			isa = PBXGroup;
+			children = (
+				DCF860C02239D02B0018C1A1 /* QLCommonOpDispatchGlobal.swift */,
+				DCF860C12239D02B0018C1A1 /* QLCommonOpDispatchMain.swift */,
+			);
+			path = Op;
+			sourceTree = "<group>";
+		};
+		DC7BE88C223CFF8700667445 /* Op */ = {
+			isa = PBXGroup;
+			children = (
+				DCF860CB2239D03E0018C1A1 /* QLCommonOpDispatchGlobalTests.swift */,
+				DCF860CC2239D03E0018C1A1 /* QLCommonOpDispatchMainTests.swift */,
+			);
+			path = Op;
+			sourceTree = "<group>";
+		};
 		DCA1FD232230C8E5006015BD /* Segment */ = {
 			isa = PBXGroup;
 			children = (
-				DCA1FD1E2230C8DB006015BD /* QLoopSegment.swift */,
-				DCA1FD192230B827006015BD /* QLoopCompoundSegment.swift */,
-				DC6FAF32222F4377008BB070 /* QLoopLinearSegment.swift */,
+				DCA1FD1E2230C8DB006015BD /* QLSegment.swift */,
+				DCAB9A2C223CD83600BE25F0 /* Serial */,
+				DCAB9A2B223CD82600BE25F0 /* Parallel */,
 			);
 			path = Segment;
 			sourceTree = "<group>";
@@ -432,19 +466,37 @@
 		DCA1FD282230CA49006015BD /* Segment */ = {
 			isa = PBXGroup;
 			children = (
-				DC8F2B4F2232DAF000277F70 /* QLoopSegmentTests.swift */,
-				DCA1FD292230DE1F006015BD /* QLoopCompoundSegmentTests.swift */,
-				DCA1FD242230CA40006015BD /* QLoopLinearSegmentTests.swift */,
+				DC8F2B4F2232DAF000277F70 /* QLSegmentTests.swift */,
+				DCA1FD292230DE1F006015BD /* QLParallelSegmentTests.swift */,
+				DCA1FD242230CA40006015BD /* QLSerialSegmentTests.swift */,
 			);
 			path = Segment;
+			sourceTree = "<group>";
+		};
+		DCAB9A2B223CD82600BE25F0 /* Parallel */ = {
+			isa = PBXGroup;
+			children = (
+				DCA1FD192230B827006015BD /* QLParallelSegment.swift */,
+				DCAB9A32223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift */,
+				DC9BDBD5223C752200EC253B /* QLParallelSegment+OperationRunner.swift */,
+			);
+			path = Parallel;
+			sourceTree = "<group>";
+		};
+		DCAB9A2C223CD83600BE25F0 /* Serial */ = {
+			isa = PBXGroup;
+			children = (
+				DC6FAF32222F4377008BB070 /* QLSerialSegment.swift */,
+				DCAB9A2D223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift */,
+			);
+			path = Serial;
 			sourceTree = "<group>";
 		};
 		DCF860BF2239D02B0018C1A1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				DC413D22223B191300000480 /* QLoopCommon.swift */,
-				DCF860C02239D02B0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift */,
-				DCF860C12239D02B0018C1A1 /* QLoopCommonOperationDispatchMain.swift */,
+				DC413D22223B191300000480 /* QLCommon.swift */,
+				DC7BE88B223CFF6B00667445 /* Op */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -452,9 +504,8 @@
 		DCF860CA2239D03E0018C1A1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				DC413D36223B24D800000480 /* QLoopCommonConfigAnchorTests.swift */,
-				DCF860CB2239D03E0018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift */,
-				DCF860CC2239D03E0018C1A1 /* QLoopCommonOperationDispatchMainTests.swift */,
+				DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */,
+				DC7BE88C223CFF8700667445 /* Op */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -680,19 +731,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA1FD1A2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
-				DCF860C62239D02C0018C1A1 /* QLoopCommonOperationDispatchMain.swift in Sources */,
+				DCA1FD1A2230B827006015BD /* QLParallelSegment.swift in Sources */,
+				DCF860C62239D02C0018C1A1 /* QLCommonOpDispatchMain.swift in Sources */,
 				DC374A2E2231F20C006F1272 /* QLoopIterating.swift in Sources */,
-				DCF860C22239D02C0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift in Sources */,
+				DC9BDBD6223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */,
+				DCF860C22239D02C0018C1A1 /* QLCommonOpDispatchGlobal.swift in Sources */,
 				DC374A292231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
-				DC8F2B59223342E000277F70 /* QLoopPath.swift in Sources */,
-				DC6FAF33222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
-				DCA1FD1F2230C8DB006015BD /* QLoopSegment.swift in Sources */,
+				DC8F2B59223342E000277F70 /* QLPath.swift in Sources */,
+				DC6FAF33222F4377008BB070 /* QLSerialSegment.swift in Sources */,
+				DCA1FD1F2230C8DB006015BD /* QLSegment.swift in Sources */,
+				DCAB9A33223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift in Sources */,
 				DC374A372231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift in Sources */,
+				DCAB9A2E223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift in Sources */,
 				DCA1FD0C22303D22006015BD /* QLoop.swift in Sources */,
-				DC1934A92231CB870064B89B /* QLoopError.swift in Sources */,
-				DC413D23223B191300000480 /* QLoopCommon.swift in Sources */,
-				DC6FAF5E222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
+				DC413D23223B191300000480 /* QLCommon.swift in Sources */,
+				DC6FAF5E222F4EF5008BB070 /* QLAnchor.swift in Sources */,
 				DC374A412231F361006F1272 /* QLoopIteratorContinueNil.swift in Sources */,
 				DC374A3C2231F336006F1272 /* QLoopIteratorContinueOutputMax.swift in Sources */,
 				DC374A462231F373006F1272 /* QLoopIteratorContinueOutput.swift in Sources */,
@@ -703,19 +756,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA1FD1B2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
-				DCF860C72239D02C0018C1A1 /* QLoopCommonOperationDispatchMain.swift in Sources */,
+				DCA1FD1B2230B827006015BD /* QLParallelSegment.swift in Sources */,
+				DCF860C72239D02C0018C1A1 /* QLCommonOpDispatchMain.swift in Sources */,
 				DC374A2F2231F20C006F1272 /* QLoopIterating.swift in Sources */,
-				DCF860C32239D02C0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift in Sources */,
+				DC9BDBD7223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */,
+				DCF860C32239D02C0018C1A1 /* QLCommonOpDispatchGlobal.swift in Sources */,
 				DC374A2A2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
-				DC8F2B5A223342E000277F70 /* QLoopPath.swift in Sources */,
-				DC6FAF34222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
-				DCA1FD202230C8DB006015BD /* QLoopSegment.swift in Sources */,
+				DC8F2B5A223342E000277F70 /* QLPath.swift in Sources */,
+				DC6FAF34222F4377008BB070 /* QLSerialSegment.swift in Sources */,
+				DCA1FD202230C8DB006015BD /* QLSegment.swift in Sources */,
+				DCAB9A36223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift in Sources */,
 				DC374A342231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift in Sources */,
+				DCAB9A2F223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift in Sources */,
 				DCA1FD0D22303D22006015BD /* QLoop.swift in Sources */,
-				DC1934AD2231CFD10064B89B /* QLoopError.swift in Sources */,
-				DC413D24223B191300000480 /* QLoopCommon.swift in Sources */,
-				DC6FAF5F222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
+				DC413D24223B191300000480 /* QLCommon.swift in Sources */,
+				DC6FAF5F222F4EF5008BB070 /* QLAnchor.swift in Sources */,
 				DC374A3E2231F361006F1272 /* QLoopIteratorContinueNil.swift in Sources */,
 				DC374A392231F336006F1272 /* QLoopIteratorContinueOutputMax.swift in Sources */,
 				DC374A432231F373006F1272 /* QLoopIteratorContinueOutput.swift in Sources */,
@@ -726,19 +781,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA1FD1C2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
-				DCF860C82239D02C0018C1A1 /* QLoopCommonOperationDispatchMain.swift in Sources */,
+				DCA1FD1C2230B827006015BD /* QLParallelSegment.swift in Sources */,
+				DCF860C82239D02C0018C1A1 /* QLCommonOpDispatchMain.swift in Sources */,
 				DC374A302231F20C006F1272 /* QLoopIterating.swift in Sources */,
-				DCF860C42239D02C0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift in Sources */,
+				DC9BDBD8223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */,
+				DCF860C42239D02C0018C1A1 /* QLCommonOpDispatchGlobal.swift in Sources */,
 				DC374A2B2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
-				DC8F2B5B223342E000277F70 /* QLoopPath.swift in Sources */,
-				DC6FAF35222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
-				DCA1FD212230C8DB006015BD /* QLoopSegment.swift in Sources */,
+				DC8F2B5B223342E000277F70 /* QLPath.swift in Sources */,
+				DC6FAF35222F4377008BB070 /* QLSerialSegment.swift in Sources */,
+				DCA1FD212230C8DB006015BD /* QLSegment.swift in Sources */,
+				DCAB9A35223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift in Sources */,
 				DC374A352231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift in Sources */,
+				DCAB9A30223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift in Sources */,
 				DCA1FD0E22303D22006015BD /* QLoop.swift in Sources */,
-				DC1934AB2231CB870064B89B /* QLoopError.swift in Sources */,
-				DC413D25223B191300000480 /* QLoopCommon.swift in Sources */,
-				DC6FAF60222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
+				DC413D25223B191300000480 /* QLCommon.swift in Sources */,
+				DC6FAF60222F4EF5008BB070 /* QLAnchor.swift in Sources */,
 				DC374A3F2231F361006F1272 /* QLoopIteratorContinueNil.swift in Sources */,
 				DC374A3A2231F336006F1272 /* QLoopIteratorContinueOutputMax.swift in Sources */,
 				DC374A442231F373006F1272 /* QLoopIteratorContinueOutput.swift in Sources */,
@@ -749,19 +806,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA1FD1D2230B827006015BD /* QLoopCompoundSegment.swift in Sources */,
-				DCF860C92239D02C0018C1A1 /* QLoopCommonOperationDispatchMain.swift in Sources */,
+				DCA1FD1D2230B827006015BD /* QLParallelSegment.swift in Sources */,
+				DCF860C92239D02C0018C1A1 /* QLCommonOpDispatchMain.swift in Sources */,
 				DC374A312231F20C006F1272 /* QLoopIterating.swift in Sources */,
-				DCF860C52239D02C0018C1A1 /* QLoopCommonOperationDispatchGlobal.swift in Sources */,
+				DC9BDBD9223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */,
+				DCF860C52239D02C0018C1A1 /* QLCommonOpDispatchGlobal.swift in Sources */,
 				DC374A2C2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
-				DC8F2B5C223342E000277F70 /* QLoopPath.swift in Sources */,
-				DC6FAF36222F4377008BB070 /* QLoopLinearSegment.swift in Sources */,
-				DCA1FD222230C8DB006015BD /* QLoopSegment.swift in Sources */,
+				DC8F2B5C223342E000277F70 /* QLPath.swift in Sources */,
+				DC6FAF36222F4377008BB070 /* QLSerialSegment.swift in Sources */,
+				DCA1FD222230C8DB006015BD /* QLSegment.swift in Sources */,
+				DCAB9A34223CD9AF00BE25F0 /* QLParallelSegment+ConvenienceInit.swift in Sources */,
 				DC374A362231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift in Sources */,
+				DCAB9A31223CD96000BE25F0 /* QLSerialSegment+ConvenienceInit.swift in Sources */,
 				DCA1FD0F22303D22006015BD /* QLoop.swift in Sources */,
-				DC1934AC2231CB870064B89B /* QLoopError.swift in Sources */,
-				DC413D26223B191300000480 /* QLoopCommon.swift in Sources */,
-				DC6FAF61222F4EF5008BB070 /* QLoopAnchor.swift in Sources */,
+				DC413D26223B191300000480 /* QLCommon.swift in Sources */,
+				DC6FAF61222F4EF5008BB070 /* QLAnchor.swift in Sources */,
 				DC374A402231F361006F1272 /* QLoopIteratorContinueNil.swift in Sources */,
 				DC374A3B2231F336006F1272 /* QLoopIteratorContinueOutputMax.swift in Sources */,
 				DC374A452231F373006F1272 /* QLoopIteratorContinueOutput.swift in Sources */,
@@ -772,21 +831,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC68AB052234609600BC3528 /* QLoopPathTests.swift in Sources */,
-				DC6FAF68222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
+				DC68AB052234609600BC3528 /* QLPathTests.swift in Sources */,
+				DC6FAF68222F632F008BB070 /* QLAnchorTests.swift in Sources */,
 				DC6FAF70222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DC374A63223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */,
 				DC374A592231FE99006F1272 /* QLoopIteratorContinueNilTests copy.swift in Sources */,
 				DC374A4A2231F8B6006F1272 /* MockLoopIterable.swift in Sources */,
 				DCA1FD1122304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6C222F7326008BB070 /* MockOperation.swift in Sources */,
-				DCF860D52239D0780018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift in Sources */,
-				DC413D38223B24D800000480 /* QLoopCommonConfigAnchorTests.swift in Sources */,
-				DCA1FD2C2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
-				DCA1FD252230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
-				DC8F2B502232DAF000277F70 /* QLoopSegmentTests.swift in Sources */,
+				DCF860D52239D0780018C1A1 /* QLCommonOpDispatchGlobalTests.swift in Sources */,
+				DC413D38223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */,
+				DCA1FD2C2230DE1F006015BD /* QLParallelSegmentTests.swift in Sources */,
+				DCA1FD252230CA40006015BD /* QLSerialSegmentTests.swift in Sources */,
+				DC9BDBDB223C791900EC253B /* FibonacciTest.swift in Sources */,
+				DC8F2B502232DAF000277F70 /* QLSegmentTests.swift in Sources */,
 				DC374A4E2231F987006F1272 /* MockLoopIterator.swift in Sources */,
-				DCF860D82239D0800018C1A1 /* QLoopCommonOperationDispatchMainTests.swift in Sources */,
+				DCF860D82239D0800018C1A1 /* QLCommonOpDispatchMainTests.swift in Sources */,
 				DCA1FD08222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC374A512231FAC8006F1272 /* QLoopIteratorSingleTests.swift in Sources */,
 				DC6FAF74222F7946008BB070 /* CapturedCompletion.swift in Sources */,
@@ -799,21 +859,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC68AB062234609600BC3528 /* QLoopPathTests.swift in Sources */,
-				DC6FAF69222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
+				DC68AB062234609600BC3528 /* QLPathTests.swift in Sources */,
+				DC6FAF69222F632F008BB070 /* QLAnchorTests.swift in Sources */,
 				DC6FAF71222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DC374A64223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */,
 				DC374A5A2231FE99006F1272 /* QLoopIteratorContinueNilTests copy.swift in Sources */,
 				DC374A4B2231F8B6006F1272 /* MockLoopIterable.swift in Sources */,
 				DCA1FD1222304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6D222F7326008BB070 /* MockOperation.swift in Sources */,
-				DCF860D62239D0780018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift in Sources */,
-				DC413D37223B24D800000480 /* QLoopCommonConfigAnchorTests.swift in Sources */,
-				DCA1FD2B2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
-				DCA1FD262230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
-				DC8F2B512232DAF000277F70 /* QLoopSegmentTests.swift in Sources */,
+				DCF860D62239D0780018C1A1 /* QLCommonOpDispatchGlobalTests.swift in Sources */,
+				DC413D37223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */,
+				DCA1FD2B2230DE1F006015BD /* QLParallelSegmentTests.swift in Sources */,
+				DCA1FD262230CA40006015BD /* QLSerialSegmentTests.swift in Sources */,
+				DC9BDBDC223C791900EC253B /* FibonacciTest.swift in Sources */,
+				DC8F2B512232DAF000277F70 /* QLSegmentTests.swift in Sources */,
 				DC374A4F2231F987006F1272 /* MockLoopIterator.swift in Sources */,
-				DCF860D92239D0810018C1A1 /* QLoopCommonOperationDispatchMainTests.swift in Sources */,
+				DCF860D92239D0810018C1A1 /* QLCommonOpDispatchMainTests.swift in Sources */,
 				DCA1FD09222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC374A522231FAC9006F1272 /* QLoopIteratorSingleTests.swift in Sources */,
 				DC6FAF75222F7946008BB070 /* CapturedCompletion.swift in Sources */,
@@ -826,21 +887,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC68AB072234609600BC3528 /* QLoopPathTests.swift in Sources */,
-				DC6FAF6A222F632F008BB070 /* QLoopAnchorTests.swift in Sources */,
+				DC68AB072234609600BC3528 /* QLPathTests.swift in Sources */,
+				DC6FAF6A222F632F008BB070 /* QLAnchorTests.swift in Sources */,
 				DC6FAF72222F747C008BB070 /* SpyAnchor.swift in Sources */,
 				DC374A65223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift in Sources */,
 				DC374A5B2231FE99006F1272 /* QLoopIteratorContinueNilTests copy.swift in Sources */,
 				DC374A4C2231F8B6006F1272 /* MockLoopIterable.swift in Sources */,
 				DCA1FD1322304746006015BD /* QLoopTests.swift in Sources */,
 				DC6FAF6E222F7326008BB070 /* MockOperation.swift in Sources */,
-				DCF860D72239D0790018C1A1 /* QLoopCommonOperationDispatchGlobalTests.swift in Sources */,
-				DC413D39223B24D800000480 /* QLoopCommonConfigAnchorTests.swift in Sources */,
-				DCA1FD2A2230DE1F006015BD /* QLoopCompoundSegmentTests.swift in Sources */,
+				DCF860D72239D0790018C1A1 /* QLCommonOpDispatchGlobalTests.swift in Sources */,
+				DC413D39223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */,
+				DCA1FD2A2230DE1F006015BD /* QLParallelSegmentTests.swift in Sources */,
 				DC374A572231FBBF006F1272 /* QLoopIteratorContinueOutputTests.swift in Sources */,
-				DC8F2B522232DAF000277F70 /* QLoopSegmentTests.swift in Sources */,
-				DCA1FD272230CA40006015BD /* QLoopLinearSegmentTests.swift in Sources */,
-				DCF860DA2239D0810018C1A1 /* QLoopCommonOperationDispatchMainTests.swift in Sources */,
+				DC9BDBDD223C791900EC253B /* FibonacciTest.swift in Sources */,
+				DC8F2B522232DAF000277F70 /* QLSegmentTests.swift in Sources */,
+				DCA1FD272230CA40006015BD /* QLSerialSegmentTests.swift in Sources */,
+				DCF860DA2239D0810018C1A1 /* QLCommonOpDispatchMainTests.swift in Sources */,
 				DC374A502231F987006F1272 /* MockLoopIterator.swift in Sources */,
 				DCA1FD0A222FCF21006015BD /* MockComponent.swift in Sources */,
 				DC374A532231FACA006F1272 /* QLoopIteratorSingleTests.swift in Sources */,

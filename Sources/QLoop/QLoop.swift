@@ -1,9 +1,9 @@
 
 public final class QLoop<Input, Output>: QLoopIterable {
-    public typealias Operation = QLoopSegment<Input, Output>.Operation
-    public typealias Completion = QLoopSegment<Input, Output>.Completion
-    public typealias OnChange = QLoopAnchor<Output>.OnChange
-    public typealias OnError = QLoopAnchor<Output>.OnError
+    public typealias Operation = QLSegment<Input, Output>.Operation
+    public typealias Completion = QLSegment<Input, Output>.Completion
+    public typealias OnChange = QLAnchor<Output>.OnChange
+    public typealias OnError = QLAnchor<Output>.OnError
 
     public convenience init() {
         self.init(iterator: QLoopIteratorSingle(), onChange: {_ in}, onError: {_ in})
@@ -27,21 +27,21 @@ public final class QLoop<Input, Output>: QLoopIterable {
         self.applyOutputObservers()
     }
 
-    public var inputAnchor: QLoopAnchor<Input> = QLoopAnchor<Input>()
-    public var outputAnchor: QLoopAnchor<Output> = QLoopAnchor<Output>() {
+    public var input: QLAnchor<Input> = QLAnchor<Input>()
+    public var output: QLAnchor<Output> = QLAnchor<Output>() {
         didSet { applyOutputObservers() }
     }
 
     public func perform() {
-        inputAnchor.value = nil
+        input.value = nil
     }
 
-    public func perform(_ input: Input?) {
-        inputAnchor.value = input
+    public func perform(_ inputValue: Input?) {
+        self.input.value = inputValue
     }
 
     public func performFromLastOutput() {
-        self.perform(self.outputAnchor.value as? Input)
+        self.perform(self.output.value as? Input)
     }
 
     public var discontinue: Bool = false
@@ -52,35 +52,35 @@ public final class QLoop<Input, Output>: QLoopIterable {
 
     public var iterator: QLoopIterating
 
-    public func bind(path: QLoopPath<Input, Output>) {
-        self.inputAnchor = path.inputAnchor
-        self.outputAnchor = path.outputAnchor
+    public func bind(path: QLPath<Input, Output>) {
+        self.input = path.input
+        self.output = path.output
     }
 
     public func destroy() {
-        self.inputAnchor = QLoopAnchor<Input>()
-        self.outputAnchor = QLoopAnchor<Output>()
+        self.input = QLAnchor<Input>()
+        self.output = QLAnchor<Output>()
     }
 
-    public func findSegments(with operationId: AnyHashable) -> [AnyLoopSegment] {
-        return outputAnchor.inputSegment?.findSegments(with: operationId) ?? []
+    public func findSegments(with operationId: AnyHashable) -> [AnySegment] {
+        return output.inputSegment?.findSegments(with: operationId) ?? []
     }
 
     public func describeOperationPath() -> String {
-        return outputAnchor.inputSegment?.describeOperationPath() ?? ""
+        return output.inputSegment?.describeOperationPath() ?? ""
     }
 
     public func operationPath() -> [([AnyHashable], Bool)] {
-        return outputAnchor.inputSegment?.operationPath() ?? []
+        return output.inputSegment?.operationPath() ?? []
     }
 
     private func applyOutputObservers() {
-        self.outputAnchor.onChange = ({
+        self.output.onChange = ({
             self.onChange($0)
             self.iterator.iterate(self)
         })
 
-        self.outputAnchor.onError = ({
+        self.output.onError = ({
             self.onError($0)
             self.discontinue = !self.shouldResume
             self.iterator.iterate(self)

@@ -98,7 +98,7 @@ The default segment constructors allow them to be linked explicitly,
 in a type-safe manner, but they can quickly become difficult to read
 or muck around with for any practical use of chaining.
 
-`QLoopPath` addresses this, by allowing you to compose a series
+`QLPath` addresses this, by allowing you to compose a series
 of segments together, in a less-violent, more readable way.
 
 This is accomplished using *type-erasure*, but we don't have to give up
@@ -129,17 +129,16 @@ operations to them using a contract enforced by a simple swift closure.
 
 There are currently two types of segments to choose from:
 
- - `QLoopLinearSegment` - performs a **single operation** and then moves on
- - `QLoopCompoundSegment` - performs **multiple concurrent operations**,
+ - `QLSerialSegment` - (or `QLss`) performs a **single operation** and then moves on
+ - `QLParallelSegment` - (or `QLps`) performs **multiple concurrent operations**,
    waiting for them all to complete before moving on.
 
-When connecting segments together, the `inputAnchor` of the second
-(or *isolated anchor*)
-gets *assigned* to the `outputAnchor` of the first, and so on. You can
+When connecting segments together, the `input` of the second
+gets *assigned* to the `output` of the first, and so on. You can
 choose to link segments upon instantiation, or anytime thereafter.
 
-  - A `segment` only observes its own `inputAnchor`.
-  - A `segment` only runs its operation if it has an `outputAnchor` assigned
+  - A `segment` only observes its own `input`.
+  - A `segment` only runs its operation if it has an `output` assigned
 
 
 <br />
@@ -187,7 +186,7 @@ The default behavior is to just forward the error.
 
 ##### Common Operations
 
-`QLoopCommon.Operation` provides some out-of-the-box operations for routing
+`QLCommon.Op` provides some out-of-the-box operations for routing
 your custom operations into dispatch queues. This is very useful for situations 
 where you need to stream input into something that expects it on a specific
 thread, such as when dealing with views for instance.
@@ -211,15 +210,15 @@ to an anchor essentially means to respond to its `onChange(_)` and/or
 Regarding that last item, you can feed an anchor from multiple inputs, but it can
 *retain* only one `segment` at a time.
 
-`QLoopAnchor` behaves as a **semaphore** by making use of synchronous dispatch
+`QLAnchor` behaves as a **semaphore** by making use of synchronous dispatch
 queues around its `value` and `error` nodes. Inputs can safely arrive on any thread,
 and the events are guaranteed to arrive in serial fashion, although their order is not.
 
-By default, `QLoopAnchor` always remembers the last `value` or `error` it received, but
+By default, `QLAnchor` always remembers the last `value` or `error` it received, but
 it  **releases them in production builds**. This behavior can be disabled by
 setting the anchor global config `releaseValues` to `false`:
 
-`QLoopCommon.Config.Anchor.releaseValues = false`
+`QLCommon.Config.Anchor.releaseValues = false`
 
 <br />
 

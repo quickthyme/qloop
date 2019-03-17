@@ -1,13 +1,13 @@
 
 import Dispatch
 
-fileprivate let inputQueue = DispatchQueue(label: "QLoopAnchor.InputQueue")
+fileprivate let inputQueue = DispatchQueue(label: "QLAnchor.InputQueue")
 
-public protocol AnyLoopAnchor: class {
-    var inputSegment: AnyLoopSegment? { get }
+public protocol AnyAnchor: class {
+    var inputSegment: AnySegment? { get }
 }
 
-public final class QLoopAnchor<Input>: AnyLoopAnchor {
+public final class QLAnchor<Input>: AnyAnchor {
     public typealias OnChange = (Input?)->()
     public typealias OnError = (Error)->()
 
@@ -35,7 +35,7 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
             inputQueue.sync { self._value = newValue }
             self.onChange(newValue)
 
-            if (QLoopCommon.Config.Anchor.releaseValues) {
+            if (QLCommon.Config.Anchor.releaseValues) {
                 inputQueue.sync { self._value = nil }
             }
         }
@@ -50,11 +50,11 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
             return safeError
         }
         set {
-            let err: Error = newValue ?? QLoopError.ErrorThrownButNotSet
+            let err: Error = newValue ?? QLCommon.Error.ThrownButNotSet
             inputQueue.sync { self._error = err }
             self.onError(err)
 
-            if (QLoopCommon.Config.Anchor.releaseValues) {
+            if (QLCommon.Config.Anchor.releaseValues) {
                 inputQueue.sync { self._error = nil }
             }
         }
@@ -64,5 +64,5 @@ public final class QLoopAnchor<Input>: AnyLoopAnchor {
     public var onChange: OnChange
     public var onError: OnError
 
-    public var inputSegment: AnyLoopSegment?
+    public var inputSegment: AnySegment?
 }

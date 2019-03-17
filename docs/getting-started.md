@@ -100,12 +100,10 @@ func MakeSparkles(awesomeSauce: Combustible) -> (((String?), (String?)->()) thro
 
 ```
     func inject() {
-        manaViewController
-            .doMagicLoop.bind(path:
-
-                QLoopPath<Void, Sparkles>(
-                    QLoopLinearSegment(1, MakeSparkles(awesomeSauce: .unicornSriracha)),
-                    QLoopLinearSegment(2, SafetyInspectSparkles()))
+        manaViewController.doMagicLoop
+            .bind(path: QLPath<Void, Sparkles>(
+                QLss(1, MakeSparkles(awesomeSauce: .unicornSriracha)),
+                QLss(2, SafetyInspectSparkles()))
     }
 
 ```
@@ -118,7 +116,7 @@ func MakeSparkles(awesomeSauce: Combustible) -> (((String?), (String?)->()) thro
 ...
     func test_when_magicAction_then_it_runs_the_loop() {
         subject.magicAction(nil)
-        XCTAssertEqual(subject.doMagicLoop.inputAnchor.input, true)
+        XCTAssertEqual(subject.doMagicLoop.input.value, true)
     }
 ...
 ```

@@ -2,16 +2,16 @@
 import XCTest
 import QLoop
 
-class QLoopCommonOperationDispatchMainTests: XCTestCase {
+class QLCommonOpDispatchMainTests: XCTestCase {
     typealias Completion = (Int?) -> ()
     typealias ErrCompletion = (Error) -> ()
     typealias Operation = (Int?, @escaping Completion) -> ()
     typealias Handler = (Error, @escaping Completion, @escaping ErrCompletion) -> ()
 
-    var subject: QLoopCommon.Operation.DispatchMain<Int>!
+    var subject: QLCommon.Op.DispatchMain<Int>!
 
     override func setUp() {
-        subject = QLoopCommon.Operation.DispatchMain()
+        subject = QLCommon.Op.DispatchMain()
     }
 
     func test_has_id() {
@@ -42,7 +42,7 @@ class QLoopCommonOperationDispatchMainTests: XCTestCase {
             expectDispatchMain.fulfill()
         }
 
-        subject.err(QLoopError.Unknown, completion, errCompletion)
+        subject.err(QLCommon.Error.Unknown, completion, errCompletion)
 
         wait(for: [expectDispatchMain], timeout: 6.0)
         XCTAssertNotNil(thread)

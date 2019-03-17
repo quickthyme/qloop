@@ -1,5 +1,5 @@
 
-public struct QLoopCommon {
+public struct QLCommon {
 
     public struct Config {
 
@@ -15,6 +15,11 @@ public struct QLoopCommon {
         }
     }
 
-    public struct Operation {
+    public struct Op { /**/ }
+
+    public enum Error: Swift.Error {
+        case AnchorMismatch
+        case Unknown
+        case ThrownButNotSet
     }
 }
