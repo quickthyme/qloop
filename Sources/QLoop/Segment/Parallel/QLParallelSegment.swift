@@ -8,14 +8,14 @@ public final class QLParallelSegment<Input, Output>: QLSegment<Input, Output> {
     public typealias ErrorHandler = QLSegment<Input, Output>.ErrorHandler
     public typealias Completion = QLSegment<Input, Output>.Completion
     public typealias ErrorCompletion = QLSegment<Input, Output>.ErrorCompletion
-    public typealias Transducer = (Output?, (Output?, (AnyHashable, Any?)) -> Output?)
+    public typealias Combiner = (Output?, (Output?, (AnyHashable, Any?)) -> Output?)
 
     public required init(_ operations: [AnyHashable:ParallelOperation],
-                         transducer: Transducer?,
+                         combiner: Combiner?,
                          errorHandler: ErrorHandler?,
                          output: QLAnchor<Output>?) {
         super.init()
-        if let tx = transducer { self.transducer = tx }
+        if let tx = combiner { self.combiner = tx }
         self.errorHandler = errorHandler
         self.operations = operations.map { ($0.key, $0.value) }
         self.output = output
@@ -38,7 +38,7 @@ public final class QLParallelSegment<Input, Output>: QLSegment<Input, Output> {
 
     public var operationQueues: [AnyHashable:DispatchQueue] = [:]
 
-    private var transducer: Transducer = (nil, { r,n in return (n.1 as? Output ?? r) })
+    private var combiner: Combiner = (nil, { r,n in return (n.1 as? Output ?? r) })
 
     private var operations: [(AnyHashable, ParallelOperation)] = []
 
@@ -88,7 +88,7 @@ public final class QLParallelSegment<Input, Output>: QLSegment<Input, Output> {
     }
 
     fileprivate func combineOperationResults(_ opResults:[(AnyHashable, Any?)]) {
-        let tr = self.transducer
+        let tr = self.combiner
         self.output?.value = opResults.reduce(tr.0, tr.1)
     }
 

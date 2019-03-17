@@ -10,7 +10,7 @@ class QLParallelSegmentTests: XCTestCase {
         let subject = QLParallelSegment<Void, String>(
             [0xAB:MockOp.VoidToInt(),
              0xCD:MockOp.VoidToInt()],
-            transducer: nil)
+            combiner: nil)
 
         XCTAssert(subject.operationIds.contains(0xAB))
         XCTAssert(subject.operationIds.contains(0xCD))
@@ -21,7 +21,7 @@ class QLParallelSegmentTests: XCTestCase {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLParallelSegment<Void, String>(
             ["genStr":MockOp.VoidToStr()],
-            transducer: nil,
+            combiner: nil,
             output: finalAnchor)
 
         subject.input.value = nil
@@ -35,7 +35,7 @@ class QLParallelSegmentTests: XCTestCase {
         let (captured, finalAnchor) = SpyAnchor<[String]>().CapturingAnchor
         let subject = QLParallelSegment<Int, [String]>(
             ["numStr":MockOp.IntToStr()],
-            transducer: (([] as [String]),
+            combiner: (([] as [String]),
                          { r,n in r! + [n.1 as? String ?? ""] }),
             output: finalAnchor)
 
@@ -51,7 +51,7 @@ class QLParallelSegmentTests: XCTestCase {
         let subject = QLParallelSegment<Int, String>(
             [1:MockOp.AddToInt(32),
              2:MockOp.AddToInt(24)],
-            transducer: ("",
+            combiner: ("",
                          { r, n in r! + "\(n.1 as? Int ?? 0)" }),
             errorHandler: nil)
         subject.output = finalAnchor
@@ -70,11 +70,11 @@ class QLParallelSegmentTests: XCTestCase {
         let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLParallelSegment<Int, String>(
             ["numStr":MockOp.IntToStr()],
-            transducer: nil,
+            combiner: nil,
             outputSegment:
             QLParallelSegment<String, String>(
                 ["addStr":MockOp.AddToStr(" eleven")],
-                transducer: nil,
+                combiner: nil,
                 output: finalAnchor))
 
         subject.input.value = 7
@@ -83,12 +83,12 @@ class QLParallelSegmentTests: XCTestCase {
         XCTAssertEqual(captured.value, "7 eleven")
     }
 
-    func test_givenTwoSegments_oneWithParallelOperationsAndTransducer_whenInputSet_itReduces_andCallsEndCompletionWithCorrectResult() {
+    func test_givenTwoSegments_oneWithParallelOperationsAndCombiner_whenInputSet_itReduces_andCallsEndCompletionWithCorrectResult() {
         let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
         let subject = QLParallelSegment<Int, Int>(
             ["add5":MockOp.AddToInt(5),
              "add4":MockOp.AddToInt(4)],
-            transducer: (0, { $0! + ($1.1 as? Int ?? 0) }),
+            combiner: (0, { $0! + ($1.1 as? Int ?? 0) }),
             outputSegment: QLSerialSegment("add10", MockOp.AddToInt(10),
                                            output: finalAnchor))
 
@@ -98,13 +98,13 @@ class QLParallelSegmentTests: XCTestCase {
         XCTAssertEqual(captured.value, 39)
     }
 
-    func test_givenTwoSegments_oneWithParallelOperationsAndTransducer_withAdditionalType_whenInputSet_itReduces_andCallsEndCompletionWithCorrectResult() {
+    func test_givenTwoSegments_oneWithParallelOperationsAndCombiner_withAdditionalType_whenInputSet_itReduces_andCallsEndCompletionWithCorrectResult() {
         let (captured, finalAnchor) = SpyAnchor<[Int]>().CapturingAnchor
 
         let subject = QLParallelSegment<Int, [Int]>(
             ["add8":MockOp.AddToInt(8),
              "add4":MockOp.AddToInt(4)],
-            transducer: ([] as [Int], { $0! + ([$1.1 as? Int ?? 0]) }),
+            combiner: ([] as [Int], { $0! + ([$1.1 as? Int ?? 0]) }),
             output: finalAnchor)
 
         subject.input.value = 10
@@ -117,7 +117,7 @@ class QLParallelSegmentTests: XCTestCase {
         let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
         let subject = QLParallelSegment<Int, Int>(
             ["numNum":MockOp.IntThrowsError(QLCommon.Error.Unknown)],
-            transducer: nil,
+            combiner: nil,
             output: finalAnchor)
 
         subject.input.value = 404
@@ -132,7 +132,7 @@ class QLParallelSegmentTests: XCTestCase {
         let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
         let subject = QLParallelSegment<Int, Int>(
             ["numNum":MockOp.AddToInt(5)],
-            transducer: nil,
+            combiner: nil,
             output: finalAnchor)
 
         subject.input.error = QLCommon.Error.Unknown
@@ -173,7 +173,7 @@ class QLParallelSegmentTests: XCTestCase {
 
         let seg1 = QLParallelSegment<Int, Int>(
             [1:MockOp.IntThrowsError(QLCommon.Error.Unknown)],
-            transducer: nil,
+            combiner: nil,
             errorHandler: handler,
             output: output)
 
@@ -189,7 +189,7 @@ class QLParallelSegmentTests: XCTestCase {
         let _ = QLParallelSegment<String, String>(
             ["plus":MockOp.AddToStr("plus"),
              "minus":MockOp.AddToStr("minus")],
-            transducer: nil,
+            combiner: nil,
             output: output)
 
         let last = output.inputSegment
@@ -206,7 +206,7 @@ class QLParallelSegmentTests: XCTestCase {
             QLParallelSegment<String, String>(
                 ["plus":MockOp.AddToStr("plus"),
                  "minus":MockOp.AddToStr("minus")],
-                transducer: nil,
+                combiner: nil,
                 outputSegment:
                 QLSerialSegment(
                     12, MockOp.AddToStr("Three"),
@@ -229,7 +229,7 @@ class QLParallelSegmentTests: XCTestCase {
             QLParallelSegment<String, String>(
                 ["plus":MockOp.AddToStr("plus"),
                  "minus":MockOp.AddToStr("minus")],
-                transducer: nil, errorHandler: nil,
+                combiner: nil, errorHandler: nil,
                 outputSegment: QLSerialSegment(
                     0x0C, MockOp.AddToStr("Three"),
 
@@ -254,7 +254,7 @@ class QLParallelSegmentTests: XCTestCase {
         let subject = QLParallelSegment<Void, [AnyHashable:Bool]>(
             ["main":GetIsMainThread("main"),
              "util":GetIsMainThread("util")],
-            transducer: ([:],
+            combiner: ([:],
                          { var d = $0; d?[$1.0] = ($1.1 as? Bool ?? false); return d }),
             errorHandler: nil,
             output: output)
