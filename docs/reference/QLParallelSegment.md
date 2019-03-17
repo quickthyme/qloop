@@ -34,6 +34,6 @@
 
 ##### Diagnostics
 
-- func findSegments(with operationId: `AnyHashable`) -> `[AnySegment]`
+- findSegments(with operationId: `AnyHashable`) -> `[AnySegment]`
 
-- func describeOperationPath( ) -> `String`
+- describeOperationPath( ) -> `String`

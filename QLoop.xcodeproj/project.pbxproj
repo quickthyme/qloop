@@ -254,7 +254,7 @@
 		DCD9D7C2223DDBAD00BBDEE2 /* QLPath.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QLPath.md; sourceTree = "<group>"; };
 		DCD9D7C3223DDE0900BBDEE2 /* QLoop.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QLoop.md; sourceTree = "<group>"; };
 		DCD9D7C4223DDF8900BBDEE2 /* QLParallelSegment.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QLParallelSegment.md; sourceTree = "<group>"; };
-		DCD9D7C5223DE0C800BBDEE2 /* QLSerialSegment copy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "QLSerialSegment copy.md"; sourceTree = "<group>"; };
+		DCD9D7C5223DE0C800BBDEE2 /* QLSerialSegment.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QLSerialSegment.md; sourceTree = "<group>"; };
 		DCF860C02239D02B0018C1A1 /* QLCommonOpDispatchGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLCommonOpDispatchGlobal.swift; sourceTree = "<group>"; };
 		DCF860C12239D02B0018C1A1 /* QLCommonOpDispatchMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLCommonOpDispatchMain.swift; sourceTree = "<group>"; };
 		DCF860CB2239D03E0018C1A1 /* QLCommonOpDispatchGlobalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QLCommonOpDispatchGlobalTests.swift; sourceTree = "<group>"; };
@@ -508,7 +508,7 @@
 				DCD9D7C3223DDE0900BBDEE2 /* QLoop.md */,
 				DCD9D7C1223DD8A900BBDEE2 /* QLAnchor.md */,
 				DCD9D7C2223DDBAD00BBDEE2 /* QLPath.md */,
-				DCD9D7C5223DE0C800BBDEE2 /* QLSerialSegment copy.md */,
+				DCD9D7C5223DE0C800BBDEE2 /* QLSerialSegment.md */,
 				DCD9D7C4223DDF8900BBDEE2 /* QLParallelSegment.md */,
 			);
 			path = reference;
