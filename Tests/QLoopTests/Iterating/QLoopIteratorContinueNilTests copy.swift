@@ -9,8 +9,8 @@ class QLoopIteratorContinueNilTests: XCTestCase {
         let subject = QLoopIteratorContinueNil()
         subject.iterate(mockLoop)
 
-        XCTAssertEqual(mockLoop.timesCalled_perform, 1)
-        XCTAssertEqual(mockLoop.timesCalled_performFromLastOutput, 0)
+        XCTAssertEqual(mockLoop.timesCalled_iteration, 1)
+        XCTAssertEqual(mockLoop.timesCalled_iterationFromLastOutput, 0)
     }
 
     func test_iterate_2_times_shouldCallPerform_2_times() {
@@ -19,8 +19,8 @@ class QLoopIteratorContinueNilTests: XCTestCase {
         subject.iterate(mockLoop)
         subject.iterate(mockLoop)
 
-        XCTAssertEqual(mockLoop.timesCalled_perform, 2)
-        XCTAssertEqual(mockLoop.timesCalled_performFromLastOutput, 0)
+        XCTAssertEqual(mockLoop.timesCalled_iteration, 2)
+        XCTAssertEqual(mockLoop.timesCalled_iterationFromLastOutput, 0)
     }
 
     func test_iterate_3_times_shouldCallPerform_3_times() {
@@ -30,8 +30,8 @@ class QLoopIteratorContinueNilTests: XCTestCase {
         subject.iterate(mockLoop)
         subject.iterate(mockLoop)
 
-        XCTAssertEqual(mockLoop.timesCalled_perform, 3)
-        XCTAssertEqual(mockLoop.timesCalled_performFromLastOutput, 0)
+        XCTAssertEqual(mockLoop.timesCalled_iteration, 3)
+        XCTAssertEqual(mockLoop.timesCalled_iterationFromLastOutput, 0)
     }
 
     func test_when_discontinue_becomes_true_then_it_should_stop() {
@@ -42,7 +42,7 @@ class QLoopIteratorContinueNilTests: XCTestCase {
         mockLoop.discontinue = true
         subject.iterate(mockLoop)
 
-        XCTAssertEqual(mockLoop.timesCalled_perform, 2)
-        XCTAssertEqual(mockLoop.timesCalled_performFromLastOutput, 0)
+        XCTAssertEqual(mockLoop.timesCalled_iteration, 2)
+        XCTAssertEqual(mockLoop.timesCalled_iterationFromLastOutput, 0)
     }
 }

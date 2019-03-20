@@ -1,4 +1,6 @@
 
+import Dispatch
+
 public final class QLSerialSegment<Input, Output>: QLSegment<Input, Output> {
     public typealias Operation = QLSegment<Input, Output>.Operation
     public typealias ErrorHandler = QLSegment<Input, Output>.ErrorHandler
@@ -33,17 +35,25 @@ public final class QLSerialSegment<Input, Output>: QLSegment<Input, Output> {
 
     public override var operationIds: [AnyHashable] { return [operationId] }
 
+    public lazy var operationQueue: DispatchQueue = DispatchQueue.main
+
     private final func applyInputObservers() {
-        guard let outAnchor = self.output else { return }
 
         self.input.onChange = ({ input in
-            let completion: Completion = { outAnchor.value = $0 }
-            do { try self.operation(input, completion) }
-            catch { type(of: self).handleError(error, self) }
+            self.operationQueue.async {
+                self.tryOperation(input)
+            }
         })
 
         self.input.onError = ({ error in
             type(of: self).handleError(error, self)
         })
+    }
+
+    private final func tryOperation(_ input: Input?) {
+        guard let outAnchor = self.output else { return }
+        let completion: Completion = { outAnchor.value = $0 }
+        do { try self.operation(input, completion) }
+        catch { type(of: self).handleError(error, self) }
     }
 }

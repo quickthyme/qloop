@@ -1,8 +1,6 @@
 
 import Dispatch
 
-fileprivate let completionQueue = DispatchQueue(label: "QLParallelSegment.CompletionQueue")
-
 internal extension QLParallelSegment {
 
     class OperationBox {
@@ -23,6 +21,7 @@ internal extension QLParallelSegment {
     }
 
     class OperationRunner: Hashable {
+        let completionQueue = DispatchQueue.init(label: "QLParallelSegment.CompletionQueue")
 
         init(_ id: AnyHashable,
              _ operations: [(AnyHashable, ParallelOperation)],
@@ -52,30 +51,30 @@ internal extension QLParallelSegment {
             do { try opBox.operation(input, { output in
                 opBox.value = output
                 opBox.completed = true
-                self.totalCompleted += 1 })
+                self.allCompleted = true })
             } catch {
                 self.errorCompletion(error)
             }
         }
 
-        var totalCompleted: Int {
+        var allCompleted: Bool {
             get {
-                var totalCompleted: Int = 0
-                completionQueue.sync { totalCompleted = self._totalCompleted }
-                return totalCompleted
+                var isCompleted: Bool = false
+                completionQueue.sync { isCompleted = self.__allCompleted }
+                return isCompleted
             }
             set {
-                completionQueue.sync { self._totalCompleted = newValue }
-                self.didSetTotalCompleted(newValue)
+                completionQueue.sync {
+                    if (self.__allCompleted == true) { return }
+                    self.__allCompleted = self.operations
+                        .reduce(true, { ($1.completed) ? $0 : false } )
+                    if (self.__allCompleted == true) {
+                        self.completion(operations.map { ($0.id, $0.value) })
+                    }
+                }
             }
         }
-
-        private var _totalCompleted: Int = 0
-
-        fileprivate func didSetTotalCompleted(_ totalCompleted: Int) {
-            guard (totalCompleted >= self.operations.count) else { return }
-            self.completion(operations.map { ($0.id, $0.value) })
-        }
+        private var __allCompleted: Bool = false
 
         static func == (lhs: QLParallelSegment<Input, Output>.OperationRunner,
                         rhs: QLParallelSegment<Input, Output>.OperationRunner) -> Bool {

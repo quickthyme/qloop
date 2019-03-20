@@ -1,8 +1,6 @@
 
 import Dispatch
 
-fileprivate let inputQueue = DispatchQueue(label: "QLAnchor.InputQueue")
-
 public protocol AnyAnchor: class {
     var inputSegment: AnySegment? { get }
 }
@@ -10,6 +8,8 @@ public protocol AnyAnchor: class {
 public final class QLAnchor<Input>: AnyAnchor {
     public typealias OnChange = (Input?)->()
     public typealias OnError = (Error)->()
+
+    lazy var inputQueue = DispatchQueue(label: "\(self).inputQueue")
 
     public convenience init() {
         self.init(onChange: {_ in }, onError: {_ in })
@@ -33,7 +33,9 @@ public final class QLAnchor<Input>: AnyAnchor {
         }
         set {
             inputQueue.sync { self._value = newValue }
-            self.onChange(newValue)
+            DispatchQueue.main.async {
+                self.onChange(newValue)
+            }
 
             if (QLCommon.Config.Anchor.releaseValues) {
                 inputQueue.sync { self._value = nil }
@@ -52,7 +54,9 @@ public final class QLAnchor<Input>: AnyAnchor {
         set {
             let err: Error = newValue ?? QLCommon.Error.ThrownButNotSet
             inputQueue.sync { self._error = err }
-            self.onError(err)
+            DispatchQueue.main.async {
+                self.onError(err)
+            }
 
             if (QLCommon.Config.Anchor.releaseValues) {
                 inputQueue.sync { self._error = nil }

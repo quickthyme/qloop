@@ -18,12 +18,14 @@ class QLSegmentTests: XCTestCase {
     }
 
     func test_segment_performs_operation_on_nil_input() {
-        let (captured, output) = SpyAnchor<String>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, output) = SpyAnchor<String>().CapturingAnchor(expect: expect)
         let seg = QLSerialSegment("numStr", MockOp.IntToStr(),
                                      output: output)
 
         seg.input.value = nil
 
+        wait(for: [expect], timeout: 8.0)
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value, "-1")
     }

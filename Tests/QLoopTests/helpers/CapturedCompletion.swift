@@ -14,10 +14,20 @@ class Captured<T> {
 
 extension Captured {
 
-    static func captureCompletion() -> (Captured<T>, (T?)->()) {
+    static func captureCompletion(expect: XCTestExpectation? = nil) -> (Captured<T>, (T?)->()) {
         let captured = Captured<T>()
         let completion: (T?)->() = {
             captured.capture($0)
+            expect?.fulfill()
+        }
+        return(captured, completion)
+    }
+
+    static func captureCompletionNonOpt(expect: XCTestExpectation? = nil) -> (Captured<T>, (T)->()) {
+        let captured = Captured<T>()
+        let completion: (T)->() = {
+            captured.capture($0)
+            expect?.fulfill()
         }
         return(captured, completion)
     }

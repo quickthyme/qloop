@@ -133,13 +133,6 @@ There are currently two types of segments to choose from:
  - `QLParallelSegment` - (or `QLps`) performs **multiple concurrent operations**,
    waiting for them all to complete before moving on.
 
-When connecting segments together, the `input` of the second
-gets *assigned* to the `output` of the first, and so on. You can
-choose to link segments upon instantiation, or anytime thereafter.
-
-  - A `segment` only observes its own `input`.
-  - A `segment` only runs its operation if it has an `output` assigned
-
 
 <br />
 
@@ -182,18 +175,6 @@ The error handler should *not* throw an error.
 
 The default behavior is to just forward the error.
 
-<br />
-
-##### Common Operations
-
-`QLCommon.Op` provides some out-of-the-box operations for routing
-your custom operations into dispatch queues. This is very useful for situations 
-where you need to stream input into something that expects it on a specific
-thread, such as when dealing with views for instance.
-
- - `DispatchGlobal(qosClass)`
- - `DispatchMain()`
-
 
 <br />
 
@@ -203,28 +184,14 @@ An `anchor` is what facilitates the **contract** binding segments. To bind
 to an anchor essentially means to respond to its `onChange(_)` and/or
 `onError(_)` events.
 
- - An `anchor` can only receive a `value` or an `error`
- - An `anchor` can only have **one subscriber**
- - An `anchor` *can* have **any number of input providers**
-
-Regarding that last item, you can feed an anchor from multiple inputs, but it can
-*retain* only one `segment` at a time.
-
-`QLAnchor` behaves as a **semaphore** by making use of synchronous dispatch
-queues around its `value` and `error` nodes. Inputs can safely arrive on any thread,
-and the events are guaranteed to arrive in serial fashion, although their order is not.
-
-By default, `QLAnchor` always remembers the last `value` or `error` it received, but
-it  **releases them in production builds**. This behavior can be disabled by
-setting the anchor global config `releaseValues` to `false`:
-
-`QLCommon.Config.Anchor.releaseValues = false`
 
 <br />
 
 ---
 
-For more, please refer to the **[Getting Started](getting-started.md)** guide
-or try out the **[demo app](https://github.com/quickthyme/qloop-demo)**!
+For more, please refer to the **[API Reference](reference.md)**.
+
+There's also the **[Getting Started](getting-started.md)** guide
+and a **[demo app](https://github.com/quickthyme/qloop-demo)**!
 
 <br />

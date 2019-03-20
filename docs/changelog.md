@@ -7,6 +7,22 @@
 
 <br />
 
+### 0.1.2
+
+- `QLoop` upgrades
+  - `onFinal` is now a thing ( called the same way as onChange, except only on final *iteration* )
+- `QLAnchor` upgrades
+  - default output and error sent on main thread (can be overriden if necessary)
+- `QLParallelSegment` upgrades
+  - guarantees async dispatch of operations
+  - more reliable operation completion handling
+- `QLSerialSegment` upgrades
+  - now can assign dispatch queue
+  - guarantees async dispatch of operation
+
+
+<br />
+
 ### 0.1.1
 
  - renaming and simplified interfaces
@@ -15,8 +31,7 @@
    - thread safety around operation runs
    - operations can now output any type
    - simpler `combiner` no longer requires intermediate type
- - Updated Documentation
- 
+
 
 <br />
 

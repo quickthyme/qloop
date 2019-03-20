@@ -5,23 +5,12 @@ public final class QLoop<Input, Output>: QLoopIterable {
     public typealias OnChange = QLAnchor<Output>.OnChange
     public typealias OnError = QLAnchor<Output>.OnError
 
-    public convenience init() {
-        self.init(iterator: QLoopIteratorSingle(), onChange: {_ in}, onError: {_ in})
-    }
-
-    public convenience init(onChange: @escaping (Output?)->()) {
-        self.init(iterator: QLoopIteratorSingle(), onChange: onChange, onError: {_ in})
-    }
-
-    public convenience init(iterator: QLoopIterating,
-                            onChange: @escaping OnChange) {
-        self.init(iterator: iterator, onChange: onChange, onError: {_ in})
-    }
-
     public required init(iterator: QLoopIterating,
+                         onFinal: @escaping OnChange,
                          onChange: @escaping OnChange,
                          onError: @escaping OnError) {
         self.iterator = iterator
+        self.onFinal = onFinal
         self.onChange = onChange
         self.onError = onError
         self.applyOutputObservers()
@@ -32,21 +21,29 @@ public final class QLoop<Input, Output>: QLoopIterable {
         didSet { applyOutputObservers() }
     }
 
+    private var lastValue: Output? = nil
+
     public func perform() {
-        input.value = nil
+        self.perform(nil)
     }
 
     public func perform(_ inputValue: Input?) {
+        self.iterator.reset()
         self.input.value = inputValue
     }
 
-    public func performFromLastOutput() {
-        self.perform(self.output.value as? Input)
+    public func iteration() {
+        self.input.value = nil
+    }
+
+    public func iterationFromLastOutput() {
+        self.input.value = (self.lastValue as? Input)
     }
 
     public var discontinue: Bool = false
     public var shouldResume: Bool = false
 
+    public var onFinal: OnChange
     public var onChange: OnChange
     public var onError: OnError
 
@@ -76,14 +73,17 @@ public final class QLoop<Input, Output>: QLoopIterable {
 
     private func applyOutputObservers() {
         self.output.onChange = ({
+            self.lastValue = $0
             self.onChange($0)
-            self.iterator.iterate(self)
+            if (self.iterator.iterate(self) == false) {
+                self.onFinal($0)
+            }
         })
 
         self.output.onError = ({
             self.onError($0)
             self.discontinue = !self.shouldResume
-            self.iterator.iterate(self)
+            let _ = self.iterator.iterate(self)
         })
     }
 }

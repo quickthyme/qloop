@@ -5,18 +5,18 @@ import QLoop
 class QLPathTests: XCTestCase {
 
     func test_givenTypeErasedPathBoundToLoop_objectReceivesFinalValue() {
-        let mockComponent = MockPhoneComponent()
-
+        let expect = expectation(description: "receive final value")
+        let mockComponent = MockPhoneComponent(expect)
         let loopPath = QLPath<Void, String>(
             QLSerialSegment(1, MockOp.VoidToInt(5)),
             QLSerialSegment(2, MockOp.AddToInt(5)),
             QLSerialSegment(3, MockOp.IntToStr()),
             QLSerialSegment(4, MockOp.AddToStr("Z")))!
-
         mockComponent.phoneDataLoop.bind(path: loopPath)
 
         mockComponent.userAction()
 
+        wait(for: [expect], timeout: 6.0)
         XCTAssertEqual(mockComponent.userPhoneNumberField, "10Z")
     }
 
@@ -47,8 +47,6 @@ class QLPathTests: XCTestCase {
         XCTAssert(seg1.output === seg2.input)
         XCTAssert(seg2.output === seg3.input)
         XCTAssert(seg3.output === seg4.input)
-        seg1.input.value = nil
-        XCTAssertEqual(seg4.input.value, "++--**")
     }
 
     func test_givenIncompatibleCompatibleSegment_whenConstructingPath_returnsNil() {

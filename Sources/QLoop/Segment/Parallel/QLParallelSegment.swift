@@ -1,14 +1,14 @@
 
 import Dispatch
 
-fileprivate let startingQueue = DispatchQueue(label: "QLParallelSegment.StartingQueue")
-
 public final class QLParallelSegment<Input, Output>: QLSegment<Input, Output> {
     public typealias ParallelOperation = QLSegment<Input, Any>.Operation
     public typealias ErrorHandler = QLSegment<Input, Output>.ErrorHandler
     public typealias Completion = QLSegment<Input, Output>.Completion
     public typealias ErrorCompletion = QLSegment<Input, Output>.ErrorCompletion
     public typealias Combiner = (Output?, (Output?, (AnyHashable, Any?)) -> Output?)
+
+    lazy var startingQueue = DispatchQueue(label: "\(self).startingQueue")
 
     public required init(_ operations: [AnyHashable:ParallelOperation],
                          combiner: Combiner?,

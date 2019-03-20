@@ -1,10 +1,12 @@
 
 public protocol QLoopIterating: class {
-    func iterate(_ loop: QLoopIterable)
+    @discardableResult
+    func iterate(_ loop: QLoopIterable) -> Bool
+    func reset()
 }
 
 public protocol QLoopIterable {
     var discontinue: Bool { get }
-    func perform()
-    func performFromLastOutput()
+    func iteration()
+    func iterationFromLastOutput()
 }

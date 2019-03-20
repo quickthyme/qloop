@@ -15,8 +15,6 @@ public struct QLCommon {
         }
     }
 
-    public struct Op { /**/ }
-
     public enum Error: Swift.Error {
         case AnchorMismatch
         case Unknown

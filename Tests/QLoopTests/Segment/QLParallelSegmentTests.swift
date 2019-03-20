@@ -17,8 +17,8 @@ class QLParallelSegmentTests: XCTestCase {
     }
 
     func test_basicSegmentWithOutputAnchor_whenInputSet_itCallsCompletionWithoutResult() {
-
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, finalAnchor) = SpyAnchor<String>().CapturingAnchor(expect: expect)
         let subject = QLParallelSegment<Void, String>(
             ["genStr":MockOp.VoidToStr()],
             combiner: nil,
@@ -26,13 +26,14 @@ class QLParallelSegmentTests: XCTestCase {
 
         subject.input.value = nil
 
+        wait(for: [expect], timeout: 8.0)
         XCTAssertTrue(captured.didHappen)
         XCTAssertNil(captured.value)
     }
 
     func test_givenIntToStringAndOutputAnchor_whenInputSet_itCallsCompletionWithResult() {
-
-        let (captured, finalAnchor) = SpyAnchor<[String]>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, finalAnchor) = SpyAnchor<[String]>().CapturingAnchor(expect: expect)
         let subject = QLParallelSegment<Int, [String]>(
             ["numStr":MockOp.IntToStr()],
             combiner: (([] as [String]),
@@ -41,33 +42,44 @@ class QLParallelSegmentTests: XCTestCase {
 
         subject.input.value = 3
 
+        wait(for: [expect], timeout: 8.0)
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value, ["3"])
     }
 
-    func test_givenIntToStringAndOutputAnchor_whenInputSet_repeatedly_itShouldStillOutputResults() {
+    func test_whenInputSet_repeatedly_itShouldStillOutputResults() {
+        let expect = expectation(description: "shouldComplete")
+        let captured = Captured<String>()
+        let iterationsExpected: Int = 32
+        var iterationsCounted: Int = 0
+        let finalAnchor = QLAnchor<String>(onChange: ({
+            captured.capture($0)
+            iterationsCounted += 1
+            if (iterationsCounted == iterationsExpected) {
+                expect.fulfill()
+            }
+        }))
 
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
         let subject = QLParallelSegment<Int, String>(
             [1:MockOp.AddToInt(32),
              2:MockOp.AddToInt(24)],
-            combiner: ("",
-                         { r, n in r! + "\(n.1 as? Int ?? 0)" }),
+            combiner: ("", { r, n in r! + "\(n.1 as? Int ?? 0)" }),
             errorHandler: nil)
         subject.output = finalAnchor
 
-        for i in 0..<32 {
+        for i in 0..<iterationsExpected {
             subject.input.value = 2 * i
         }
 
+        wait(for: [expect], timeout: 8.0)
         XCTAssertEqual(captured.valueStream.count, 32)
         XCTAssert(captured.valueStream[0] == "2432"
             || captured.valueStream[0] == "3224")
     }
 
     func test_givenTwoSegments_whenInputSet_itCallsEndCompletionWithCorrectResult() {
-        
-        let (captured, finalAnchor) = SpyAnchor<String>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, finalAnchor) = SpyAnchor<String>().CapturingAnchor(expect: expect)
         let subject = QLParallelSegment<Int, String>(
             ["numStr":MockOp.IntToStr()],
             combiner: nil,
@@ -79,12 +91,14 @@ class QLParallelSegmentTests: XCTestCase {
 
         subject.input.value = 7
 
+        wait(for: [expect], timeout: 8.0)
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value, "7 eleven")
     }
 
     func test_givenTwoSegments_oneWithParallelOperationsAndCombiner_whenInputSet_itReduces_andCallsEndCompletionWithCorrectResult() {
-        let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, finalAnchor) = SpyAnchor<Int>().CapturingAnchor(expect: expect)
         let subject = QLParallelSegment<Int, Int>(
             ["add5":MockOp.AddToInt(5),
              "add4":MockOp.AddToInt(4)],
@@ -94,13 +108,14 @@ class QLParallelSegmentTests: XCTestCase {
 
         subject.input.value = 10
 
+        wait(for: [expect], timeout: 8.0)
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value, 39)
     }
 
     func test_givenTwoSegments_oneWithParallelOperationsAndCombiner_withAdditionalType_whenInputSet_itReduces_andCallsEndCompletionWithCorrectResult() {
-        let (captured, finalAnchor) = SpyAnchor<[Int]>().CapturingAnchor
-
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, finalAnchor) = SpyAnchor<[Int]>().CapturingAnchor(expect: expect)
         let subject = QLParallelSegment<Int, [Int]>(
             ["add8":MockOp.AddToInt(8),
              "add4":MockOp.AddToInt(4)],
@@ -109,12 +124,14 @@ class QLParallelSegmentTests: XCTestCase {
 
         subject.input.value = 10
 
+        wait(for: [expect], timeout: 8.0)
         XCTAssertTrue(captured.didHappen)
         XCTAssertEqual(captured.value?.sorted(), [14,18])
     }
 
     func test_whenErrorThrown_itPropagatesErrorToOutputAnchor() {
-        let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, capturedError, finalAnchor) = SpyAnchor<Int>().CapturingAnchor(expect: expect)
         let subject = QLParallelSegment<Int, Int>(
             ["numNum":MockOp.IntThrowsError(QLCommon.Error.Unknown)],
             combiner: nil,
@@ -122,14 +139,16 @@ class QLParallelSegmentTests: XCTestCase {
 
         subject.input.value = 404
 
-        XCTAssert((finalAnchor.error as? QLCommon.Error) == QLCommon.Error.Unknown)
+        wait(for: [expect], timeout: 8.0)
+        XCTAssert((capturedError.value as? QLCommon.Error) == QLCommon.Error.Unknown)
         XCTAssertNil(finalAnchor.value)
         XCTAssertFalse(captured.didHappen)
         XCTAssertNotEqual(captured.value, 404)
     }
 
     func test_whenInputErrorIsReceived_itPropagatesErrorToOutputAnchor() {
-        let (captured, finalAnchor) = SpyAnchor<Int>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, capturedError, finalAnchor) = SpyAnchor<Int>().CapturingAnchor(expect: expect)
         let subject = QLParallelSegment<Int, Int>(
             ["numNum":MockOp.AddToInt(5)],
             combiner: nil,
@@ -137,14 +156,16 @@ class QLParallelSegmentTests: XCTestCase {
 
         subject.input.error = QLCommon.Error.Unknown
 
-        XCTAssert((finalAnchor.error as? QLCommon.Error) == QLCommon.Error.Unknown)
+        wait(for: [expect], timeout: 8.0)
+        XCTAssert((capturedError.value as? QLCommon.Error) == QLCommon.Error.Unknown)
         XCTAssertNil(finalAnchor.value)
         XCTAssertFalse(captured.didHappen)
         XCTAssertNotEqual(captured.value, 404)
     }
 
     func test_givenParallelSegment_withErrorHandlerSet_whenErrorThrown_itHandles() {
-        let (captured, output) = SpyAnchor<Int>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, output) = SpyAnchor<Int>().CapturingAnchor(expect: expect)
         var err: Error? = nil
         let handler: QLParallelSegment<Int, Int>.ErrorHandler = {
             error, completion, errCompletion in
@@ -158,12 +179,15 @@ class QLParallelSegmentTests: XCTestCase {
         seg1.output = output
 
         seg1.input.value = 4
+
+        wait(for: [expect], timeout: 8.0)
         XCTAssertNotNil(err)
         XCTAssertTrue(captured.didHappen)
     }
 
     func test_givenParallelSegment_withErrorHandler_whenChoosesErrorPath_outputGetsError() {
-        let (captured, output) = SpyAnchor<Int>().CapturingAnchor
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, output) = SpyAnchor<Int>().CapturingAnchor(expect: expect)
         var err: Error? = nil
         let handler: QLParallelSegment<Int, Int>.ErrorHandler = {
             error, _, errCompletion in
@@ -178,6 +202,8 @@ class QLParallelSegmentTests: XCTestCase {
             output: output)
 
         seg1.input.value = 4
+
+        wait(for: [expect], timeout: 8.0)
         XCTAssertNotNil(err)
         XCTAssertFalse(captured.didHappen)
         XCTAssertNotNil(output.error)
@@ -242,28 +268,28 @@ class QLParallelSegmentTests: XCTestCase {
     }
 
     func test_when_starting_with_multiple_operation_queues_it_should_launch_operations_accordingly() {
-        let expectOperationsCompleted = expectation(description: "expectOperationsCompleted")
-        let utilQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.utility)
+        let expect = expectation(description: "expect all operations completed using correct queues")
+        let utilQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated)
         let mainQueue = DispatchQueue.main
         let output = QLAnchor<[AnyHashable:Bool]>(
             onChange: ({ _ in
-                expectOperationsCompleted.fulfill()
+                expect.fulfill()
             })
         )
 
         let subject = QLParallelSegment<Void, [AnyHashable:Bool]>(
             ["main":GetIsMainThread("main"),
              "util":GetIsMainThread("util")],
-            combiner: ([:],
-                         { var d = $0; d?[$1.0] = ($1.1 as? Bool ?? false); return d }),
+            combiner: ([:], { var d = $0; d?[$1.0] = ($1.1 as? Bool ?? false); return d }),
             errorHandler: nil,
             output: output)
+
         subject.operationQueues["main"] = mainQueue
         subject.operationQueues["util"] = utilQueue
 
         subject.input.value = ()
 
-        wait(for: [expectOperationsCompleted], timeout: 8.0)
+        wait(for: [expect], timeout: 8.0)
         XCTAssertEqual(output.value, ["main":true,"util":false])
     }
 
