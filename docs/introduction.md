@@ -15,7 +15,7 @@ At a high level, features it provides include:
   - *test-friendly* observer-pattern module favoring declarative composition
   - built-in error propagation
   - swiftPM compatible package
-  - universal cross-platform
+  - universal swift module
 
 #### More promising
 

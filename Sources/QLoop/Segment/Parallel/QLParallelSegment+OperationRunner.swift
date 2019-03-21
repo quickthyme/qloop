@@ -39,11 +39,8 @@ internal extension QLParallelSegment {
 
         func run(_ input: Input?) {
             for opBox in self.operations {
-                if let queue = opBox.queue {
-                    queue.async { self.runOperation(input, opBox) }
-                } else {
-                    runOperation(input, opBox)
-                }
+                let queue = opBox.queue ?? DispatchQueue.main
+                queue.async { self.runOperation(input, opBox) }
             }
         }
 
