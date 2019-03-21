@@ -11,7 +11,7 @@
   - *test-friendly* observer-pattern module favoring declarative composition
   - built-in error propagation
   - swiftPM compatible package
-  - universal cross-platform
+  - universal swift module
 
 <br />
 
@@ -24,14 +24,15 @@
 ## [API Reference](docs/reference.md)
 
 
+## [Change Log](docs/changelog.md)
+
+
 ## [Demo App](https://github.com/quickthyme/qloop-demo)
 
 The example app, *[qloop-demo](https://github.com/quickthyme/qloop-demo)*,
 demonstrates how to write a declarative iOS app using QLoop, which includes
 real-world working examples of static composition, error handling, concurrent
 threads, and unit-testing.
-
-## [Change Log](docs/changelog.md)
 
  
  <br />
