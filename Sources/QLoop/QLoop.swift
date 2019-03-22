@@ -54,6 +54,11 @@ public final class QLoop<Input, Output>: QLoopIterable {
         self.output = path.output
     }
 
+    public func bind(segment: QLSegment<Input, Output>) {
+        segment.output = self.output
+        self.input = segment.input
+    }
+
     public func destroy() {
         self.input = QLAnchor<Input>()
         self.output = QLAnchor<Output>()

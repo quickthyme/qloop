@@ -51,6 +51,8 @@
 
 - bind(path: `QLPath` )
 
+- bind(segment: `QLSegment` )
+
 - destroy( )
 
 
