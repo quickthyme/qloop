@@ -7,6 +7,14 @@
 
 <br />
 
+### 0.1.3
+
+- added `bind(segment:)` to `QLoop`
+- fixed dispatch bug in `QLParallelSegment`
+
+
+<br />
+
 ### 0.1.2
 
 - `QLoop` upgrades

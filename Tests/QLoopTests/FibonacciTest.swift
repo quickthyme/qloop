@@ -4,35 +4,20 @@ import XCTest
 
 class FibonacciTest: XCTestCase {
 
-    func makeFibonacciSegment() -> QLSegment<(Int, Int), (Int, Int)> {
-        return QLSerialSegment(
-            "fibonacci",
-            ({
-                guard let (current, prev) = $0 else { throw QLCommon.Error.Unknown }
-                let new = current + prev
-                $1( (new, current) )
-            }))
-    }
-
     func test_using_loop_to_generate_fibonacci_sequence() {
-        let expectComplete = expectation(description: "shouldComplete")
-        let iterator = QLoopIteratorContinueOutputMax(64)
+        let expect = expectation(description: "should cycle 64 times")
         let loop = QLoop<(Int, Int), (Int, Int)>(
-            iterator: iterator,
-            onFinal: ({ _ in
-                expectComplete.fulfill()
-            }),
+            iterator: QLoopIteratorContinueOutputMax(64),
+            onFinal: ({ _ in expect.fulfill() }))
 
-            onChange: ({
-                print("-- \($0!.0)")
-            }))
-
-        loop.bind(path: QLPath(makeFibonacciSegment())! )
-
-        print("fibonacci sequence depth 64...")
+        loop.bind(segment:
+            QLss("fibonacci", ({
+                let (cur, pre) = $0!
+                $1( (cur + pre, cur) )
+            })))
         loop.perform((1,0))
 
-        wait(for: [expectComplete], timeout: 8.0)
+        wait(for: [expect], timeout: 6.0)
         let finalValue = loop.output.value!.0
         XCTAssertEqual(finalValue , 17167680177565)
     }
