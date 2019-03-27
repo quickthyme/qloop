@@ -1,56 +1,92 @@
 
 public extension QLoop {
-    public convenience init() {
-        self.init(iterator: QLoopIteratorSingle(), onFinal: {_ in}, onChange: {_ in}, onError: {_ in})
+    private static func emptyOut(_ o: Output?)->() {/**/}
+    private static func emptyErr(_ e: Error)->() {/**/}
+
+    convenience init() {
+        self.init(iterator: QLoopIteratorSingle(),
+                  onFinal: QLoop.emptyOut,
+                  onChange: QLoop.emptyOut,
+                  onError: QLoop.emptyErr)
     }
 
-    public convenience init(iterator: QLoopIterating) {
-        self.init(iterator: iterator, onFinal: {_ in}, onChange: {_ in}, onError: {_ in})
+    convenience init(iterator: QLoopIterating) {
+        self.init(iterator: iterator,
+                  onFinal: QLoop.emptyOut,
+                  onChange: QLoop.emptyOut,
+                  onError: QLoop.emptyErr)
     }
 
-    public convenience init(onChange: @escaping OnChange) {
-        self.init(iterator: QLoopIteratorSingle(), onFinal: {_ in}, onChange: onChange, onError: {_ in})
+    convenience init(onChange: @escaping OnChange) {
+        self.init(iterator: QLoopIteratorSingle(),
+                  onFinal: QLoop.emptyOut,
+                  onChange: onChange,
+                  onError: QLoop.emptyErr)
     }
 
-    public convenience init(onChange: @escaping OnChange,
-                            onError: @escaping OnError) {
-        self.init(iterator: QLoopIteratorSingle(), onFinal: {_ in}, onChange: onChange, onError: onError)
+    convenience init(onChange: @escaping OnChange,
+                     onError: @escaping OnError) {
+        self.init(iterator: QLoopIteratorSingle(),
+                  onFinal: QLoop.emptyOut,
+                  onChange: onChange,
+                  onError: onError)
     }
 
-    public convenience init(iterator: QLoopIterating,
-                            onChange: @escaping OnChange) {
-        self.init(iterator: iterator, onFinal: {_ in}, onChange: onChange, onError: {_ in})
+    convenience init(iterator: QLoopIterating,
+                     onChange: @escaping OnChange) {
+        self.init(iterator: iterator,
+                  onFinal: QLoop.emptyOut,
+                  onChange: onChange,
+                  onError: QLoop.emptyErr)
     }
 
-    public convenience init(iterator: QLoopIterating,
-                            onError: @escaping OnError) {
-        self.init(iterator: iterator, onFinal: {_ in}, onChange: {_ in}, onError: onError)
+    convenience init(iterator: QLoopIterating,
+                     onError: @escaping OnError) {
+        self.init(iterator: iterator,
+                  onFinal: QLoop.emptyOut,
+                  onChange: QLoop.emptyOut,
+                  onError: onError)
     }
 
-    public convenience init(iterator: QLoopIterating,
-                            onChange: @escaping OnChange,
-                            onError: @escaping OnError) {
-        self.init(iterator: iterator, onFinal: {_ in}, onChange: onChange, onError: onError)
+    convenience init(iterator: QLoopIterating,
+                     onChange: @escaping OnChange,
+                     onError: @escaping OnError) {
+        self.init(iterator: iterator,
+                  onFinal: QLoop.emptyOut,
+                  onChange: onChange,
+                  onError: onError)
     }
 
-    public convenience init(onFinal: @escaping OnChange) {
-        self.init(iterator: QLoopIteratorSingle(), onFinal: onFinal, onChange: {_ in}, onError: {_ in})
+    convenience init(onFinal: @escaping OnChange) {
+        self.init(iterator: QLoopIteratorSingle(),
+                  onFinal: onFinal,
+                  onChange: QLoop.emptyOut,
+                  onError: QLoop.emptyErr)
     }
 
-    public convenience init(iterator: QLoopIterating,
-                            onFinal: @escaping OnChange) {
-        self.init(iterator: iterator, onFinal: onFinal, onChange: {_ in}, onError: {_ in})
+    convenience init(iterator: QLoopIterating,
+                     onFinal: @escaping OnChange) {
+        self.init(iterator: iterator,
+                  onFinal: onFinal,
+                  onChange: QLoop.emptyOut,
+                  onError: QLoop.emptyErr)
     }
 
-    public convenience init(iterator: QLoopIterating,
-                            onFinal: @escaping OnChange,
-                            onChange: @escaping OnChange) {
-        self.init(iterator: iterator, onFinal: onFinal, onChange: onChange, onError: {_ in})
+    convenience init(iterator: QLoopIterating,
+                     onFinal: @escaping OnChange,
+                     onChange: @escaping OnChange) {
+        self.init(iterator: iterator,
+                  onFinal: onFinal,
+                  onChange: onChange,
+                  onError: QLoop.emptyErr)
     }
 
-    public convenience init(iterator: QLoopIterating,
-                            onFinal: @escaping OnChange,
-                            onError: @escaping OnError) {
-        self.init(iterator: iterator, onFinal: onFinal, onChange: {_ in}, onError: onError)
+    convenience init(iterator: QLoopIterating,
+                     onFinal: @escaping OnChange,
+                     onError: @escaping OnError) {
+        self.init(iterator: iterator,
+                  onFinal: onFinal,
+                  onChange: QLoop.emptyOut,
+                  onError: onError)
     }
 }

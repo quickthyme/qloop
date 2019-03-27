@@ -22,3 +22,5 @@ and what it is, please read the [introduction](introduction.md) and the
 
 
 #### [QLSerialSegment](reference/QLSerialSegment.md)
+
+<br />

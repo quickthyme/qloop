@@ -40,7 +40,7 @@ open class QLPath<Input, Output> {
         return output.inputSegment?.describeOperationPath() ?? ""
     }
 
-    public final func operationPath() -> [([AnyHashable], Bool)] {
+    public final func operationPath() -> QLoopOperationPath {
         return output.inputSegment?.operationPath() ?? []
     }
 }

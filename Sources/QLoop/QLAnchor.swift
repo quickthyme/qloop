@@ -11,14 +11,6 @@ public final class QLAnchor<Input>: AnyAnchor {
 
     lazy var inputQueue = DispatchQueue(label: "\(self).inputQueue")
 
-    public convenience init() {
-        self.init(onChange: {_ in }, onError: {_ in })
-    }
-
-    public convenience init(onChange: @escaping OnChange) {
-        self.init(onChange: onChange, onError: {_ in })
-    }
-
     public required init(onChange: @escaping OnChange,
                          onError: @escaping OnError) {
         self.onChange = onChange

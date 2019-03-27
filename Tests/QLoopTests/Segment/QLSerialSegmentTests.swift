@@ -7,6 +7,7 @@ class QLSerialSegmentTests: XCTestCase {
     func test_reveals_its_operation_ids() {
         let subject = QLSerialSegment<Void, String>(7, MockOp.VoidToStr())
 
+        XCTAssertNotNil(subject.operation)
         XCTAssertEqual(subject.operationIds, [7])
     }
 

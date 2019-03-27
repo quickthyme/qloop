@@ -17,3 +17,5 @@ class MockLoopIterator: QLoopIterating {
         return shouldIterate
     }
 }
+
+class MockLoopResettableIterator: MockLoopIterator, QLoopIteratingResettable {}

@@ -59,6 +59,10 @@
 		DC413D37223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */; };
 		DC413D38223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */; };
 		DC413D39223B24D800000480 /* QLCommonConfigAnchorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */; };
+		DC5E449F224AFC670007FEAD /* QLAnchor+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E449E224AFC2B0007FEAD /* QLAnchor+ConvenienceInit.swift */; };
+		DC5E44A0224AFC680007FEAD /* QLAnchor+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E449E224AFC2B0007FEAD /* QLAnchor+ConvenienceInit.swift */; };
+		DC5E44A1224AFC680007FEAD /* QLAnchor+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E449E224AFC2B0007FEAD /* QLAnchor+ConvenienceInit.swift */; };
+		DC5E44A2224AFC690007FEAD /* QLAnchor+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E449E224AFC2B0007FEAD /* QLAnchor+ConvenienceInit.swift */; };
 		DC68AB052234609600BC3528 /* QLPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLPathTests.swift */; };
 		DC68AB062234609600BC3528 /* QLPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLPathTests.swift */; };
 		DC68AB072234609600BC3528 /* QLPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68AB042234609600BC3528 /* QLPathTests.swift */; };
@@ -210,6 +214,7 @@
 		DC374A62223200E7006F1272 /* QLoopIteratorContinueOutputMaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLoopIteratorContinueOutputMaxTests.swift; sourceTree = "<group>"; };
 		DC413D22223B191300000480 /* QLCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLCommon.swift; sourceTree = "<group>"; };
 		DC413D36223B24D800000480 /* QLCommonConfigAnchorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLCommonConfigAnchorTests.swift; sourceTree = "<group>"; };
+		DC5E449E224AFC2B0007FEAD /* QLAnchor+ConvenienceInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QLAnchor+ConvenienceInit.swift"; sourceTree = "<group>"; };
 		DC68AB042234609600BC3528 /* QLPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLPathTests.swift; sourceTree = "<group>"; };
 		DC6FAED0222F4039008BB070 /* libQLoop-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC6FAEDE222F4130008BB070 /* libQLoop-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libQLoop-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,6 +389,7 @@
 				DCA1FD0B22303D22006015BD /* QLoop.swift */,
 				DC8574832240BB0700AEDF95 /* QLoop+ConvenienceInit.swift */,
 				DC6FAF5D222F4EF5008BB070 /* QLAnchor.swift */,
+				DC5E449E224AFC2B0007FEAD /* QLAnchor+ConvenienceInit.swift */,
 				DC8F2B58223342E000277F70 /* QLPath.swift */,
 				DCF860BF2239D02B0018C1A1 /* Common */,
 				DC374A322231F28A006F1272 /* Iterating */,
@@ -652,7 +658,7 @@
 				TargetAttributes = {
 					DC6FAECF222F4039008BB070 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					DC6FAEDD222F4130008BB070 = {
 						CreatedOnToolsVersion = 10.1;
@@ -665,6 +671,7 @@
 					};
 					DC6FAF00222F41DD008BB070 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					DC6FAF0F222F4231008BB070 = {
 						CreatedOnToolsVersion = 10.1;
@@ -680,6 +687,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = DC6FAEC7222F4039008BB070;
 			productRefGroup = DC6FAED1222F4039008BB070 /* Products */;
@@ -729,6 +737,7 @@
 				DCA1FD1A2230B827006015BD /* QLParallelSegment.swift in Sources */,
 				DC374A2E2231F20C006F1272 /* QLoopIterating.swift in Sources */,
 				DC8574842240BB0700AEDF95 /* QLoop+ConvenienceInit.swift in Sources */,
+				DC5E449F224AFC670007FEAD /* QLAnchor+ConvenienceInit.swift in Sources */,
 				DC9BDBD6223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */,
 				DC374A292231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
 				DC8F2B59223342E000277F70 /* QLPath.swift in Sources */,
@@ -753,6 +762,7 @@
 				DCA1FD1B2230B827006015BD /* QLParallelSegment.swift in Sources */,
 				DC374A2F2231F20C006F1272 /* QLoopIterating.swift in Sources */,
 				DC8574852240BB0700AEDF95 /* QLoop+ConvenienceInit.swift in Sources */,
+				DC5E44A0224AFC680007FEAD /* QLAnchor+ConvenienceInit.swift in Sources */,
 				DC9BDBD7223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */,
 				DC374A2A2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
 				DC8F2B5A223342E000277F70 /* QLPath.swift in Sources */,
@@ -777,6 +787,7 @@
 				DCA1FD1C2230B827006015BD /* QLParallelSegment.swift in Sources */,
 				DC374A302231F20C006F1272 /* QLoopIterating.swift in Sources */,
 				DC8574862240BB0700AEDF95 /* QLoop+ConvenienceInit.swift in Sources */,
+				DC5E44A1224AFC680007FEAD /* QLAnchor+ConvenienceInit.swift in Sources */,
 				DC9BDBD8223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */,
 				DC374A2B2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
 				DC8F2B5B223342E000277F70 /* QLPath.swift in Sources */,
@@ -801,6 +812,7 @@
 				DCA1FD1D2230B827006015BD /* QLParallelSegment.swift in Sources */,
 				DC374A312231F20C006F1272 /* QLoopIterating.swift in Sources */,
 				DC8574872240BB0700AEDF95 /* QLoop+ConvenienceInit.swift in Sources */,
+				DC5E44A2224AFC690007FEAD /* QLAnchor+ConvenienceInit.swift in Sources */,
 				DC9BDBD9223C752200EC253B /* QLParallelSegment+OperationRunner.swift in Sources */,
 				DC374A2C2231ECD9006F1272 /* QLoopIteratorSingle.swift in Sources */,
 				DC8F2B5C223342E000277F70 /* QLPath.swift in Sources */,
@@ -1053,7 +1065,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1074,7 +1086,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1187,7 +1199,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.quickthyme.QLoop-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1206,7 +1218,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "net.quickthyme.QLoop-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

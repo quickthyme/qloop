@@ -8,8 +8,10 @@ public protocol AnySegment: class {
     func applyOutputAnchor(_ otherAnchor: AnyAnchor)
     func findSegments(with operationId: AnyHashable) -> [AnySegment]
     func describeOperationPath() -> String
-    func operationPath() -> [([AnyHashable], Bool)]
+    func operationPath() -> QLoopOperationPath
 }
+
+public typealias QLoopOperationPath = [(operationIds: [AnyHashable], hasErrorHandler: Bool)]
 
 open class QLSegment<Input, Output>: AnySegment {
     public typealias Operation = (Input?, @escaping Completion) throws -> ()
@@ -95,14 +97,14 @@ open class QLSegment<Input, Output>: AnySegment {
         })
     }
 
-    public func operationPath() -> [([AnyHashable], Bool)] {
+    public func operationPath() -> QLoopOperationPath {
         return type(of: self).operationPath(fromSegment: self)
     }
 
     public static func operationPath(fromSegment: AnySegment,
-                                     currentResults: [([AnyHashable], Bool)] = []) -> [([AnyHashable], Bool)] {
-        let newResults = [(fromSegment.operationIds, fromSegment.hasErrorHandler)] + currentResults
+                                     _ preResults: QLoopOperationPath = []) -> QLoopOperationPath {
+        let newResults = [(fromSegment.operationIds, fromSegment.hasErrorHandler)] + preResults
         guard let next = fromSegment.inputAnchor.inputSegment else { return newResults }
-        return operationPath(fromSegment: next, currentResults: newResults)
+        return operationPath(fromSegment: next, newResults)
     }
 }

@@ -28,7 +28,9 @@ public final class QLoop<Input, Output>: QLoopIterable {
     }
 
     public func perform(_ inputValue: Input?) {
-        self.iterator.reset()
+        if let iterator = self.iterator as? QLoopIteratingResettable {
+            iterator.reset()
+        }
         self.input.value = inputValue
     }
 
@@ -72,7 +74,7 @@ public final class QLoop<Input, Output>: QLoopIterable {
         return output.inputSegment?.describeOperationPath() ?? ""
     }
 
-    public func operationPath() -> [([AnyHashable], Bool)] {
+    public func operationPath() -> QLoopOperationPath {
         return output.inputSegment?.operationPath() ?? []
     }
 

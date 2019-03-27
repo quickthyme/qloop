@@ -7,6 +7,15 @@
 
 <br />
 
+### 0.1.4
+
+- updated for swift 5
+- `QLoopIteratingResettable` separated from `QLoopIterating`
+  (avoids having to implement empty `reset()` functions on iterators that
+  never reset.)
+
+<br />
+
 ### 0.1.3
 
 - added `bind(segment:)` to `QLoop`

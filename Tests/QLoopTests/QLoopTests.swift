@@ -4,15 +4,22 @@ import QLoop
 
 class QLoopTests: XCTestCase {
 
-    func test_calling_perform_resets_the_iterator() {
+    func test_calling_perform_with_non_resettable_iterator_does_not_reset_the_iterator() {
         let mockIterator = MockLoopIterator()
+        let loop = QLoop<Void, Void>(iterator: mockIterator)
+        loop.perform()
+        XCTAssertFalse(mockIterator.didCall_reset)
+    }
+
+    func test_calling_perform_with_resettable_iterator_resets_the_iterator() {
+        let mockIterator = MockLoopResettableIterator()
         let loop = QLoop<Void, Void>(iterator: mockIterator)
         loop.perform()
         XCTAssertTrue(mockIterator.didCall_reset)
     }
 
     func test_calling_perform_with_input_resets_the_iterator() {
-        let mockIterator = MockLoopIterator()
+        let mockIterator = MockLoopResettableIterator()
         let loop = QLoop<Int, Void>(iterator: mockIterator)
         loop.perform(6)
         XCTAssertTrue(mockIterator.didCall_reset)
@@ -137,7 +144,14 @@ class QLoopTests: XCTestCase {
         XCTAssertFalse(mockComponent.progressDataLoop.discontinue)
     }
 
-    func test_operation_path() {
+    func test_operation_path_without_segments_should_be_empty() {
+        let loop = QLoop<String, String>()
+        let opPath = loop.operationPath()
+
+        XCTAssertTrue(opPath.isEmpty)
+    }
+
+    func test_operation_path_with_segments_should_have_correct_shape() {
         let seg1 = QLSerialSegment("animal", MockOp.AddToStr("!"))
         let seg2 = QLSerialSegment("vegetable", MockOp.AddToStr("@"))
         let seg3 = QLSerialSegment("mineral", MockOp.AddToStr("#"))
