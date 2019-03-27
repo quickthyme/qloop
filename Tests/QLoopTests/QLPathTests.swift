@@ -4,22 +4,6 @@ import QLoop
 
 class QLPathTests: XCTestCase {
 
-    func test_givenTypeErasedPathBoundToLoop_objectReceivesFinalValue() {
-        let expect = expectation(description: "receive final value")
-        let mockComponent = MockPhoneComponent(expect)
-        let loopPath = QLPath<Void, String>(
-            QLSerialSegment(1, MockOp.VoidToInt(5)),
-            QLSerialSegment(2, MockOp.AddToInt(5)),
-            QLSerialSegment(3, MockOp.IntToStr()),
-            QLSerialSegment(4, MockOp.AddToStr("Z")))!
-        mockComponent.phoneDataLoop.bind(path: loopPath)
-
-        mockComponent.userAction()
-
-        wait(for: [expect], timeout: 6.0)
-        XCTAssertEqual(mockComponent.userPhoneNumberField, "10Z")
-    }
-
     func test_givenTwoCompatibleSegments_whenTypelesslyLinked_returnsFirst_linkedToSecond() {
         let seg1 = QLSerialSegment(1, MockOp.IntToStr())
         let seg2 = QLSerialSegment(2, MockOp.AddToStr("++"))
@@ -33,6 +17,10 @@ class QLPathTests: XCTestCase {
         let seg2 = QLSerialSegment(2, MockOp.IntToStr())
 
         XCTAssertNil(seg1.linked(to: seg2))
+    }
+
+    func test_givenNoSegments_whenConstructingPath_returnsNil() {
+        XCTAssertNil(QLPath<Double, Int>())
     }
 
     func test_givenSeveralCompatibleSegments_whenConstructingPath_returnsThemAllLinkedUp() {
@@ -91,5 +79,21 @@ class QLPathTests: XCTestCase {
         let opPath = path.describeOperationPath()
 
         XCTAssertEqual(opPath, "{animal}-{vegetable}-{mineral}")
+    }
+
+    func test_givenTypeErasedPathBoundToLoop_objectReceivesFinalValue() {
+        let expect = expectation(description: "receive final value")
+        let mockComponent = MockPhoneComponent(expect)
+        let loopPath = QLPath<Void, String>(
+            QLSerialSegment(1, MockOp.VoidToInt(5)),
+            QLSerialSegment(2, MockOp.AddToInt(5)),
+            QLSerialSegment(3, MockOp.IntToStr()),
+            QLSerialSegment(4, MockOp.AddToStr("Z")))!
+        mockComponent.phoneDataLoop.bind(path: loopPath)
+
+        mockComponent.userAction()
+
+        wait(for: [expect], timeout: 6.0)
+        XCTAssertEqual(mockComponent.userPhoneNumberField, "10Z")
     }
 }

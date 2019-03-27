@@ -28,7 +28,9 @@ public final class QLoop<Input, Output>: QLoopIterable {
     }
 
     public func perform(_ inputValue: Input?) {
-        self.iterator.reset()
+        if let iterator = self.iterator as? QLoopIteratingResettable {
+            iterator.reset()
+        }
         self.input.value = inputValue
     }
 

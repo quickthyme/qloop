@@ -1,5 +1,5 @@
 
-public final class QLoopIteratorContinueOutputMax: QLoopIterating {
+public final class QLoopIteratorContinueOutputMax: QLoopIteratingResettable {
 
     public var iterations: Int = 0
     public var maxIterations: Int
@@ -19,9 +19,7 @@ public final class QLoopIteratorContinueOutputMax: QLoopIterating {
         if (iterations < maxIterations) {
             loop.iterationFromLastOutput()
             return true
-        } else {
-            return false
         }
-
+        return false
     }
 }
