@@ -15,7 +15,7 @@ At a high level, features it provides include:
   - *test-friendly* observer-pattern module favoring declarative composition
   - built-in error propagation
   - swiftPM compatible package
-  - universal swift module
+  - universal module; Swift 4.2+, 5 (default)
 
 #### More promising
 
@@ -60,34 +60,33 @@ are to be called and in what order.
 
 ![loops](loops.png)
 
-Compose entire sequences of asynchronous operation `segments`, then wrap them
-up into *observable* loops. Decorating an entity with loops makes it easy
-to react to output streams using simple `onChange` and `onError` events.
+Compose `paths` of asynchronous operation `segments`, then bind them to anchors
+or wrap them up into *observable* loops. Simply decorate an entity with empty `loops`
+and/or `anchors`, and implement the `onChange` and/or `onError` events.
 
-##### Observation & Delegation
+- Observation & Delegation
+  
+  Loops are circular, providing both `Input` (**delegation**) and `Output` (**observation**)
+  capabilities.
 
-Loops are circular, and therefore provide both `Input` (**delegation**) as well as
-`Output` (**observation**) capabilities.
+- Flavorless
+  
+  By default, a QLoop has no bound functionality on creation. You must bestow
+  its behavior by binding it to paths and/or segments.
 
-##### Flavorless
+- Iteration
 
-By default, a QLoop has no bound functionality on creation. You must bestow
-its behavior by binding it to paths and/or segments.
+  Loops provide **iteration**, should it be desired. By default, a loop will
+  run once per input set, but they can be made to run however you like, simply
+  by swapping out its `iterator`. There are several included out-of-the-box,
+  but you can also create your own in order to extend the loop's functionality.
 
-##### Iteration
+  Any iterator you wish to use with QLoop must conform to `QLoopIterating`.
 
-Loops provide **iteration**, should it be desired. By default, a loop will
-run once per input set, but they can be made to run however you like, simply
-by swapping out its `iterator`. There are several included out-of-the-box,
-but you can also create your own in order to extend the loop's functionality.
+- Chaining
 
-Any iterator you wish to use with QLoop must conform to `QLoopIterating`.
-
-##### Chaining
-
-Loops can also be connected to other `loops`, `paths`, or `segments`;
-basically anything that can bind to an `anchor`.
-
+  Loops can also be connected to other `loops`, `paths`, or `segments`;
+  basically anything that can bind to an `anchor`.
 
 
 <br />

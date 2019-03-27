@@ -11,20 +11,34 @@
   - *test-friendly* observer-pattern module favoring declarative composition
   - built-in error propagation
   - swiftPM compatible package
-  - universal swift module
+  - universal module; Swift 4.2+, 5 (default)
+
+Compose `paths` of asynchronous operation `segments`, then bind them to anchors
+or wrap them up into *observable* loops. Simply decorate an entity with empty `loops`
+and/or `anchors`, and implement the `onChange` and/or `onError` events.
+
+Designed to be simple to use, test, and debug. *(Or so it's intended.)*
 
 <br />
 
 ## [Introduction](docs/introduction.md)
 
+a.k.a. *[what it is and what it does](docs/introduction.md)*.
+
 
 ## [Getting Started](docs/getting-started.md)
+
+How to *[install and start using](docs/getting-started.md)* it.
 
 
 ## [API Reference](docs/reference.md)
 
+Basically just a listing of the *[classes, functions, and arguments](docs/reference.md)* that make up QLoop.
+
 
 ## [Change Log](docs/changelog.md)
+
+On-going *[summary of pertinent changes](docs/changelog.md)* from one version to the next.
 
 
 ## [Demo App](https://github.com/quickthyme/qloop-demo)
@@ -40,7 +54,7 @@ threads, and unit-testing.
 ---
 
 Enjoying QLoop? You might check out its soul-mate:
-[QRoute](https://github.com/quickthyme/qroute),
+*[QRoute](https://github.com/quickthyme/qroute)*,
 a library providing declarative navigation and routing features with similar
 enthusiasm. Using them together, or separately, is up to you.
 
