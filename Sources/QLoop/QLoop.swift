@@ -74,7 +74,7 @@ public final class QLoop<Input, Output>: QLoopIterable {
         return output.inputSegment?.describeOperationPath() ?? ""
     }
 
-    public func operationPath() -> [([AnyHashable], Bool)] {
+    public func operationPath() -> QLoopOperationPath {
         return output.inputSegment?.operationPath() ?? []
     }
 

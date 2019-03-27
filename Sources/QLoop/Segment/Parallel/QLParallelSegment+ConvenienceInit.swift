@@ -11,7 +11,7 @@ public extension QLParallelSegment {
     }
 
     convenience init(_ operations: [AnyHashable:ParallelOperation],
-                            errorHandler: ErrorHandler?) {
+                     errorHandler: ErrorHandler?) {
         self.init(operations,
                   combiner: nil,
                   errorHandler: errorHandler,
@@ -19,7 +19,7 @@ public extension QLParallelSegment {
     }
 
     convenience init(_ operations: [AnyHashable:ParallelOperation],
-                            combiner: Combiner?) {
+                     combiner: Combiner?) {
         self.init(operations,
                   combiner: combiner,
                   errorHandler: nil,
@@ -27,8 +27,8 @@ public extension QLParallelSegment {
     }
 
     convenience init(_ operations: [AnyHashable:ParallelOperation],
-                            combiner: Combiner?,
-                            errorHandler: ErrorHandler?) {
+                     combiner: Combiner?,
+                     errorHandler: ErrorHandler?) {
         self.init(operations,
                   combiner: combiner,
                   errorHandler: errorHandler,
@@ -36,8 +36,8 @@ public extension QLParallelSegment {
     }
 
     convenience init(_ operations: [AnyHashable:ParallelOperation],
-                            combiner: Combiner?,
-                            output: QLAnchor<Output>?) {
+                     combiner: Combiner?,
+                     output: QLAnchor<Output>?) {
         self.init(operations,
                   combiner: combiner,
                   errorHandler: nil,
@@ -45,8 +45,8 @@ public extension QLParallelSegment {
     }
 
     convenience init<Unknown>(_ operations: [AnyHashable:ParallelOperation],
-                                     combiner: Combiner?,
-                                     outputSegment: QLSegment<Output, Unknown>?) {
+                              combiner: Combiner?,
+                              outputSegment: QLSegment<Output, Unknown>?) {
         self.init(operations,
                   combiner: combiner,
                   errorHandler: nil,
@@ -54,9 +54,9 @@ public extension QLParallelSegment {
     }
 
     convenience init<Unknown>(_ operations: [AnyHashable:ParallelOperation],
-                                     combiner: Combiner?,
-                                     errorHandler: ErrorHandler?,
-                                     outputSegment: QLSegment<Output, Unknown>?) {
+                              combiner: Combiner?,
+                              errorHandler: ErrorHandler?,
+                              outputSegment: QLSegment<Output, Unknown>?) {
         self.init(operations,
                   combiner: combiner,
                   errorHandler: errorHandler,
