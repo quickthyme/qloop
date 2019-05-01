@@ -7,6 +7,14 @@
 
 <br />
 
+### 0.1.5
+
+- added parameters for including custom dispatch queue when creating segments
+- moved convenience initializers back into main class (out of extension) due to swift
+  compiler SIL bug.
+
+<br />
+
 ### 0.1.4
 
 - updated for swift 5

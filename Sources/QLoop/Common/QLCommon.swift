@@ -1,4 +1,3 @@
-
 public struct QLCommon {
 
     public struct Config {

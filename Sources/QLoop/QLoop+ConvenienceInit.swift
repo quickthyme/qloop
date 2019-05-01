@@ -1,4 +1,3 @@
-
 public extension QLoop {
     private static func emptyOut(_ o: Output?)->() {/**/}
     private static func emptyErr(_ e: Error)->() {/**/}

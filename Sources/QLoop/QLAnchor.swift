@@ -1,4 +1,3 @@
-
 import Dispatch
 
 public protocol AnyAnchor: class {

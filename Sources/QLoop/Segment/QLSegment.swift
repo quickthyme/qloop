@@ -1,18 +1,3 @@
-
-public protocol AnySegment: class {
-    var inputAnchor: AnyAnchor { get }
-    var outputAnchor: AnyAnchor? { get }
-    var operationIds: [AnyHashable] { get }
-    var hasErrorHandler: Bool { get }
-    func linked(to otherSegment: AnySegment) -> Self?
-    func applyOutputAnchor(_ otherAnchor: AnyAnchor)
-    func findSegments(with operationId: AnyHashable) -> [AnySegment]
-    func describeOperationPath() -> String
-    func operationPath() -> QLoopOperationPath
-}
-
-public typealias QLoopOperationPath = [(operationIds: [AnyHashable], hasErrorHandler: Bool)]
-
 open class QLSegment<Input, Output>: AnySegment {
     public typealias Operation = (Input?, @escaping Completion) throws -> ()
     public typealias ErrorHandler = (Error, @escaping Completion, @escaping ErrorCompletion) -> ()

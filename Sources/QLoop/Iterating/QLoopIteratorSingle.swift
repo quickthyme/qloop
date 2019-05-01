@@ -1,4 +1,3 @@
-
 public final class QLoopIteratorSingle: QLoopIterating {
 
     public init() {

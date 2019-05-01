@@ -1,4 +1,3 @@
-
 public protocol QLoopIterating: class {
     @discardableResult
     func iterate(_ loop: QLoopIterable) -> Bool

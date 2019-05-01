@@ -1,4 +1,3 @@
-
 public final class QLoopIteratorContinueNilMax: QLoopIteratingResettable {
 
     public var iterations: Int = 0

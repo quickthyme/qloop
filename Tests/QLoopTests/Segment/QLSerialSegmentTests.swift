@@ -23,6 +23,23 @@ class QLSerialSegmentTests: XCTestCase {
         XCTAssertNil(captured.value)
     }
 
+    func test_givenIntToStringAndOutputAnchor_andCustomDispatchQueue_whenInputSet_itCallsCompletionWithResult() {
+        let expect = expectation(description: "shouldComplete")
+        let (captured, _, finalAnchor) = SpyAnchor<String>().CapturingAnchor(expect: expect)
+        let subject = QLSerialSegment<Int, String>(
+            0,
+            MockOp.IntToStr(),
+            operationQueue: DispatchQueue(label: "test queue")
+        )
+        subject.output = finalAnchor
+
+        subject.input.value = 5
+
+        wait(for: [expect], timeout: 8.0)
+        XCTAssertTrue(captured.didHappen)
+        XCTAssertEqual(captured.value, "5")
+    }
+
     func test_givenIntToStringAndOutputAnchor_whenInputSet_itCallsCompletionWithResult() {
         let expect = expectation(description: "shouldComplete")
         let (captured, _, finalAnchor) = SpyAnchor<String>().CapturingAnchor(expect: expect)

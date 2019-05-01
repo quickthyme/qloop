@@ -1,5 +1,6 @@
-
 import Dispatch
+
+public typealias QLps = QLParallelSegment
 
 public final class QLParallelSegment<Input, Output>: QLSegment<Input, Output> {
     public typealias ParallelOperation = QLSegment<Input, Any>.Operation
@@ -20,6 +21,94 @@ public final class QLParallelSegment<Input, Output>: QLSegment<Input, Output> {
         self.operations = operations.map { ($0.key, $0.value) }
         self.output = output
         self.input = QLAnchor<Input>()
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation]) {
+        self.init(operations,
+                  combiner: nil,
+                  errorHandler: nil,
+                  output: nil)
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation],
+                            operationQueues: [AnyHashable:DispatchQueue]) {
+        self.init(operations)
+        self.operationQueues = operationQueues
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation],
+                            errorHandler: ErrorHandler?) {
+        self.init(operations,
+                  combiner: nil,
+                  errorHandler: errorHandler,
+                  output: nil)
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation],
+                            operationQueues: [AnyHashable:DispatchQueue],
+                            errorHandler: ErrorHandler?) {
+        self.init(operations, errorHandler: errorHandler)
+        self.operationQueues = operationQueues
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation],
+                            combiner: Combiner?) {
+        self.init(operations,
+                  combiner: combiner,
+                  errorHandler: nil,
+                  output: nil)
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation],
+                            operationQueues: [AnyHashable:DispatchQueue],
+                            combiner: Combiner?) {
+        self.init(operations, combiner: combiner)
+        self.operationQueues = operationQueues
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation],
+                            combiner: Combiner?,
+                            errorHandler: ErrorHandler?) {
+        self.init(operations,
+                  combiner: combiner,
+                  errorHandler: errorHandler,
+                  output: nil)
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation],
+                            operationQueues: [AnyHashable:DispatchQueue],
+                            combiner: Combiner?,
+                            errorHandler: ErrorHandler?) {
+        self.init(operations, combiner: combiner, errorHandler: errorHandler)
+        self.operationQueues = operationQueues
+    }
+
+    public convenience init(_ operations: [AnyHashable:ParallelOperation],
+                            combiner: Combiner?,
+                            output: QLAnchor<Output>?) {
+        self.init(operations,
+                  combiner: combiner,
+                  errorHandler: nil,
+                  output: output)
+    }
+
+    public convenience init<Unknown>(_ operations: [AnyHashable:ParallelOperation],
+                                     combiner: Combiner?,
+                                     outputSegment: QLSegment<Output, Unknown>?) {
+        self.init(operations,
+                  combiner: combiner,
+                  errorHandler: nil,
+                  output: outputSegment?.input)
+    }
+
+    public convenience init<Unknown>(_ operations: [AnyHashable:ParallelOperation],
+                                     combiner: Combiner?,
+                                     errorHandler: ErrorHandler?,
+                                     outputSegment: QLSegment<Output, Unknown>?) {
+        self.init(operations,
+                  combiner: combiner,
+                  errorHandler: errorHandler,
+                  output: outputSegment?.input)
     }
 
 

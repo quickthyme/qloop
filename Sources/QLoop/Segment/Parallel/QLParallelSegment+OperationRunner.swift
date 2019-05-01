@@ -1,4 +1,3 @@
-
 import Dispatch
 
 internal extension QLParallelSegment {

@@ -1,4 +1,3 @@
-
 open class QLPath<Input, Output> {
     public typealias Operation = QLSegment<Input, Output>.Operation
     public typealias Completion = QLSegment<Input, Output>.Completion

@@ -1,4 +1,3 @@
-
 public extension QLAnchor {
     private static func emptyIn(_ o: Input?)->() {/**/}
     private static func emptyErr(_ e: Error)->() {/**/}
