@@ -92,7 +92,7 @@ To identify the anchor, you will need to do so using the object reference.
 example:
 
 ```
-let progressRepeater = viewController.viewController.progressAnchor
+let progressRepeater = viewController.progressAnchor
 let finalRepeater = viewController.downloadCompleteAnchor
 
 let baseAnchor = QLAnchor<DownloadStatus>(
