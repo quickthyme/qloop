@@ -27,7 +27,7 @@ public extension QLAnchor {
                      repeaters: [QLAnchor]) {
         self.init(onChange: QLAnchor.emptyIn,
                   onError: QLAnchor.emptyErr)
-        self.repeaters = repeaters.map { Repeater($0) }
+        self.repeaters = repeaters
         self.echoFilter = echoFilter
     }
 }

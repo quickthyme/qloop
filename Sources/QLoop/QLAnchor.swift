@@ -11,9 +11,9 @@ public final class QLAnchor<Input>: AnyAnchor {
     public typealias EchoFilter = (Input?, QLAnchor<Input>) -> (Bool)
     internal static var DefaultEchoFilter: EchoFilter { return { _, _ in return true } }
 
-    public final class Repeater {
-        public weak var anchor: QLAnchor?
-        public init(_ anchor: QLAnchor) {
+    internal final class Repeater {
+        weak var anchor: QLAnchor?
+        init(_ anchor: QLAnchor) {
             self.anchor = anchor
         }
         func echo(value: Input?, filter: EchoFilter) {
@@ -42,7 +42,12 @@ public final class QLAnchor<Input>: AnyAnchor {
 
     public var inputSegment: AnySegment?
 
-    public var repeaters: [Repeater] = []
+    public var repeaters: [QLAnchor] {
+        get { return _repeaters.compactMap { $0.anchor } }
+        set { self._repeaters = newValue.map { Repeater($0) } }
+    }
+
+    internal var _repeaters: [Repeater] = []
 
     public var echoFilter: EchoFilter = DefaultEchoFilter
 
@@ -109,13 +114,13 @@ public final class QLAnchor<Input>: AnyAnchor {
     }
 
     private func echo(value: Input?) {
-        for repeater in repeaters {
+        for repeater in _repeaters {
             repeater.echo(value: value, filter: echoFilter)
         }
     }
 
     private func echo(error: Error) {
-        for repeater in repeaters {
+        for repeater in _repeaters {
             repeater.echo(error: error)
         }
     }
