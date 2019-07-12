@@ -8,7 +8,8 @@ public final class QLAnchor<Input>: AnyAnchor {
     public typealias OnChange = (Input?)->()
     public typealias OnError = (Error)->()
 
-    lazy var inputQueue = DispatchQueue(label: "\(self).inputQueue")
+    lazy var inputQueue = DispatchQueue(label: "\(self).inputQueue",
+                                        qos: .userInitiated)
 
     public required init(onChange: @escaping OnChange,
                          onError: @escaping OnError) {
@@ -24,8 +25,14 @@ public final class QLAnchor<Input>: AnyAnchor {
         }
         set {
             inputQueue.sync { self._value = newValue }
-            DispatchQueue.main.async {
-                self.onChange(newValue)
+            if QLCommon.Config.Anchor.autoThrowResultFailures,
+                let errGettable = newValue as? ErrorGettable,
+                let err = errGettable.getError() {
+                self.error = err
+            } else {
+                DispatchQueue.main.async {
+                    self.onChange(newValue)
+                }
             }
 
             if (QLCommon.Config.Anchor.releaseValues) {

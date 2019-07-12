@@ -11,6 +11,8 @@ public struct QLCommon {
                 return false
                 #endif
             }()
+
+            public static var autoThrowResultFailures: Bool = true
         }
     }
 
