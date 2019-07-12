@@ -20,6 +20,8 @@
 
 - init(onChange: `(Input?)->()`, onError: `(Error)->()` )
 
+- init(repeaters: `QLAnchor.Repeater`, `...` )
+
 
 <br />
 
@@ -64,3 +66,40 @@ An `anchor` :
 `QLAnchor` implements a type of **semaphore** that makes use of synchronous dispatch
 queues around its `value` and `error` nodes. Inputs can safely arrive on any thread,
 and the events are guaranteed to arrive in serial fashion, although their order is not.
+
+
+##### Repeaters
+
+Repeaters offer a way to fork multiple streams off of the main path.
+
+When an Anchor has repeaters applied, then it will `echo` any `value` and `error` changes
+to each of them.
+
+By default, it forwards all changes to all repeaters. In order to make it conditional, we can
+set an `EchoFilter`, which gets called prior to forwarding to each repeater. Return `false`
+from the EchoFilter to block that repeater from receiving the change.
+
+
+##### EchoFilter
+
+- `(Input?, QLAnchor) -> (Bool)`
+
+Default filter returns `true`. You can evaluate the input value and decide whether or not the
+particular `anchor` (repeater) should receive the new value.
+
+To identify the anchor, you will need to do so using the object reference.
+
+example:
+
+```
+let progressRepeater = viewController.viewController.progressAnchor
+let finalRepeater = viewController.downloadCompleteAnchor
+
+let baseAnchor = QLAnchor<DownloadStatus>(
+    echoFilter: ({ obj, repeater in
+        return (obj.isProgress && repeater === progressRepeater)
+            || (obj.isFinal && repeater === finalRepeater)
+    }),
+    repeaters: progressRepeater, finalRepeater
+)
+```
