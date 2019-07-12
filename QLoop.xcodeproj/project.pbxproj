@@ -138,6 +138,10 @@
 		DCC759272241D04100B4750E /* QLoop+ConvenienceInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC759262241D04100B4750E /* QLoop+ConvenienceInitTests.swift */; };
 		DCC759282241D04100B4750E /* QLoop+ConvenienceInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC759262241D04100B4750E /* QLoop+ConvenienceInitTests.swift */; };
 		DCC759292241D04100B4750E /* QLoop+ConvenienceInitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC759262241D04100B4750E /* QLoop+ConvenienceInitTests.swift */; };
+		DCFACAEB22D826C5004D6D7A /* Result+ErrorGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFACAEA22D826C5004D6D7A /* Result+ErrorGettable.swift */; };
+		DCFACAEC22D826C5004D6D7A /* Result+ErrorGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFACAEA22D826C5004D6D7A /* Result+ErrorGettable.swift */; };
+		DCFACAED22D826C5004D6D7A /* Result+ErrorGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFACAEA22D826C5004D6D7A /* Result+ErrorGettable.swift */; };
+		DCFACAEE22D826C5004D6D7A /* Result+ErrorGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFACAEA22D826C5004D6D7A /* Result+ErrorGettable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +254,7 @@
 		DCD9D7C3223DDE0900BBDEE2 /* QLoop.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QLoop.md; sourceTree = "<group>"; };
 		DCD9D7C4223DDF8900BBDEE2 /* QLParallelSegment.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QLParallelSegment.md; sourceTree = "<group>"; };
 		DCD9D7C5223DE0C800BBDEE2 /* QLSerialSegment.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QLSerialSegment.md; sourceTree = "<group>"; };
+		DCFACAEA22D826C5004D6D7A /* Result+ErrorGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+ErrorGettable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +391,7 @@
 				DC6FAF5D222F4EF5008BB070 /* QLAnchor.swift */,
 				DC5E449E224AFC2B0007FEAD /* QLAnchor+ConvenienceInit.swift */,
 				DC8F2B58223342E000277F70 /* QLPath.swift */,
+				DCFACAEA22D826C5004D6D7A /* Result+ErrorGettable.swift */,
 				DCF860BF2239D02B0018C1A1 /* Common */,
 				DC374A322231F28A006F1272 /* Iterating */,
 				DCA1FD232230C8E5006015BD /* Segment */,
@@ -740,6 +746,7 @@
 				DCA1FD1F2230C8DB006015BD /* QLSegment.swift in Sources */,
 				DC374A372231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift in Sources */,
 				DCA1FD0C22303D22006015BD /* QLoop.swift in Sources */,
+				DCFACAEB22D826C5004D6D7A /* Result+ErrorGettable.swift in Sources */,
 				DC413D23223B191300000480 /* QLCommon.swift in Sources */,
 				DC6FAF5E222F4EF5008BB070 /* QLAnchor.swift in Sources */,
 				DC374A412231F361006F1272 /* QLoopIteratorContinueNil.swift in Sources */,
@@ -764,6 +771,7 @@
 				DCA1FD202230C8DB006015BD /* QLSegment.swift in Sources */,
 				DC374A342231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift in Sources */,
 				DCA1FD0D22303D22006015BD /* QLoop.swift in Sources */,
+				DCFACAEC22D826C5004D6D7A /* Result+ErrorGettable.swift in Sources */,
 				DC413D24223B191300000480 /* QLCommon.swift in Sources */,
 				DC6FAF5F222F4EF5008BB070 /* QLAnchor.swift in Sources */,
 				DC374A3E2231F361006F1272 /* QLoopIteratorContinueNil.swift in Sources */,
@@ -788,6 +796,7 @@
 				DCA1FD212230C8DB006015BD /* QLSegment.swift in Sources */,
 				DC374A352231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift in Sources */,
 				DCA1FD0E22303D22006015BD /* QLoop.swift in Sources */,
+				DCFACAED22D826C5004D6D7A /* Result+ErrorGettable.swift in Sources */,
 				DC413D25223B191300000480 /* QLCommon.swift in Sources */,
 				DC6FAF60222F4EF5008BB070 /* QLAnchor.swift in Sources */,
 				DC374A3F2231F361006F1272 /* QLoopIteratorContinueNil.swift in Sources */,
@@ -812,6 +821,7 @@
 				DCA1FD222230C8DB006015BD /* QLSegment.swift in Sources */,
 				DC374A362231F2AD006F1272 /* QLoopIteratorContinueNilMax.swift in Sources */,
 				DCA1FD0F22303D22006015BD /* QLoop.swift in Sources */,
+				DCFACAEE22D826C5004D6D7A /* Result+ErrorGettable.swift in Sources */,
 				DC413D26223B191300000480 /* QLCommon.swift in Sources */,
 				DC6FAF61222F4EF5008BB070 /* QLAnchor.swift in Sources */,
 				DC374A402231F361006F1272 /* QLoopIteratorContinueNil.swift in Sources */,
