@@ -7,6 +7,13 @@
 
 <br />
 
+### 0.1.6
+
+- `Swift.Result` failures auto-route through error path
+- `QLAnchor` supports echoing to repeaters, with optional `EchoFilters`
+
+<br />
+
 ### 0.1.5
 
 - added parameters for including custom dispatch queue when creating segments
@@ -63,6 +70,6 @@
 ### 0.1.0
 
  - initial alpha testing release
- - cleaner testing support 
+ - cleaner testing support
 
 <br />
