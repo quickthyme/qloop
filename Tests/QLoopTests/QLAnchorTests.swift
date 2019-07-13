@@ -80,4 +80,75 @@ final class QLAnchorTests: XCTestCase {
         wait(for: [expect], timeout: 8.0)
         XCTAssert((receivedError as? QLCommon.Error) == QLCommon.Error.ThrownButNotSet)
     }
+
+    func test_given_it_has_repeaters_with_default_filter_when_input_set_then_it_echoes_to_them_as_well() {
+        var receivedVal0: Int = -1
+        var receivedVal1: Int = -1
+        var receivedVal2: Int = -1
+        let expectOriginal0 = expectation(description: "should dispatch value")
+        let expectRepeater1 = expectation(description: "should echo value to repeater1")
+        let expectRepeater2 = expectation(description: "should echo value to repeater2")
+        let repeater1 = QLAnchor<Int>(onChange: { receivedVal1 = $0!; expectRepeater1.fulfill() })
+        let repeater2 = QLAnchor<Int>(onChange: { receivedVal2 = $0!; expectRepeater2.fulfill() })
+        let subject = QLAnchor<Int>(repeaters: repeater1, repeater2)
+
+        subject.onChange = { receivedVal0 = $0!; expectOriginal0.fulfill() }
+
+        subject.value = 99
+
+        wait(for: [expectOriginal0, expectRepeater1, expectRepeater2], timeout: 8.0)
+        XCTAssertEqual(receivedVal0, 99)
+        XCTAssertEqual(receivedVal1, 99)
+        XCTAssertEqual(receivedVal2, 99)
+    }
+
+    func test_given_it_has_repeaters_with_default_filter_when_error_set_then_it_echoes_to_them_as_well() {
+        var receivedErr0: Error? = nil
+        var receivedErr1: Error? = nil
+        var receivedErr2: Error? = nil
+        let expectOriginal0 = expectation(description: "should dispatch error")
+        let expectRepeater1 = expectation(description: "should echo error to repeater1")
+        let expectRepeater2 = expectation(description: "should echo error to repeater2")
+        let repeater1 = QLAnchor<Int>(onChange: { _ in },
+                                      onError: { receivedErr1 = $0; expectRepeater1.fulfill() })
+        let repeater2 = QLAnchor<Int>(onChange: { _ in },
+                                      onError: { receivedErr2 = $0; expectRepeater2.fulfill() })
+        let subject = QLAnchor<Int>(repeaters: repeater1, repeater2)
+
+        subject.onError = { receivedErr0 = $0; expectOriginal0.fulfill() }
+
+        subject.error = QLCommon.Error.Unknown
+
+        wait(for: [expectOriginal0, expectRepeater1, expectRepeater2], timeout: 8.0)
+        XCTAssertNotNil(receivedErr0)
+        XCTAssertNotNil(receivedErr1)
+        XCTAssertNotNil(receivedErr2)
+    }
+
+    func test_given_it_has_repeaters_with_custom_filter_when_input_set_then_it_dispatches_then_echoes_to_them_conditionally() {
+        var receivedVal0: Int = -1
+        var receivedVal1: Int = -1
+        var receivedVal2: Int = -1
+        let expectOriginal0 = expectation(description: "should dispatch value")
+        let expectRepeater2 = expectation(description: "should echo value to repeater2")
+        let repeater1 = QLAnchor<Int>(onChange: { receivedVal1 = $0! })
+        let repeater2 = QLAnchor<Int>(onChange: { receivedVal2 = $0!; expectRepeater2.fulfill() })
+
+        let subject = QLAnchor<Int>(
+            echoFilter: ({ val, repeater in
+                return (val == 11 && repeater === repeater1)
+                    || (val == 22 && repeater === repeater2)
+            }),
+            repeaters: repeater1, repeater2
+        )
+
+        subject.onChange = { receivedVal0 = $0!; expectOriginal0.fulfill() }
+
+        subject.value = 22
+
+        wait(for: [expectOriginal0, expectRepeater2], timeout: 8.0)
+        XCTAssertEqual(receivedVal0, 22)
+        XCTAssertEqual(receivedVal1, -1)
+        XCTAssertEqual(receivedVal2, 22)
+    }
 }
