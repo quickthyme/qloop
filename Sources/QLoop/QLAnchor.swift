@@ -11,17 +11,28 @@ public final class QLAnchor<Input>: AnyAnchor {
     public typealias EchoFilter = (Input?, QLAnchor<Input>) -> (Bool)
     internal static var DefaultEchoFilter: EchoFilter { return { _, _ in return true } }
 
+    public enum Timing {
+        case early, late
+    }
+
     internal final class Repeater {
+
         weak var anchor: QLAnchor?
-        init(_ anchor: QLAnchor) {
+
+        let timing: Timing
+
+        init(_ anchor: QLAnchor, timing: Timing) {
+            self.timing = timing
             self.anchor = anchor
         }
-        func echo(value: Input?, filter: EchoFilter) {
+
+        func echo(value: Input?, filter: EchoFilter, timing: Timing) {
             if let repeater = self.anchor,
                 filter(value, repeater) {
                 repeater.value = value
             }
         }
+
         func echo(error: Error) {
             anchor?.error = error
         }
@@ -42,9 +53,13 @@ public final class QLAnchor<Input>: AnyAnchor {
 
     public var inputSegment: AnySegment?
 
-    public var repeaters: [QLAnchor] {
-        get { return _repeaters.compactMap { $0.anchor } }
-        set { self._repeaters = newValue.map { Repeater($0) } }
+    public func addRepeaters(_ repeaters: [QLAnchor], timing: Timing) {
+        let repeaters = repeaters.map { Repeater($0, timing: timing) }
+        self._repeaters.append(contentsOf: repeaters)
+    }
+
+    public func getRepeaters(timing: Timing) -> [QLAnchor] {
+        return _repeaters.compactMap { ($0.timing == timing) ? $0.anchor : nil }
     }
 
     internal var _repeaters: [Repeater] = []
@@ -64,8 +79,9 @@ public final class QLAnchor<Input>: AnyAnchor {
             if let err = getReroutableError(newValue) {
                 self.error = err
             } else {
+                echo(value: newValue, timing: .early)
                 dispatch(value: newValue)
-                echo(value: newValue)
+                echo(value: newValue, timing: .late)
             }
 
             if (QLCommon.Config.Anchor.releaseValues) {
@@ -113,9 +129,10 @@ public final class QLAnchor<Input>: AnyAnchor {
         }
     }
 
-    private func echo(value: Input?) {
+    private func echo(value: Input?, timing: Timing) {
         for repeater in _repeaters {
-            repeater.echo(value: value, filter: echoFilter)
+            guard repeater.timing == timing else { continue }
+            repeater.echo(value: value, filter: echoFilter, timing: timing)
         }
     }
 
