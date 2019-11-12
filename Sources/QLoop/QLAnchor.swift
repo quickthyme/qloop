@@ -17,7 +17,7 @@ public final class QLAnchor<Input>: AnyAnchor {
 
     internal final class Repeater {
 
-        weak var anchor: QLAnchor!
+        weak var anchor: QLAnchor?
 
         let timing: Timing
 
@@ -27,13 +27,14 @@ public final class QLAnchor<Input>: AnyAnchor {
         }
 
         func echo(value: Input?, filter: EchoFilter, timing: Timing) {
-            if filter(value, anchor) {
-                anchor.value = value
+            if let repeater = self.anchor,
+                filter(value, repeater) {
+                repeater.value = value
             }
         }
 
         func echo(error: Error) {
-            anchor.error = error
+            anchor?.error = error
         }
     }
 
