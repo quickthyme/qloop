@@ -7,6 +7,12 @@
 
 <br />
 
+### 0.1.7
+
+- `QLAnchor` repeater timing (early/late)
+
+<br />
+
 ### 0.1.6
 
 - `Swift.Result` failures auto-route through error path

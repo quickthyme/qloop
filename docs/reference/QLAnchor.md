@@ -20,7 +20,9 @@
 
 - init(onChange: `(Input?)->()`, onError: `(Error)->()` )
 
-- init(repeaters: `QLAnchor.Repeater`, `...` )
+- init(earlyRepeaters: `QLAnchor.Repeater`, `...` )
+
+- init(lateRepeaters: `QLAnchor.Repeater`, `...` )
 
 
 <br />
@@ -75,9 +77,9 @@ Repeaters offer a way to fork multiple streams off of the main path.
 When an Anchor has repeaters applied, then it will `echo` any `value` and `error` changes
 to each of them.
 
-By default, it forwards all changes to all repeaters. In order to make it conditional, we can
-set an `EchoFilter`, which gets called prior to forwarding to each repeater. Return `false`
-from the EchoFilter to block that repeater from receiving the change.
+By default, it forwards all changes to all repeaters. In order to make it conditional,
+include an `EchoFilter`. Return `false` from the EchoFilter to block that repeater
+from receiving the change.
 
 
 ##### EchoFilter

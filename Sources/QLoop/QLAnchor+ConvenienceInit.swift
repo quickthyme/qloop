@@ -12,22 +12,46 @@ public extension QLAnchor {
                   onError: QLAnchor.emptyErr)
     }
 
-    convenience init(repeaters: QLAnchor...) {
+    convenience init(earlyRepeaters: QLAnchor...) {
         self.init(echoFilter: QLAnchor.DefaultEchoFilter,
-                  repeaters: repeaters)
+                  earlyRepeaters: earlyRepeaters,
+                  lateRepeaters: [])
+    }
+
+    convenience init(lateRepeaters: QLAnchor...) {
+        self.init(echoFilter: QLAnchor.DefaultEchoFilter,
+                  earlyRepeaters: [],
+                  lateRepeaters: lateRepeaters)
+    }
+
+    convenience init(earlyRepeaters: [QLAnchor],
+                     lateRepeaters: [QLAnchor]) {
+        self.init(echoFilter: QLAnchor.DefaultEchoFilter,
+                  earlyRepeaters: earlyRepeaters,
+                  lateRepeaters: lateRepeaters)
     }
 
     convenience init(echoFilter: @escaping EchoFilter,
-                     repeaters: QLAnchor...) {
+                     earlyRepeaters: QLAnchor...) {
         self.init(echoFilter: echoFilter,
-                  repeaters: repeaters)
+                  earlyRepeaters: earlyRepeaters,
+                  lateRepeaters: [])
     }
 
     convenience init(echoFilter: @escaping EchoFilter,
-                     repeaters: [QLAnchor]) {
+                     lateRepeaters: QLAnchor...) {
+        self.init(echoFilter: echoFilter,
+                  earlyRepeaters: [],
+                  lateRepeaters: lateRepeaters)
+    }
+
+    convenience init(echoFilter: @escaping EchoFilter,
+                     earlyRepeaters: [QLAnchor],
+                     lateRepeaters: [QLAnchor]) {
         self.init(onChange: QLAnchor.emptyIn,
                   onError: QLAnchor.emptyErr)
-        self.repeaters = repeaters
+        self.addRepeaters(earlyRepeaters, timing: .early)
+        self.addRepeaters(lateRepeaters, timing: .late)
         self.echoFilter = echoFilter
     }
 }
