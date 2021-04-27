@@ -1,6 +1,6 @@
 import Dispatch
 
-public protocol AnyAnchor: class {
+public protocol AnyAnchor: AnyObject {
     var inputSegment: AnySegment? { get }
 }
 

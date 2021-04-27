@@ -1,4 +1,4 @@
-public protocol AnySegment: class {
+public protocol AnySegment: AnyObject {
     var inputAnchor: AnyAnchor { get }
     var outputAnchor: AnyAnchor? { get }
     var operationIds: [AnyHashable] { get }
